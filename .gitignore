@@ -19,6 +19,7 @@ tmp/
 tmp*
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
+.gdb/*/*/*/*.pyc
 bin/youtube-dl*
 bin/*.exe
 Devel/
@@ -33,6 +34,6 @@ conda/
 .mozilla/
 .nv/
 Games/
+local/
 .emacs.d/auto-save-list/.saves*
 .emacs.d/eshell/
-
