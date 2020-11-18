@@ -7,10 +7,10 @@ import qt5printers
 qt5printers.register_printers(gdb.current_objfile())
 
 if 'UNAMEOS' in os.environ:
-  unameos=os.environ['UNAMEOS']
-  if unameos == 'Msys' or unameos == 'Cygwin':
-    from libstdcxx.v6.printers import register_libstdcxx_printers
+ unameos=os.environ['UNAMEOS']
+ if unameos == 'Msys' or unameos == 'Cygwin' or unameos == 'MinGW':
+   from libstdcxx.v6.printers import register_libstdcxx_printers
 else:
-  from libstdcxx.v6.printers import register_libstdcxx_printers
-  register_libstdcxx_printers (None)
+ from libstdcxx.v6.printers import register_libstdcxx_printers
+ register_libstdcxx_printers (None)
 end
