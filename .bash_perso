@@ -118,6 +118,9 @@ if [ $MYPC == 1 ] ; then
         export MSYSTEM_PREFIX=/mingw64
         export MINGW_CHOST=x86_64-w64-mingw32
         export EDITOR=vim # emacs-nox is very broken on mingw
+        # gdb must be accessed with full path /bin for MinGW version
+        # otherwise it finds tdm-gdb first in path, which is not as good in terminal
+        alias cgdb='PATH=/bin cgdb'
         PROMPTOS=" $yellow$UNAMEOS$reset"
         alias emacs='winpty $EMACSNATIVE'
     elif [ $UNAMEOS == Cygwin ] ; then
