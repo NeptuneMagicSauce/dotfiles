@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# subversion
+svnCheckMissing()
+{
+    find "$1" -print0 |xargs -0 svn status $* | grep ^\?
+}
+svnWhatFilesChanged()
+{
+    svn diff $*|grep ^Index
+}
+svnDiff()
+{
+    svn diff $*|less
+}
+svnCountLinesChanged()
+{
+    svn diff $*|wc -l
+}

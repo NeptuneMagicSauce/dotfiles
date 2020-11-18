@@ -1,0 +1,13 @@
+# put it in /usr/share/applications to fix broken HiDPI scaling on ubuntu
+# or just add --force-device-scale-factor=2.5 in the Exec line
+[Desktop Entry]
+Type=Application
+Name=Spotify
+GenericName=Music Player
+Icon=spotify-client
+TryExec=spotify
+Exec=spotify --force-device-scale-factor=2.5 %U
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify
