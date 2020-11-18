@@ -1,0 +1,2 @@
+setx MSYSTEM MINGW64
+setx MSYS2_PATH_TYPE inherit

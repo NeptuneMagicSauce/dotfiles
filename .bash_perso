@@ -1,0 +1,187 @@
+#!/bin/sh
+
+# uname
+export UNAMEOS=`uname -o`
+export UNAMEMACHINE=`uname -m`
+
+# my machines
+MYPC=0
+MYLAPTOP=0
+if [ $HOSTNAME == "JOJO-PC" ]; then
+    MYPC=1
+elif [ $HOSTNAME == "JOJO-LAPTOP" ]; then
+    MYLAPTOP=1
+fi
+
+EDITOR='emacs -nw -q -l ~/.emacs.d/min-settings.el'
+GDBOPTIONS='-quiet -tui'
+
+command -v ffmpeg > /dev/null
+# if [ $? == 0 ] ; then
+    # TODO alias transcodeipod='...'
+    # see https://devblogs.nvidia.com/nvidia-ffmpeg-transcoding-guide/
+    # ffmpeg.exe -vsync 0 -hwaccel cuvid -c:v h264_cuvid -i *S01E01*.mkv -c:a copy -c:v h264_nvenc -b:v 4M The.Witcher.S01E01.mp4
+    # maybe bitrates : 5M for 720p, 10M for 1080p
+# fi
+
+
+# fix for work at inria
+if [ $USERNAME == "rlacroix" ] ; then
+    if [ -t 0 ] ; then # interactive shell
+        if [ `pwd` != "/home/rlacroix" ] ; then
+            HOME=/home/rlacroix
+            cd ~
+        fi
+    fi
+fi
+
+if [ $MYPC == 1 ] ; then
+
+    # arch config
+    if [ -z $ARCHBITS ]; then
+        if [ $UNAMEMACHINE = i686 ] ; then
+            export ARCHBITS=32
+        else
+            if [ $UNAMEMACHINE = x86_64 ] ; then
+                export ARCHBITS=64
+            else
+                echo Warning : arch not supported $UNAMEMACHINE, ARCHBITS not set
+            fi
+        fi
+    fi
+
+    # path
+    export PATH=~/bin:/bin:/usr/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Devel/Tools/ffmpeg-20200101-7b58702-win64-static/bin/:/c/Devel/Data/Scripts:"/c/Program Files (x86)/NVIDIA Corporation/NVIDIA Texture Tools 2/bin"
+
+    # env vars
+    export INCOMING=/z/Incoming
+    export DEVDATA='/c/Devel/Data'
+    export DEVPC='/c/Devel/Workspace/DLAM'
+    export DEV='/c/Devel/Workspace/Youtube2iDevice'
+    export DEVSETUP='/z/Setup/Misc/DevelTools/PCdev'
+    export GOOGLEDRIVE=/z/GoogleDrive
+    export DEVLIBS=/c/Devel/Libs/Win$ARCHBITS
+    export CMAKE_GENERATOR="Unix Makefiles"
+    # export CMAKE_GENERATOR="Ninja"
+    export PATH=/c/Devel/Tools/Qt5/Tools/Ninja/:$PATH
+    export PATH=.:$PATH
+    # export PATH=/c/Devel/Tools/TDM-GCC-$ARCHBITS/bin:$PATH
+    export PATH=/c/Devel/Tools/Qt5/Tools/mingw810_64/bin:$PATH
+    export PATH=$DEVLIBS/bin:$DEVPC/Data/Scripts:$DEVPC/Build/Latest:$PATH
+    export BUILDLOG="C:\Devel\Workspace\.metadata\.plugins\org.eclipse.cdt.ui\DLAM.build.log"
+    alias m='/c/Program\ Files\ \(x86\)/MPlayer/mplayer.exe'
+    alias mencoder='/c/Program\ Files\ \(x86\)/MPlayer/mencoder.exe'
+    alias devbackup='$DEVDATA/Scripts/devbackup.sh'
+    devlibsprint()
+    {
+        echo -n "which gcc -> "
+        which gcc|grep "TDM-GCC-[0-9]*"
+        echo -n "\$DEVLIBS  -> "
+        echo $DEVLIBS|grep "Win[0-9]*"
+    }
+    alias devlibs32='export ARCHBITS=32; bashreload; devlibsprint'
+    alias devlibs64='export ARCHBITS=64; bashreload; devlibsprint'
+    compileobj()
+    {
+        pushd $DEVPC/src > /dev/null
+        DEVLIBS_COMPATCYGWIN=`echo $DEVLIBS|sed 's+/c+c:+'`
+        command="gcc \
+                -DCONFIGNAME \
+                -I../include \
+                -I$DEVLIBS_COMPATCYGWIN/include \
+                -I$DEVLIBS_COMPATCYGWIN/include/bullet \
+                -I$DEVLIBS_COMPATCYGWIN/include/SDL2 \
+                -I$DEVLIBS_COMPATCYGWIN/include/boost-1_61 \
+                -I$DEVLIBS_COMPATCYGWIN/include/DirectXSDK \
+                -O0 -Wall \
+                -Wno-unused-variable \
+                -std=gnu++11 \
+                -o z:/tmp/compileobj.tmp.o \
+                -c $*"
+        echo -n "which "
+        which gcc|grep "GCC-[0-9]*"
+        echo $command
+        $command
+        popd > /dev/null
+    }
+    GITBRANCH="λ"
+
+    EMACSNATIVE="/c/Devel/Tools/Emacs/bin/emacs"
+
+    if [ $UNAMEOS == Msys ] ; then
+        export PATH=~/local/msys/bin:/mingw$ARCHBITS/bin:$PATH
+        export MSYSTEM=MINGW64
+        export UNAMEOS=MinGW
+        export MSYSTEM_CHOST=x86_64-w64-mingw32
+        # not sure if 3 next ones are needed, but I will export them anyway
+        export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64
+        export MSYSTEM_PREFIX=/mingw64
+        export MINGW_CHOST=x86_64-w64-mingw32
+        export EDITOR=vim # emacs-nox is very broken on mingw
+        PROMPTOS=" $yellow$UNAMEOS$reset"
+        alias emacs='winpty $EMACSNATIVE'
+    elif [ $UNAMEOS == Cygwin ] ; then
+        alias packages='/z/Setup/Misc/DevelTools/cygwin-setup-$UNAMEMACHINE.exe'
+        alias gdb='/bin/gdb $GDBOPTIONS'
+        # gdb must be accessed with full path /bin for Cygwin version
+        # otherwise it finds tdm-gdb first in path, which is not as good in terminal
+        alias cgdb='PATH=/bin cgdb'
+    else
+        alias gdb='gdb $GDBOPTIONS'
+    fi
+elif [ $MYLAPTOP == 1 ] ; then
+    export PATH=~/bin:~/conda:$PATH
+    if [ -f ~/conda/etc/profile.d/conda.sh ]; then
+        source ~/conda/etc/profile.d/conda.sh
+    fi
+    INCOMING=/c/Incoming
+    if [ $UNAMEOS != "GNU/Linux" ] ; then
+        GITBRANCH="λ"
+    fi
+    WINSYMLINKS=winsymlinks:nativestrict
+    alias gdb='gdb $GDBOPTIONS'
+    if [ $UNAMEOS == Msys ] ; then
+        export PATH=~/local/msys/bin:$PATH # needed for source-highlight
+        export MSYS=$WINSYMLINKS
+    elif [ $UNAMEOS == Cygwin ] ; then
+        export PATH=~/bin/cygwin:$PATH # needed for apt-cyg
+        export CYGWIN=$WINSYMLINKS
+        alias packages='/c/Setup/Cygwin/CygwinSetup-x86_64.exe'
+    elif [ $UNAMEOS == GNU/Linux ] ; then
+        alias explorer='explorer.exe'
+    fi
+else # not my machine
+    alias gdb='gdb $GDBOPTIONS'
+fi
+
+if [ ! -z $UNAMEOS ] ; then
+    if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
+        alias pkgsearch='pacman -Ss'
+        alias pkgget='pacman -S'
+        alias pkgremove='pacman -Rcns'
+        alias pkginstalled='pacman -Q'
+        alias pkgfiles='pacman -Ql'
+        export EDITOR=vim # emacs-nox is very broken on mingw
+    elif [ $UNAMEOS == Cygwin ] ; then
+        alias pkgsearch='apt-cyg listall'
+        alias pkgget='apt-cyg install'
+        alias pkgremove='apt-cyg remove'
+        alias pkginstalled='apt-cyg list'
+        alias pkgfiles='apt-cyg listfiles'
+    elif [ $UNAMEOS == GNU/Linux ] ; then
+        alias pkgsearch='apt-cache search --names-only'
+        alias pkgget='sudo apt-get install'
+        alias pkgremove='sudo apt-get remove'
+        alias pkginstalled='dpkg -la'
+        alias pkgfiles='dpkg -L'
+        alias pkgautoremove='sudo apt-get autoremove'
+    fi
+fi
+
+# how to GIF :
+# mkdir -p indexed; j=1;for i in *jpg; do mv -v $i indexed/image$j.jpg; j=`expr $j + 1`; done
+# cd indexed
+# mkdir -p cropped; for i in *jpg; do convert -crop 753x753+627+259 $i cropped/$i; done
+# filters="fps=30,scale=466:-1:flags=lanczos"
+# palette=palette.png
+# ffmpeg.exe -f image2 -i image%d.jpg -vf "$filters,palettegen=stats_mode=diff" -y $palette && ffmpeg.exe -f image2 -i image%d.jpg  -i $palette -lavfi "$filters [x]; [x][1:v] paletteuse" -loop -1 -y zz-30fps-crop2-scale-two-thirds-stats-diff.gif

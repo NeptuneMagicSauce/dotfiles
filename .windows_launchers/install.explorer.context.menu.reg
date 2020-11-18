@@ -1,0 +1,47 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal MinGW]
+"icon"="c:\\Home\\.windows_launchers\\icons\\mintty.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal MinGW\command]
+@="C:\\Devel\\Tools\\Msys2\\usr\\bin\\mintty --dir \"%V\" -t MinGW -i C:\\Home\\.windows_launchers\\icons\\mintty.ico /bin/bash -c 'source /etc/profile;bash'"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal MinGW]
+"icon"="c:\\Home\\.windows_launchers\\icons\\mintty.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal MinGW\command]
+@="C:\\Devel\\Tools\\Msys2\\usr\\bin\\mintty --dir \"%V\" -t MinGW -i C:\\Home\\.windows_launchers\\icons\\mintty.ico /bin/bash -c 'source /etc/profile;bash'"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal Cygwin]
+"icon"="c:\\Home\\.windows_launchers\\icons\\Cygwin.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal Cygwin\command]
+@="C:\\Devel\\Tools\\Cygwin\\bin\\mintty --dir \"%V\" -t Cygwin -i C:\\Home\\.windows_launchers\\icons\\Cygwin.ico /bin/bash -c 'source /etc/profile; bash'"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal Cygwin]
+"icon"="c:\\Home\\.windows_launchers\\icons\\Cygwin.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal Cygwin\command]
+@="C:\\Devel\\Tools\\Cygwin\\bin\\mintty --dir \"%V\" -t Cygwin -i C:\\Home\\.windows_launchers\\icons\\Cygwin.ico /bin/bash -c 'source /etc/profile; bash'"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal  WSL]
+"icon"="c:\\Home\\.windows_launchers\\icons\\ubuntu.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal  WSL\command]
+@="C:\\Users\\romai\\AppData\\Local\\wsltty\\bin\\mintty --dir \"%V\" -t WSL -i c:\\Home\\.windows_launchers\\icons\\ubuntu.ico --WSL --configdir=c:/Home/.mintty /bin/bash"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal  WSL]
+"icon"="c:\\Home\\.windows_launchers\\icons\\ubuntu.ico"
+"Position"="Top"
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal  WSL\command]
+@="C:\\Users\\romai\\AppData\\Local\\wsltty\\bin\\mintty --dir \"%V\" -t WSL -i c:\\Home\\.windows_launchers\\icons\\ubuntu.ico --WSL --configdir=c:/Home/.mintty /bin/bash"
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal  Cmd]
+"icon"="c:\\windows\\system32\\cmd.exe"
+"Position"="Top"
+"SeparatorAfter"=""
+[HKEY_CLASSES_ROOT\Directory\Background\shell\Terminal  Cmd\command]
+@="cmd.exe /s /k pushd \"%V\""
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal  Cmd]
+"icon"="c:\\windows\\system32\\cmd.exe"
+"Position"="Top"
+"SeparatorAfter"=""
+[HKEY_CLASSES_ROOT\Directory\shell\Terminal  Cmd\command]
+@="cmd.exe /s /k pushd \"%V\""
