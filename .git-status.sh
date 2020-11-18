@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 source ~/.bash_git
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
