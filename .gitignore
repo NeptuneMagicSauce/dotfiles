@@ -37,6 +37,12 @@ TO*DELETE*
 .config/teams/
 .config/enchant/
 .config/gedit/
+.config/evolution/
+.config/goa*/
+.config/gtk-3.0/
+.config/ibus/
+.config/libreoffice/
+.config/user-dirs*
 .source-highlight/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
