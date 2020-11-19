@@ -333,7 +333,7 @@ M-x compile.
 
 ;; add path to Cygwin programs : make, git
 ;; TODO : only needed if graphic not terminal ?
-(when (display-graphic-p))
+(when (display-graphic-p)
   ;; add path to git and grep for jojo-pc and jojo-laptop
   (when (string-equal system-name "JOJO-PC")
    (setenv "PATH" (concat "c:/Devel/Tools/Msys2-64/usr/bin" (getenv "PATH"))))
