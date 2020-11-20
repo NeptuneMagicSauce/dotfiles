@@ -42,6 +42,7 @@ TO*DELETE*
 .config/gtk-3.0/
 .config/ibus/
 .config/libreoffice/
+.config/mimeapps.list
 .config/user-dirs*
 .source-highlight/
 .gdb/*/*.pyc
