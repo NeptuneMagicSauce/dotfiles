@@ -12,6 +12,7 @@ tmp/
 
 bin/youtube-dl*
 bin/*.exe
+bin/qemu*
 local/
 packages-*
 setup.log*
