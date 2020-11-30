@@ -66,7 +66,12 @@ if [ $MYPC == 1 ] ; then
     export PATH=/c/Devel/Tools/Qt5/Tools/Ninja/:$PATH
     export PATH=.:$PATH
     # export PATH=/c/Devel/Tools/TDM-GCC-$ARCHBITS/bin:$PATH
-    export PATH=/c/Devel/Tools/Qt5/Tools/mingw810_64/bin:$PATH
+    if [ "`command -v g++`" != "/c/Devel/Tools/Qt5/Tools/mingw810_64/bin/g++" ] ; then
+        export PATH=/c/Devel/Tools/Qt5/Tools/mingw810_64/bin:$PATH
+    fi
+    if [ "`command -v moc`" != "/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin/moc" ] ; then
+        export PATH=/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin:$PATH
+    fi
     export PATH=$DEVLIBS/bin:$DEVPC/Data/Scripts:$DEVPC/Build/Latest:$PATH
     export BUILDLOG="C:\Devel\Workspace\.metadata\.plugins\org.eclipse.cdt.ui\DLAM.build.log"
     alias m='/c/Program\ Files\ \(x86\)/MPlayer/mplayer.exe'
