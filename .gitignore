@@ -45,6 +45,7 @@ TO*DELETE*
 .config/libreoffice/
 .config/mimeapps.list
 .config/user-dirs*
+.config/Zeal/
 .source-highlight/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
@@ -57,6 +58,7 @@ TO*DELETE*
 .nv/
 .emacs.d/auto-save-list/.saves*
 .emacs.d/eshell/
+.emacs.d/session*
 .anyconnect
 .apport-ignore.xml
 .chromium-bsu
