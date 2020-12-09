@@ -343,6 +343,13 @@ M-x compile.
  )
 (setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " compile-cores-str) (getenv "MAKEFLAGS")))
 
+;; Zeal dev doc
+(let ((zeal-dir "c:/Program Files/Zeal"))
+  (when (file-directory-p zeal-dir)
+    (add-to-list 'exec-path zeal-dir)
+    (load-file "~/.emacs.d/zeal-at-point.el")
+    (bind-key* "C-z" 'zeal-at-point)))
+
 ;; add path to Unix programs : make, git
 (when (display-graphic-p)
   ;; add path to git and grep for jojo-pc and jojo-laptop
