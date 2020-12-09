@@ -132,6 +132,7 @@
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
 (setq c-default-style "k&r")
+(c-set-offset 'inline-open '0)
 
 ;; show matching brace / paren
 ;; https://www.emacswiki.org/emacs/ShowParenMode
