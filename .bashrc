@@ -133,8 +133,7 @@ alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 
 if [ -z $CPUCOUNT ] ; then
     CPUCOUNT=`grep ^processor /proc/cpuinfo|wc -l`
-    MAKECOUNT=`expr $CPUCOUNT - 1`
-    alias makej='make -j$MAKECOUNT'
+    export MAKEFLAGS="-j$CPUCOUNT"
 fi
 
 export GIT_EDITOR=$EDITOR

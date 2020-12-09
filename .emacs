@@ -8,10 +8,12 @@
 (setq custom-accent-color-graphics "#54AFFF") ;; #2395FF") ;; #0080ff") ;; blue
 (setq custom-accent-color-terminal "#ff9f00") ;; "#ff8c00") ;; DarkOrange
 (setq custom-theme-color "dark") ;; dark or light
+(setq compile-cores-str "4")
 
 ;; customisations per machine
 (when (string-equal system-name "JOJO-PC") (setq custom-font-size 100))
 (when (string-equal system-name "JOJO-LAPTOP")
+  (setq compile-cores-str "8")
   (setq custom-font-size 100)
   (setq custom-theme-color "dark"))
 (when (string-equal system-name "DESKTOP-OC9IKE6") (setq custom-font-size 95))
@@ -331,7 +333,7 @@ M-x compile.
  ;; set it on first invocation of compile command, not at startup because no buffer
  (setq compile-command
        (concat
-        "make -j -C " (file-name-directory (buffer-file-name))))
+        "make -C " (file-name-directory (buffer-file-name))))
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
@@ -339,6 +341,7 @@ M-x compile.
        (revert-buffer t t))
    (call-interactively 'compile))
  )
+(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " compile-cores-str) (getenv "MAKEFLAGS")))
 
 ;; add path to Unix programs : make, git
 (when (display-graphic-p)
@@ -424,12 +427,13 @@ M-x compile.
 (add-hook 'before-save-hook #'whitespace-cleanup)
 
 ;; interpret ansi color codes - necessary in compilation buffer
-(ignore-errors
-  (require 'ansi-color)
-  (defun my-colorize-compilation-buffer ()
-    (when (eq major-mode 'compilation-mode)
-      (ansi-color-apply-on-region compilation-filter-start (point-max))))
-  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+(unless (display-graphic-p)
+  (ignore-errors
+    (require 'ansi-color)
+    (defun my-colorize-compilation-buffer ()
+      (when (eq major-mode 'compilation-mode)
+        (ansi-color-apply-on-region compilation-filter-start (point-max))))
+    (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer)))
 
 ;; switch header - cpp
 (bind-key* "C-<tab>" 'ff-find-other-file)
