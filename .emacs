@@ -323,6 +323,7 @@ If there was no last time, or there is a prefix argument, this acts like
 M-x compile.
 """
  (interactive "p")
+ (save-some-buffers 1)
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
