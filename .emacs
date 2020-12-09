@@ -367,6 +367,10 @@ M-x compile.
 ;; Binding GOTO-LINE
 (bind-key* "M-g" 'goto-line)
 
+;; Previous / Next buffer
+(bind-key* "M-<left>" 'previous-buffer)
+(bind-key* "M-<right>" 'next-buffer)
+
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
 ;; Resize Window https://www.emacswiki.org/emacs/WindowResize
