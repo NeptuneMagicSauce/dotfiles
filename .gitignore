@@ -59,6 +59,7 @@ TO*DELETE*
 .emacs.d/auto-save-list/.saves*
 .emacs.d/eshell/
 .emacs.d/session*
+.emacs.d/ido.last
 .anyconnect
 .apport-ignore.xml
 .chromium-bsu
