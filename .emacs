@@ -316,6 +316,13 @@ will be killed."
 ;; (popwin-mode 1)
 
 ;; Compile and ReCompile : https://www.emacswiki.org/emacs/CompileCommand#toc4
+;; auto scroll compile buffer to follow output
+(setq compilation-scroll-output t)
+;; default compile command : enable parallelism
+(setq compilation-location nil)
+(setq compile-command
+      (concat
+       "make -j -C "))
 (setq compilation-last-buffer nil)
 (defun compile-again (pfx)
   """Run the same compile as the last time.
@@ -324,6 +331,7 @@ M-x compile.
 """
  (interactive "p")
  (save-some-buffers 1)
+ ;; (if
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
@@ -332,7 +340,7 @@ M-x compile.
    (call-interactively 'compile))
  )
 
-;; add path to Cygwin programs : make, git
+;; add path to Unix programs : make, git
 (when (display-graphic-p)
   ;; add path to git and grep for jojo-pc and jojo-laptop
   (when (string-equal system-name "JOJO-PC")
