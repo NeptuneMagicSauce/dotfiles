@@ -380,6 +380,12 @@ M-x compile.
 (setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
 (setq compilation-skip-threshold 2) ; do not auto-jump to warnings
 
+;; Change Buffer
+(bind-key* "C-v" 'switch-to-buffer)
+
+;; IDO mode : better switch-to-buffer with choices and arrow support
+(ido-mode 1)
+
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
 ;; Resize Window https://www.emacswiki.org/emacs/WindowResize
