@@ -318,11 +318,6 @@ will be killed."
 ;; Compile and ReCompile : https://www.emacswiki.org/emacs/CompileCommand#toc4
 ;; auto scroll compile buffer to follow output
 (setq compilation-scroll-output t)
-;; default compile command : enable parallelism
-(setq compilation-location nil)
-(setq compile-command
-      (concat
-       "make -j -C "))
 (setq compilation-last-buffer nil)
 (defun compile-again (pfx)
   """Run the same compile as the last time.
@@ -331,7 +326,11 @@ M-x compile.
 """
  (interactive "p")
  (save-some-buffers 1)
- ;; (if
+ ;; default compile command : enable parallelism, default to dir of current buffer
+ ;; set it on first invocation of compile command, not at startup because no buffer
+ (setq compile-command
+       (concat
+        "make -j -C " (file-name-directory (buffer-file-name))))
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
