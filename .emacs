@@ -372,6 +372,14 @@ M-x compile.
 (bind-key* "M-<left>" 'previous-buffer)
 (bind-key* "M-<right>" 'next-buffer)
 
+;; Next Error
+(bind-key* "C-²" 'next-error) ; azerty
+(bind-key* "C-`" 'next-error) ; qwerty
+(bind-key* "M-²" 'previous-error)
+(bind-key* "M-`" 'previous-error)
+(setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
+(setq compilation-skip-threshold 2) ; do not auto-jump to warnings
+
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
 ;; Resize Window https://www.emacswiki.org/emacs/WindowResize
