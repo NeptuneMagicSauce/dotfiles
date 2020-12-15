@@ -239,3 +239,8 @@ fi
 
 # add BATCAT alias
 command -v batcat >/dev/null && alias bat=batcat
+
+# add ~/local to path
+if [ -d ~/local/bin ] ; then
+    export PATH=~/local/bin:$PATH
+fi
