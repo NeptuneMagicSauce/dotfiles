@@ -426,6 +426,10 @@ M-x compile.
   (bind-key* "C-à" 'zoom-text-reset)    ; azerty
   (bind-key* "C-0" 'zoom-text-reset)    ; qwerty
 
+  (bind-key* "<mouse-3>" 'mouse-buffer-menu)
+  ;; mouse-buffer-menu-mode-mult : so that buffer-menu does not have submenus
+  (custom-set-variables '(mouse-buffer-menu-mode-mult 99))
+
   ;; Switch between light and dark themes
   (bind-key* "C-<f12>" (lambda() (interactive) (switch-theme)))
   )
