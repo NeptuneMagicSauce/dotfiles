@@ -236,3 +236,6 @@ if [ $HOSTNAME == "xoaltecuhtli" ]; then
     # . "/usr/etc/profile.d/conda.sh"  # old location
     . "/home/rlacroix/miniconda3/etc/profile.d/conda.sh"
 fi
+
+# add BATCAT alias
+command -v batcat >/dev/null && alias bat=batcat
