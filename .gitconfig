@@ -1,6 +1,6 @@
 [user]
     email = romain.lacroix@gmail.com
-#     name = Romain Lacroix
+    name = Romain
 [core]
     whitespace = cr-at-eol,-blank-at-eol,-blank-at-eof
     symlinks = true
