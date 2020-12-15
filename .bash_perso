@@ -138,7 +138,6 @@ if [ $MYPC == 1 ] ; then
         alias gdb='gdb $GDBOPTIONS'
     fi
 elif [ $MYLAPTOP == 1 ] ; then
-    export PATH=~/bin:~/conda:$PATH
     if [ -f ~/conda/etc/profile.d/conda.sh ]; then
         source ~/conda/etc/profile.d/conda.sh
     fi

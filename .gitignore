@@ -38,6 +38,7 @@ TO*DELETE*
 .config/teams/
 .config/enchant/
 .config/gedit/
+.config/gnome-initial-setup-done
 .config/evolution/
 .config/goa*/
 .config/gtk-3.0/
