@@ -1,6 +1,6 @@
 [user]
-    email = hidden@email.com
-    name = Romain
+    email = hidden.garbage.not.my.email@email.com
+    name = NeptuneMagicSauce
 [core]
     whitespace = cr-at-eol,-blank-at-eol,-blank-at-eof
     symlinks = true
