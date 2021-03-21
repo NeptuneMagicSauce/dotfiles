@@ -185,6 +185,8 @@ if [ ! -z $UNAMEOS ] ; then
     fi
 fi
 
+alias ffmpeg1440p='ffmpeg -i $1 -vf scale=2560x1440:flags=lanczos -c:v libx264 -preset slow -crf 21'
+
 # how to GIF :
 # mkdir -p indexed; j=1;for i in *jpg; do mv -v $i indexed/image$j.jpg; j=`expr $j + 1`; done
 # cd indexed
