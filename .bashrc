@@ -1,5 +1,5 @@
 #!/bin/sh
-
+# comment
 command -v ls > /dev/null
 if [ $? == 1 ] ; then
     echo "ls is not found in path"
