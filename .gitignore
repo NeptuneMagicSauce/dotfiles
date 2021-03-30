@@ -24,6 +24,7 @@ TO*DELETE*
 .cgdb/readline_history*
 .dbus-keyrings
 .gnupg/
+.hushlogin
 .lesshst
 .ssh/
 .tgdb/
@@ -67,6 +68,7 @@ TO*DELETE*
 .fltk/
 .gtkrc-2.0
 .kde/
+.motd_shown
 .nvidia-settings-rc
 .pki/
 .steam/
