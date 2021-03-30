@@ -26,13 +26,14 @@ command -v ffmpeg > /dev/null
 
 
 # fix for work at inria
-if [ $USERNAME == "rlacroix" ] ; then
-    if [ -t 0 ] ; then # interactive shell
-        if [ `pwd` != "/home/rlacroix" ] ; then
-            HOME=/home/rlacroix
-            cd ~
-        fi
-    fi
+if [ $USER == "rlacroix" ] ; then
+    GITBRANCH="λ"
+    #if [ -t 0 ] ; then # interactive shell
+    #    if [ `pwd` != "/home/rlacroix" ] ; then
+    #        HOME=/home/rlacroix
+    #        cd ~
+    #    fi
+    #fi
 fi
 
 if [ $MYPC == 1 ] ; then
