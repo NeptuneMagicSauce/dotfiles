@@ -117,10 +117,10 @@
   (global-set-key [mouse-5] 'scroll-up-line)
 
   ;; Terminal Title https://www.emacswiki.org/emacs/FrameTitle#toc5
-  (unless (my-machines) ; broken on WSL, msys, cygwin
-    (require 'xterm-title)
-    (xterm-title-mode 1)
-    )
+  ;; (unless (my-machines) ; broken on WSL, msys, cygwin
+  ;;   (require 'xterm-title)
+  ;;   (xterm-title-mode 1)
+  ;;   )
   )
 
 ;; Frame Title https://www.emacswiki.org/emacs/FrameTitle
@@ -487,7 +487,9 @@ M-x compile.
 (add-hook 'shell-mode-hook 'kill-buffer-on-shell-logout)
 
 ;; Scroll bar
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+    (scroll-bar-mode -1)
+)
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
