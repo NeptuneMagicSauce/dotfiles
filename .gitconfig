@@ -5,8 +5,9 @@
     whitespace = cr-at-eol,-blank-at-eol,-blank-at-eof
     symlinks = true
     autocrlf = false # needed for cygwin/wsl (not msys) so that git checkout gets unix eol (not dos eol)
+    safecrlf = false # default is warn, it is too verbose on broken windows configs
 [alias]
     # nice logs
-  l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
+    l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
 [pull]
     rebase = false
