@@ -73,6 +73,7 @@ TO*DELETE*
 .motd_shown
 .nvidia-settings-rc
 .pki/
+.python_history
 .steam/
 .steampath
 .steampid
