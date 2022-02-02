@@ -33,7 +33,7 @@
    (violet     '("#b751b6" "#b751b6" "brightmagenta"))
    (cyan       '("#0184bc" "#0184bc" "brightcyan"   ))
    (dark-cyan  '("#005478" "#005478" "cyan"         ))
-   
+
    (highlight      blue)
    (vertical-bar   (doom-darken base1 0.1))
    (selection      red)
@@ -60,7 +60,7 @@
    )
    (
     ((line-number &override)
-     :background "#fff"
+     :background "#eee"
      :foreground "#000")
    )
 )

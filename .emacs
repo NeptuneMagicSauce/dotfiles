@@ -4,9 +4,10 @@
 (load-file "~/.emacs.d/min-settings.el")
 
 ;; customisations global
-(setq custom-font-size 143)
-(setq custom-accent-color-graphics "#54AFFF") ;; #2395FF") ;; #0080ff") ;; blue
-(setq custom-accent-color-terminal "#ff9f00") ;; "#ff8c00") ;; DarkOrange
+(setq custom-font-size 140)
+(setq custom-accent-color-graphics "#54AFFF") ;; blue
+(setq custom-accent-color-terminal "#54AFFF") ;; blue
+      ;; "#ff9f00") ;; DarkOrange
 (setq custom-theme-color "dark") ;; dark or light
 (setq compile-cores-str "4")
 
@@ -163,14 +164,14 @@
       ;; (propertize " ** " 'face 'mode-line-modified-face))
       (cond
        ((buffer-file-name)
-        (propertize " ** " 'face 'mode-line-modified-face))))
-     (t " -- ")))
+        (propertize " * " 'face 'mode-line-modified-face))))
+     )) ;; (t " -- ")))
    (vc-mode vc-mode)
    " ("
    (:propertize mode-name face mode-line-mode-face )
    ") "
    (:propertize mode-line-process)
-   "                    "
+   ;; "                    "
    (:propertize " [ %l : %c ] " face mode-line-position-face)
    ))
 (make-face 'mode-line-read-only-face)
@@ -226,7 +227,7 @@
   )
   (unless (display-graphic-p)
     (set-face-attribute 'mode-line nil
-                        :foreground "#000"
+                        :foreground "#111"
                         :background custom-accent-color-terminal)
     (set-face-attribute 'mode-line-inactive nil
                         :foreground "#FFF"
@@ -438,13 +439,13 @@ M-x compile.
 (add-hook 'before-save-hook #'whitespace-cleanup)
 
 ;; interpret ansi color codes - necessary in compilation buffer
-(unless (display-graphic-p)
+;; (unless (display-graphic-p)
   (ignore-errors
     (require 'ansi-color)
     (defun my-colorize-compilation-buffer ()
       (when (eq major-mode 'compilation-mode)
         (ansi-color-apply-on-region compilation-filter-start (point-max))))
-    (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer)))
+    (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 ;; switch header - cpp
 (bind-key* "C-<tab>" 'ff-find-other-file)
@@ -487,9 +488,7 @@ M-x compile.
 (add-hook 'shell-mode-hook 'kill-buffer-on-shell-logout)
 
 ;; Scroll bar
-(when (display-graphic-p)
-    (scroll-bar-mode -1)
-)
+;; (when (display-graphic-p) (scroll-bar-mode -1))
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
