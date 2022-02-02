@@ -20,6 +20,7 @@ tmp*
 TO*DELETE*
 
 .bash_history
+.bash_profile
 .cgdb/logs/
 .cgdb/readline_history*
 .dbus-keyrings
@@ -49,6 +50,10 @@ TO*DELETE*
 .config/mimeapps.list
 .config/user-dirs*
 .config/Zeal/
+.emacs.d/elpa/
+.emacs.d/emojis/apple/
+.emacs.d/emojis/emojione/
+.emacs.d/network-security.data
 .source-highlight/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
