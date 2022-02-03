@@ -50,8 +50,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("58a2e993177ddc35dfe4cc241c0e4494c083b7e3f479e49e0f0d7e8bb675c626" "fa116d8cc5b249705e891486cb07783f7f9106e71a9199c15c355e83ccf455a1" default))
- '(inhibit-startup-screen t))
+   (quote
+    ("30cea153d8a3dbae3de5ab66775ab09acd3e9f1ef1b437cdb9beb1ba2d31c22e" "58a2e993177ddc35dfe4cc241c0e4494c083b7e3f479e49e0f0d7e8bb675c626" "fa116d8cc5b249705e891486cb07783f7f9106e71a9199c15c355e83ccf455a1" default)))
+ '(inhibit-startup-screen t)
+ '(mouse-buffer-menu-mode-mult 99))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
