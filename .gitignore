@@ -84,4 +84,5 @@ TO*DELETE*
 .steampid
 .thunderbird/
 .vs/
+.vboxclient-*
 .wine/
