@@ -25,6 +25,7 @@
   (setq custom-font-size 90)
   (setq custom-theme-color "light")
   )
+(when (string-equal system-name "rlacroix-VirtualBox") (setq custom-font-size 180))
 
 (setq font-size-reset custom-font-size)
 
