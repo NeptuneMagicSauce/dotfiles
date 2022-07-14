@@ -42,6 +42,7 @@ TO*DELETE*
 .config/enchant/
 .config/gedit/
 .config/gnome-initial-setup-done
+.config/.gsd-keyboard.settings-ported
 .config/evolution/
 .config/goa*/
 .config/gtk-3.0/
