@@ -20,6 +20,7 @@ tmp*
 TO*DELETE*
 
 .bash_history
+.bash_logout
 .bash_profile
 .cgdb/logs/
 .cgdb/readline_history*
