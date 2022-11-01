@@ -26,7 +26,7 @@
   (setq custom-theme-color "light")
   )
 (when (string-equal system-name "rlacroix-VirtualBox") (setq custom-font-size 180))
-(when (string-equal system-name "vmware-big-computer") (setq custom-font-size 110))
+(when (string-equal system-name "vmware-big-computer") (setq custom-font-size 150))
 
 (setq font-size-reset custom-font-size)
 
