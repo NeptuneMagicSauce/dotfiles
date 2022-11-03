@@ -53,10 +53,12 @@ TO*DELETE*
 .config/mimeapps.list
 .config/user-dirs*
 .config/Zeal/
+.emacs.d/bookmarks
 .emacs.d/elpa/
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
+.emacs.d/transient/
 .source-highlight/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
