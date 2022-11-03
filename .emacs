@@ -56,7 +56,7 @@
  '(inhibit-startup-screen t)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -504,14 +504,36 @@ M-x compile.
 ;; C++ IDE
 ;; needs these ubuntu packages ->
 ;; elpa-company elpa-company-rtags elpa-rtags rtags
+;; ubuntu packages does not provide "rc" but "rtags-rc"
+;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")
+;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm")
+;; xor
+;; (cd /usr/bin; sudo ln -s rtags-rc rc)
+;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
 (global-company-mode)
 (global-flycheck-mode)
 (require 'rtags)
 (cmake-ide-setup)
 (setq company-idle-delay 0)
-;; ubuntu packages does not provide "rc" but "rtags-rc"
-;; (cd /usr/bin; sudo ln -s rtags-rc rc)
-;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
+(rtags-enable-standard-keybindings)
+;; default rtags binds:
+;; C-c r / rtags-find-all-references-at-point
+;; C-c r . rtags-find-symbol-at-point
+;; C-c r [ rtags-location-stack-back
+;; C-c r ] rtags-location-stack-forward
+;; C-c r , rtags-find-references-at-point
+;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
+(setq rtags-display-result-backend 'helm)
+;; ;; TODO
+;; setq rtags-completions-enabled t
+;; RTAGS key BINDINGs
+;;   menu same as rg?
+;;   go to definition
+;;   find references
+;; helm has ^M at end of lines
+;; tell compile dir = build ?
+;; use rtags or cmake-ide for invoking build?
+
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
