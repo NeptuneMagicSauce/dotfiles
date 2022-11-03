@@ -52,10 +52,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("30cea153d8a3dbae3de5ab66775ab09acd3e9f1ef1b437cdb9beb1ba2d31c22e" "58a2e993177ddc35dfe4cc241c0e4494c083b7e3f479e49e0f0d7e8bb675c626" "fa116d8cc5b249705e891486cb07783f7f9106e71a9199c15c355e83ccf455a1" default)))
+   '("30cea153d8a3dbae3de5ab66775ab09acd3e9f1ef1b437cdb9beb1ba2d31c22e" "58a2e993177ddc35dfe4cc241c0e4494c083b7e3f479e49e0f0d7e8bb675c626" "fa116d8cc5b249705e891486cb07783f7f9106e71a9199c15c355e83ccf455a1" default))
  '(inhibit-startup-screen t)
- '(mouse-buffer-menu-mode-mult 99))
+ '(mouse-buffer-menu-mode-mult 99)
+ '(package-selected-packages
+   '(cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons rg)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -419,6 +420,12 @@ M-x compile.
 
 ;; Comment line
 (bind-key* "C-c C-c" 'comment-line)
+
+;; RipGrep for searching
+;; https://rgel.readthedocs.io/en/latest/usage.html
+(rg-enable-default-bindings)  ;; C-c s
+(bind-key* "M-," 'rg-dwim)    ;; search at point
+(bind-key* "C-," 'rg-project) ;; search after asking for input
 
 (when (display-graphic-p)
 
