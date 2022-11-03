@@ -56,7 +56,7 @@
  '(inhibit-startup-screen t)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons rg)))
+   '(cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -500,6 +500,18 @@ M-x compile.
 
 ;; Scroll bar
 ;; (when (display-graphic-p) (scroll-bar-mode -1))
+
+;; C++ IDE
+;; needs these ubuntu packages ->
+;; elpa-company elpa-company-rtags elpa-rtags rtags
+(global-company-mode)
+(global-flycheck-mode)
+(require 'rtags)
+(cmake-ide-setup)
+(setq company-idle-delay 0)
+;; ubuntu packages does not provide "rc" but "rtags-rc"
+;; (cd /usr/bin; sudo ln -s rtags-rc rc)
+;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
