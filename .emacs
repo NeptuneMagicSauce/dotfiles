@@ -502,38 +502,47 @@ M-x compile.
 ;; (when (display-graphic-p) (scroll-bar-mode -1))
 
 ;; C++ IDE
+;; https://github.com/atilaneves/cmake-ide
 ;; needs these ubuntu packages ->
 ;; elpa-company elpa-company-rtags elpa-rtags rtags
-;; ubuntu packages does not provide "rc" but "rtags-rc"
-;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")
-;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm")
-;; xor
-;; (cd /usr/bin; sudo ln -s rtags-rc rc)
-;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
-(global-company-mode)
-(global-flycheck-mode)
-(require 'rtags)
-(cmake-ide-setup)
-(setq company-idle-delay 0)
-(rtags-enable-standard-keybindings)
-;; default rtags binds:
-;; C-c r / rtags-find-all-references-at-point
-;; C-c r . rtags-find-symbol-at-point
-;; C-c r [ rtags-location-stack-back
-;; C-c r ] rtags-location-stack-forward
-;; C-c r , rtags-find-references-at-point
-;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
-(setq rtags-display-result-backend 'helm)
-;; ;; TODO
-;; setq rtags-completions-enabled t
-;; RTAGS key BINDINGs
-;;   menu same as rg?
-;;   go to definition
-;;   find references
-;; helm has ^M at end of lines
-;; tell compile dir = build ?
-;; use rtags or cmake-ide for invoking build?
+(when (display-graphic-p)
+  ;; ubuntu packages does not provide "rc" but "rtags-rc"
+  ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
+  ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
+  ;; xor
+  ;; (cd /usr/bin; sudo ln -s rtags-rc rc)
+  ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
+  (require 'rtags)
+  (cmake-ide-setup)
+  (global-company-mode)
+  (global-flycheck-mode)
+  (setq company-idle-delay 0)
+  (setq rtags-display-result-backend 'helm)
+  (rtags-enable-standard-keybindings)
+  ;; default rtags binds:
+  ;; C-c r / rtags-find-all-references-at-point
+  ;; C-c r . rtags-find-symbol-at-point
+  ;; C-c r [ rtags-location-stack-back
+  ;; C-c r ] rtags-location-stack-forward
+  ;; C-c r , rtags-find-references-at-point
+  ;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
+  (bind-key* "C-o" 'rtags-find-symbol-at-point)
+  (bind-key* "M-o" 'rtags-find-all-references-at-point)
+  (bind-key* "C-<left>" 'rtags-location-stack-back)
+  (bind-key* "C-<right>" 'rtags-location-stack-forward)
+  ;; (setq completion-ignore-case t) ;; does not work
+  ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
+  ;; (setq rtags-find-file-case-insensitive t) ;; does not work
+  ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
+  ;; (setq company-dabbrev-ignore-case t) ;; does not work
+  ;; C-o does not work on "= new T{}" (also M-o)
 
+  ;; TODO
+
+  ;; tell compile dir = build ? cmake-ide-build-dir
+  ;; use rtags or cmake-ide for invoking build? cmake-ide-compile
+  ;; flycheck: try it or disable it
+)
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
