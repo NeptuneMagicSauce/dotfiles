@@ -347,7 +347,7 @@ M-x compile.
        (revert-buffer t t))
    (call-interactively 'compile))
  )
-(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " compile-cores-str) (getenv "MAKEFLAGS")))
+(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " compile-cores-str)))
 
 ;; Zeal dev doc
 (let ((zeal-dir "c:/Program Files/Zeal"))
@@ -515,8 +515,9 @@ M-x compile.
   (require 'rtags)
   (cmake-ide-setup)
   (global-company-mode)
-  (global-flycheck-mode)
+  (global-flycheck-mode) ;; does not find interesting warnings, does not find compile errors
   (setq company-idle-delay 0)
+  (setq cmake-ide-build-dir "build")
   (setq rtags-display-result-backend 'helm)
   (rtags-enable-standard-keybindings)
   ;; default rtags binds:
@@ -530,6 +531,13 @@ M-x compile.
   (bind-key* "M-o" 'rtags-find-all-references-at-point)
   (bind-key* "C-<left>" 'rtags-location-stack-back)
   (bind-key* "C-<right>" 'rtags-location-stack-forward)
+  ;; (bind-key* "C-b" 'cmake-ide-compile)
+  (defun cmake-ide-save-and-compile (nothing)
+    (interactive "p")
+    (save-some-buffers 1)
+    (call-interactively 'cmake-ide-compile)
+    )
+  (bind-key* "C-b" 'cmake-ide-save-and-compile)
   ;; (setq completion-ignore-case t) ;; does not work
   ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
   ;; (setq rtags-find-file-case-insensitive t) ;; does not work
@@ -539,9 +547,8 @@ M-x compile.
 
   ;; TODO
 
-  ;; tell compile dir = build ? cmake-ide-build-dir
-  ;; use rtags or cmake-ide for invoking build? cmake-ide-compile
   ;; flycheck: try it or disable it
+
 )
 
 ;;;;;;;;;;;;;;;;
