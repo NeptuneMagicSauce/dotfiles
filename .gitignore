@@ -34,6 +34,7 @@ TO*DELETE*
 .viminfo
 .wget-hsts
 .cache/
+.config/asciinema/install-id
 .config/git/gitk
 .config/dconf/
 .config/pulse/
