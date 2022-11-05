@@ -556,9 +556,11 @@ M-x compile.
   ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
   (require 'rtags)
   (cmake-ide-setup)
-  (global-company-mode)
+  (global-company-mode 1)
+  ;; (global-company-fuzzy-mode 1) ;; NO not compatible with rtags !
+  ;; TODO make company-fuzzy compatible with rtags https://github.com/jcs-elpa/company-fuzzy
   (bind-key* "C-²" 'company-complete)
-  ;; (global-flycheck-mode) ;; does not work
+  ;; (global-flycheck-mode 1) ;; does not work
   (setq company-idle-delay 0)
   (setq cmake-ide-build-dir "build")
   (setq rtags-display-result-backend 'helm)
