@@ -27,7 +27,7 @@
   )
 (when (string-equal system-name "rlacroix-VirtualBox") (setq custom-font-size 180))
 (when (string-equal system-name "vmware-big-computer")
-  (setq custom-font-size 140)
+  (setq custom-font-size 130)
   (setq custom-theme-color "dark")
   )
 
@@ -82,7 +82,9 @@
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-   '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
+   ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
+   ;; Cascadia Mono is more condensed horizontally than Cascadia Code
+   '(default ((t (:family "Cascadia Mono" :foundry "B&H " :slant normal :weight normal :height 140 ))))
    ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
    ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
   )
@@ -243,24 +245,26 @@
     )
 
   ;; Company-Mode tooltip colors
-  (require 'color)
-  (let ((bg (face-attribute 'default :background)))
-    (if (is-theme-dark)
+  (when (display-graphic-p)
+    (require 'color)
+    (let ((bg (face-attribute 'default :background)))
+      (if (is-theme-dark)
+          (custom-set-faces
+           `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
+           `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
+           `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+           `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+           `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
         (custom-set-faces
-         `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
-         `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
-         `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-         `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-         `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
-      (custom-set-faces
          `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
          `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
          `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
          '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
          ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
          )
-      ))
-
+        )
+      )
+    )
 )
 
 (defun load-chosen-theme()
@@ -552,6 +556,7 @@ M-x compile.
   (require 'rtags)
   (cmake-ide-setup)
   (global-company-mode)
+  (bind-key* "C-²" 'company-complete)
   (global-flycheck-mode) ;; does not find interesting warnings, does not find compile errors
   (setq company-idle-delay 0)
   (setq cmake-ide-build-dir "build")
@@ -585,11 +590,8 @@ M-x compile.
   ;; TODO
 
   ;; flycheck: try it or disable it
-  ;; font Cascadia Mono or Monospace
-  ;; company colors
-  ;; company key bind
-  ;; change theme changes font size!
-
+  ;; with helm?
+  ;; compare to flymake?
 )
 
 ;;;;;;;;;;;;;;;;
