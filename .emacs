@@ -26,7 +26,10 @@
   (setq custom-theme-color "light")
   )
 (when (string-equal system-name "rlacroix-VirtualBox") (setq custom-font-size 180))
-(when (string-equal system-name "vmware-big-computer") (setq custom-font-size 150))
+(when (string-equal system-name "vmware-big-computer")
+  (setq custom-font-size 140)
+  (setq custom-theme-color "dark")
+  )
 
 (setq font-size-reset custom-font-size)
 
@@ -149,7 +152,7 @@
 (setq show-paren-when-point-inside-paren 1)
 
 ;; custom themes directory
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; unused
 
 ;; auto install packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -237,7 +240,27 @@
     (set-face-attribute 'mode-line-inactive nil
                         :foreground "#FFF"
                         :background "#444")
-  )
+    )
+
+  ;; Company-Mode tooltip colors
+  (require 'color)
+  (let ((bg (face-attribute 'default :background)))
+    (if (is-theme-dark)
+        (custom-set-faces
+         `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
+         `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
+         `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+         `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+         `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
+      (custom-set-faces
+         `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
+         `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
+         `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
+         '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
+         ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
+         )
+      ))
+
 )
 
 (defun load-chosen-theme()
@@ -268,7 +291,21 @@
       ;; (load-theme 'doom-monokai-pro)
       ;; (load-theme 'doom-oceanic-next)
       ;; (load-theme 'doom-one-light)
-    (load-theme 'romulus-light))
+
+    ;; LIGHT
+    (load-theme 'romulus-light) ;; mine
+    ;; (load-theme 'doom-flatwhite)
+    ;; (load-theme 'doom-acario-light) ;; company-mode good
+    ;; (load-theme 'doom-dracula)
+    ;; (load-theme 'doom-gruvbox-light) ;; company-mode good
+    ;; (load-theme 'doom-nord-light)
+    ;; (load-theme 'doom-one-light)
+    ;; (load-theme 'doom-opera-light)
+    ;; (load-theme 'doom-plain)
+    ;; (load-theme 'doom-solarized-light) ;; company-mode best
+    ;; (load-theme 'doom-tomorrow-day) ;; good but company bad
+
+    )
   (finish-load-theme)
   )
 
@@ -548,6 +585,10 @@ M-x compile.
   ;; TODO
 
   ;; flycheck: try it or disable it
+  ;; font Cascadia Mono or Monospace
+  ;; company colors
+  ;; company key bind
+  ;; change theme changes font size!
 
 )
 
