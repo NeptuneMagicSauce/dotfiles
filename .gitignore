@@ -56,7 +56,6 @@ TO*DELETE*
 .config/user-dirs*
 .config/Zeal/
 .emacs.d/bookmarks
-.emacs.d/elpa/
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
