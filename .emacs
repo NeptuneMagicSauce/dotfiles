@@ -557,7 +557,7 @@ M-x compile.
   (cmake-ide-setup)
   (global-company-mode)
   (bind-key* "C-²" 'company-complete)
-  (global-flycheck-mode) ;; does not find interesting warnings, does not find compile errors
+  ;; (global-flycheck-mode) ;; does not work
   (setq company-idle-delay 0)
   (setq cmake-ide-build-dir "build")
   (setq rtags-display-result-backend 'helm)
@@ -586,12 +586,6 @@ M-x compile.
   ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
   ;; (setq company-dabbrev-ignore-case t) ;; does not work
   ;; C-o does not work on "= new T{}" (also M-o)
-
-  ;; TODO
-
-  ;; flycheck: try it or disable it
-  ;; with helm?
-  ;; compare to flymake?
 )
 
 ;;;;;;;;;;;;;;;;
