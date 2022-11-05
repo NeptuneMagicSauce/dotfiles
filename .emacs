@@ -27,7 +27,7 @@
   )
 (when (string-equal system-name "rlacroix-VirtualBox") (setq custom-font-size 180))
 (when (string-equal system-name "vmware-big-computer")
-  (setq custom-font-size 130)
+  (setq custom-font-size 120)
   (setq custom-theme-color "dark")
   )
 
@@ -84,7 +84,7 @@
    ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
    ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
    ;; Cascadia Mono is more condensed horizontally than Cascadia Code
-   '(default ((t (:family "Cascadia Mono" :foundry "B&H " :slant normal :weight normal :height 140 ))))
+   '(default ((t (:family "Cascadia Code" :foundry "B&H " :slant normal :weight normal :height 140 ))))
    ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
    ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
   )
