@@ -450,6 +450,8 @@ M-x compile.
 
 ;; IDO mode : better switch-to-buffer with choices and arrow support
 (ido-mode 1)
+(setq ido-enable-flex-matching t) ;; fuzzy helps with typos
+(setq ido-everywhere t)
 
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
