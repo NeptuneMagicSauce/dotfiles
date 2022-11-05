@@ -59,7 +59,7 @@
  '(inhibit-startup-screen t)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -544,8 +544,7 @@ M-x compile.
 
 ;; C++ IDE
 ;; https://github.com/atilaneves/cmake-ide
-;; needs these ubuntu packages ->
-;; elpa-company elpa-company-rtags elpa-rtags rtags
+;; needs this ubuntu package -> rtags
 (when (display-graphic-p)
   ;; ubuntu packages does not provide "rc" but "rtags-rc"
   ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
