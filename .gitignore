@@ -60,6 +60,7 @@ TO*DELETE*
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
 .emacs.d/transient/
+.fontconfig/
 .source-highlight/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
