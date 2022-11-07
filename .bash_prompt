@@ -23,7 +23,7 @@ reset='\033[0;0m'
 # PROMPTRETFAIL="$red n"
 # PROMPTRETFAIL="$red$fancyx$reset"
 
-GITBRANCH="" # icon branch available on linux and macos (FontAwesome) but not on windows
+GITBRANCH="" # icon branch available on linux and macos (FontAwesome) but not on windows, package is fonts-font-awesome
 # other special chars :
 # "λ"
 # "▶"
