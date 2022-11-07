@@ -4,7 +4,7 @@
     amend = commit --amend --date=now --no-edit
 [user]
     email = not.an.email@email.email
-    name = Romain Lacroix
+    name = Neptune Magic Sauce
 [color]
     ui = true
 [core]
