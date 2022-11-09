@@ -55,6 +55,7 @@ TO*DELETE*
 .config/libreoffice/
 .config/mimeapps.list
 .config/user-dirs*
+.config/Abricotine/
 .config/Zeal/
 .emacs.d/bookmarks
 .emacs.d/emojis/apple/
