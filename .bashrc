@@ -11,12 +11,21 @@ source ~/.bash_emoji  # get_random_emoji()
 source ~/.bash_git    # __git_ps1()
 source ~/.bash_svn    # svnDiff()
 source ~/.bash_perso  # for my machine
-# git completion
+
+# completion
+# git
 if [ -f /usr/share/bash-completion/completions/git ] ; then
     # ubuntu 22.4
     source /usr/share/bash-completion/completions/git
 else
     source ~/.git-completion.bash
+fi
+# docker
+if [ -f /usr/share/bash-completion/completions/docker ] ; then
+    source /usr/share/bash-completion/completions/docker
+fi
+if [ -f /usr/share/bash-completion/completions/docker-compose ] ; then
+    source /usr/share/bash-completion/completions/docker-compose
 fi
 
 # customisations / user choices
