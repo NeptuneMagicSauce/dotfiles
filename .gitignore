@@ -1,5 +1,6 @@
 Devel/
 Desktop/
+Documents/
 Downloads/
 Games/
 Incoming*
@@ -54,6 +55,7 @@ TO*DELETE*
 .config/ibus/
 .config/libreoffice/
 .config/mimeapps.list
+.config/obsidian/
 .config/user-dirs*
 .config/Abricotine/
 .config/Zeal/
