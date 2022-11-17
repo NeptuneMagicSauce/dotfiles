@@ -11,6 +11,7 @@ source ~/.bash_emoji  # get_random_emoji()
 source ~/.bash_git    # __git_ps1()
 source ~/.bash_svn    # svnDiff()
 source ~/.bash_perso  # for my machine
+source ~/.bash_work   # pro work specific
 
 # completion
 # git

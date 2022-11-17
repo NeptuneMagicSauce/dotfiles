@@ -1,0 +1,2 @@
+alias go-tolix-ext='ssh defosseu@csinfra.eurecom.fr -p 22424'
+alias go-tolix-int='ssh defosseu@tolix.sboai.cs.eurecom.fr -p 22424'
