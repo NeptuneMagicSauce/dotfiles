@@ -57,6 +57,7 @@ TO*DELETE*
 .config/mimeapps.list
 .config/obsidian/
 .config/user-dirs*
+.config/vlc/
 .config/Abricotine/
 .config/Zeal/
 .emacs.d/bookmarks
