@@ -30,6 +30,10 @@
   (setq custom-font-size 120)
   (setq custom-theme-color "dark")
   )
+(when (string-equal system-name "potassium") ;; work laptop
+  ;; (setq custom-font-size 120)
+  (setq custom-theme-color "light")
+  )
 
 (setq font-size-reset custom-font-size)
 
