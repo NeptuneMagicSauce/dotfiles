@@ -13,20 +13,17 @@ source ~/.bash_svn    # svnDiff()
 source ~/.bash_perso  # for my machine
 source ~/.bash_work   # pro work specific
 
-# completion
-# git
-if [ -f /usr/share/bash-completion/completions/git ] ; then
+# completion : git, docker, ...
+if [ -f /usr/share/bash-completion/bash_completion ] ; then
     # ubuntu 22.4
-    source /usr/share/bash-completion/completions/git
+    source /usr/share/bash-completion/bash_completion
+    # to disable equal to upstream (develop=)
+    # edit /usr/lib/git-core/git-sh-prompt
+    # "0      0") # equal to upstream
+    #        p="" ;;
+    #        #p="=" ;;
 else
     source ~/.git-completion.bash
-fi
-# docker
-if [ -f /usr/share/bash-completion/completions/docker ] ; then
-    source /usr/share/bash-completion/completions/docker
-fi
-if [ -f /usr/share/bash-completion/completions/docker-compose ] ; then
-    source /usr/share/bash-completion/completions/docker-compose
 fi
 
 # customisations / user choices
