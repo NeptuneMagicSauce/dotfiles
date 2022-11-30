@@ -58,6 +58,7 @@ TO*DELETE*
 .config/obsidian/
 .config/user-dirs*
 .config/vlc/
+.config/zoom*
 .config/Abricotine/
 .config/Zeal/
 .emacs.d/bookmarks
@@ -98,3 +99,4 @@ TO*DELETE*
 .vs/
 .vboxclient-*
 .wine/
+.zoom/
