@@ -60,6 +60,7 @@ TO*DELETE*
 .config/vlc/
 .config/zoom*
 .config/Abricotine/
+.config/Slack/
 .config/Zeal/
 .emacs.d/bookmarks
 .emacs.d/emojis/apple/
