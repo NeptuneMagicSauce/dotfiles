@@ -34,6 +34,10 @@
   ;; (setq custom-font-size 120)
   (setq custom-theme-color "light")
   )
+(unless (display-graphic-p)
+  ;; in terminal, assume we're in dark mode
+  (setq custom-theme-color "dark")
+  )
 
 (setq font-size-reset custom-font-size)
 
@@ -147,8 +151,8 @@
 ;; https://www.emacswiki.org/emacs/IndentationBasics
 ;; https://www.emacswiki.org/emacs/IndentingC
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq-default c-basic-offset 4)
+(setq-default tab-width 2)
+(setq-default c-basic-offset 2)
 (setq c-default-style "k&r")
 (c-set-offset 'inline-open '0)
 
@@ -224,6 +228,8 @@
 
 ;; Load-Theme functions
 (defun finish-load-theme ()
+
+  ;; linum-highlight-face is the color of the current/active line
   (set-face-attribute 'linum-highlight-face nil
                       ;; :inverse-video t
                       :foreground "#fff"
@@ -489,10 +495,12 @@ M-x compile.
   (bind-key* "<mouse-3>" 'mouse-buffer-menu)
   ;; mouse-buffer-menu-mode-mult : so that buffer-menu does not have submenus
   (custom-set-variables '(mouse-buffer-menu-mode-mult 99))
-
-  ;; Switch between light and dark themes
-  (bind-key* "C-<f12>" (lambda() (interactive) (switch-theme)))
   )
+
+;; Switch between light and dark themes
+(bind-key* "C-<f12>" (lambda() (interactive) (switch-theme)))
+;; needs to be available in terminal mode because it must be changed
+;; between dark and light terminals
 
 ;; Clean-up whitespace before saving
 (add-hook 'before-save-hook #'whitespace-cleanup)
