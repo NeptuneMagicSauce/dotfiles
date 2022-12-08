@@ -9,12 +9,10 @@
 (setq custom-accent-color-terminal "#54AFFF") ;; blue
       ;; "#ff9f00") ;; DarkOrange
 (setq custom-theme-color "dark") ;; dark or light
-(setq compile-cores-str "4")
 
 ;; customisations per machine
 (when (string-equal system-name "JOJO-PC") (setq custom-font-size 100))
 (when (string-equal system-name "JOJO-LAPTOP")
-  (setq compile-cores-str "8")
   (setq custom-font-size 100)
   (setq custom-theme-color "dark"))
 (when (string-equal system-name "DESKTOP-OC9IKE6") (setq custom-font-size 95))
@@ -399,7 +397,12 @@ M-x compile.
        (revert-buffer t t))
    (call-interactively 'compile))
  )
-(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " compile-cores-str)))
+
+(setq nproc
+      (substring
+       (shell-command-to-string "nproc")
+       0 -1))
+(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " nproc)))
 
 ;; Zeal dev doc
 (let ((zeal-dir "c:/Program Files/Zeal"))
