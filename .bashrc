@@ -147,7 +147,8 @@ alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
 
 if [ -z $CPUCOUNT ] ; then
-    CPUCOUNT=`grep ^processor /proc/cpuinfo|wc -l`
+    # CPUCOUNT=`grep ^processor /proc/cpuinfo|wc -l`
+    CPUCOUNT=`nproc`
     export MAKEFLAGS="-j$CPUCOUNT"
 fi
 
