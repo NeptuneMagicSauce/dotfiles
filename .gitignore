@@ -40,6 +40,7 @@ TO*DELETE*
 .config/asciinema/install-id
 .config/git/gitk
 .config/dconf/
+.config/monitors.xml*
 .config/pulse/
 .config/Microsoft/
 .config/nautilus/
