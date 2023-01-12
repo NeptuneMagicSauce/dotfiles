@@ -29,7 +29,7 @@
   (setq custom-theme-color "dark")
   )
 (when (string-equal system-name "potassium") ;; work laptop
-  ;; (setq custom-font-size 120)
+  (setq custom-font-size 110)
   (setq custom-theme-color "light")
   )
 (unless (display-graphic-p)
@@ -594,13 +594,15 @@ M-x compile.
   (bind-key* "M-o" 'rtags-find-all-references-at-point)
   (bind-key* "C-<left>" 'rtags-location-stack-back)
   (bind-key* "C-<right>" 'rtags-location-stack-forward)
-  ;; (bind-key* "C-b" 'cmake-ide-compile)
   (defun cmake-ide-save-and-compile (nothing)
     (interactive "p")
     (save-some-buffers 1)
     (call-interactively 'cmake-ide-compile)
     )
-  (bind-key* "C-b" 'cmake-ide-save-and-compile)
+  (unless (string-equal system-name "potassium")
+    (bind-key* "C-b" 'cmake-ide-save-and-compile)
+    )
+
   ;; (setq completion-ignore-case t) ;; does not work
   ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
   ;; (setq rtags-find-file-case-insensitive t) ;; does not work
