@@ -149,8 +149,8 @@
 ;; https://www.emacswiki.org/emacs/IndentationBasics
 ;; https://www.emacswiki.org/emacs/IndentingC
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
-(setq-default c-basic-offset 2)
+(setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 (setq c-default-style "k&r")
 (c-set-offset 'inline-open '0)
 
