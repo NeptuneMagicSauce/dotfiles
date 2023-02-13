@@ -98,6 +98,8 @@ if [ $PROMPT_INCLUDE_GIT == 1 ] ; then
         PROMPT_COMMAND=set_prompt_all
     elif [ $UNAMEOS == "Msys" ] ; then
         PROMPT_COMMAND=set_prompt_nospecialchars
+    elif [ $UNAMEOS == "MinGW" ] ; then
+        PROMPT_COMMAND=set_prompt_all
     else
         PROMPT_COMMAND=set_prompt_fast
     fi
