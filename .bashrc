@@ -57,6 +57,14 @@ add_prompt_conda()
 }
 add_prompt_git()
 {
+    if [ ! -z $INSIDEWSL ] ; then
+        # very slow in windows filesystems: /c/...
+        dir=`realpath .`
+        if [ ${dir::3} == "/c/" ] ; then
+            return
+        fi
+    fi
+
     GITVALUE=`echo $(__git_ps1)`
     if [ ! -z "$GITVALUE" ]; then
         PS1+="\[$PROMPT_COLOR_GIT\]$GITBRANCH$GITVALUE "
