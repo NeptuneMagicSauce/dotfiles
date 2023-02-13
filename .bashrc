@@ -57,7 +57,7 @@ add_prompt_conda()
 }
 add_prompt_git()
 {
-    if [ ! -z $INSIDEWSL ] ; then
+    if [ ! -z $INSIDE_WSL ] ; then
         # very slow in windows filesystems: /c/...
         dir=`realpath .`
         if [ ${dir::3} == "/c/" ] ; then
