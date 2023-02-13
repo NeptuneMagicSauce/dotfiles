@@ -58,7 +58,7 @@ if [ $MYPC == 1 ] ; then
     export INCOMING=/z/Incoming
     export DEVDATA='/c/Devel/Data'
     export DEVPC='/c/Devel/Workspace/DLAM'
-    export DEV='/c/Devel/Workspace/Youtube2iDevice'
+    export DEV='/c/Devel/Workspace/DLAM'
     export DEVSETUP='/z/Setup/Misc/DevelTools/PCdev'
     export GOOGLEDRIVE=/z/GoogleDrive
     export DEVLIBS=/c/Devel/Libs/Win$ARCHBITS
