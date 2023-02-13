@@ -123,7 +123,6 @@ if [ $MYPC == 1 ] ; then
         export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64
         export MSYSTEM_PREFIX=/mingw64
         export MINGW_CHOST=x86_64-w64-mingw32
-        export EDITOR=vim # emacs-nox is very broken on mingw
         # gdb must be accessed with full path /bin for MinGW version
         # otherwise it finds tdm-gdb first in path, which is not as good in terminal
         alias cgdb='PATH=/bin cgdb'
@@ -170,7 +169,7 @@ if [ ! -z $UNAMEOS ] ; then
         alias pkgremove='pacman -Rcns'
         alias pkginstalled='pacman -Q'
         alias pkgfiles='pacman -Ql'
-        export EDITOR=vim # emacs-nox is very broken on mingw
+        export EDITOR=nano # emacs-nox is very broken on mingw
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
         alias pkgget='apt-cyg install'
