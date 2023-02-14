@@ -71,67 +71,66 @@ if [ $MYPC == 1 ] ; then
     export PATH=/c/Devel/Tools/Qt5/Tools/Ninja/:$PATH
     export PATH=.:$PATH
     # export PATH=/c/Devel/Tools/TDM-GCC-$ARCHBITS/bin:$PATH
-    if [ "`command -v g++`" != "/c/Devel/Tools/Qt5/Tools/mingw810_64/bin/g++" ] ; then
-        export PATH=/c/Devel/Tools/Qt5/Tools/mingw810_64/bin:$PATH
-    fi
-    if [ "`command -v moc`" != "/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin/moc" ] ; then
-        export PATH=/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin:$PATH
-    fi
-    export PATH=$DEVLIBS/bin:$DEVPC/Data/Scripts:$DEVPC/Build/Latest:$PATH
+    # if [ "`command -v g++`" != "/c/Devel/Tools/Qt5/Tools/mingw810_64/bin/g++" ] ; then
+    #     export PATH=/c/Devel/Tools/Qt5/Tools/mingw810_64/bin:$PATH
+    # fi
+    # if [ "`command -v moc`" != "/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin/moc" ] ; then
+    #     export PATH=/c/Devel/Tools/Qt5/5.15.1/mingw81_64/bin:$PATH
+    # fi
+    # export PATH=$DEVLIBS/bin:$DEVPC/Data/Scripts:$DEVPC/Build/Latest:$PATH
     export BUILDLOG="C:\Devel\Workspace\.metadata\.plugins\org.eclipse.cdt.ui\DLAM.build.log"
     alias m='/c/Program\ Files\ \(x86\)/MPlayer/mplayer.exe'
     alias mencoder='/c/Program\ Files\ \(x86\)/MPlayer/mencoder.exe'
     alias devbackup='$DEVDATA/Scripts/devbackup.sh'
-    devlibsprint()
-    {
-        echo -n "which gcc -> "
-        which gcc|grep "TDM-GCC-[0-9]*"
-        echo -n "\$DEVLIBS  -> "
-        echo $DEVLIBS|grep "Win[0-9]*"
-    }
-    alias devlibs32='export ARCHBITS=32; bashreload; devlibsprint'
-    alias devlibs64='export ARCHBITS=64; bashreload; devlibsprint'
-    compileobj()
-    {
-        pushd $DEVPC/src > /dev/null
-        DEVLIBS_COMPATCYGWIN=`echo $DEVLIBS|sed 's+/c+c:+'`
-        command="gcc \
-                -DCONFIGNAME \
-                -I../include \
-                -I$DEVLIBS_COMPATCYGWIN/include \
-                -I$DEVLIBS_COMPATCYGWIN/include/bullet \
-                -I$DEVLIBS_COMPATCYGWIN/include/SDL2 \
-                -I$DEVLIBS_COMPATCYGWIN/include/boost-1_61 \
-                -I$DEVLIBS_COMPATCYGWIN/include/DirectXSDK \
-                -O0 -Wall \
-                -Wno-unused-variable \
-                -std=gnu++11 \
-                -o z:/tmp/compileobj.tmp.o \
-                -c $*"
-        echo -n "which "
-        which gcc|grep "GCC-[0-9]*"
-        echo $command
-        $command
-        popd > /dev/null
-    }
+    # devlibsprint()
+    # {
+    #     echo -n "which gcc -> "
+    #     which gcc|grep "TDM-GCC-[0-9]*"
+    #     echo -n "\$DEVLIBS  -> "
+    #     echo $DEVLIBS|grep "Win[0-9]*"
+    # }
+    # alias devlibs32='export ARCHBITS=32; bashreload; devlibsprint'
+    # alias devlibs64='export ARCHBITS=64; bashreload; devlibsprint'
+    # compileobj()
+    # {
+    #     pushd $DEVPC/src > /dev/null
+    #     DEVLIBS_COMPATCYGWIN=`echo $DEVLIBS|sed 's+/c+c:+'`
+    #     command="gcc \
+    #             -DCONFIGNAME \
+    #             -I../include \
+    #             -I$DEVLIBS_COMPATCYGWIN/include \
+    #             -I$DEVLIBS_COMPATCYGWIN/include/bullet \
+    #             -I$DEVLIBS_COMPATCYGWIN/include/SDL2 \
+    #             -I$DEVLIBS_COMPATCYGWIN/include/boost-1_61 \
+    #             -I$DEVLIBS_COMPATCYGWIN/include/DirectXSDK \
+    #             -O0 -Wall \
+    #             -Wno-unused-variable \
+    #             -std=gnu++11 \
+    #             -o z:/tmp/compileobj.tmp.o \
+    #             -c $*"
+    #     echo -n "which "
+    #     which gcc|grep "GCC-[0-9]*"
+    #     echo $command
+    #     $command
+    #     popd > /dev/null
+    # }
     GITBRANCH="λ"
 
     EMACSNATIVE="/c/Devel/Tools/Emacs/bin/emacs"
 
     if [ $UNAMEOS == Msys ] ; then
-        export PATH=~/local/msys/bin:/mingw$ARCHBITS/bin:$PATH
+        # export PATH=~/local/msys/bin:/mingw$ARCHBITS/bin:$PATH
         export MSYSTEM=MINGW64
         export UNAMEOS=MinGW
-        export MSYSTEM_CHOST=x86_64-w64-mingw32
-        # not sure if 3 next ones are needed, but I will export them anyway
-        export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64
-        export MSYSTEM_PREFIX=/mingw64
-        export MINGW_CHOST=x86_64-w64-mingw32
+        # export MSYSTEM_CHOST=x86_64-w64-mingw32
+        # # not sure if 3 next ones are needed, but I will export them anyway
+        # export MINGW_PACKAGE_PREFIX=mingw-w64-x86_64
+        # export MSYSTEM_PREFIX=/mingw64
+        # export MINGW_CHOST=x86_64-w64-mingw32
         # gdb must be accessed with full path /bin for MinGW version
         # otherwise it finds tdm-gdb first in path, which is not as good in terminal
         alias cgdb='PATH=/bin cgdb'
         PROMPTOS=" $yellow$UNAMEOS$reset"
-        alias emacs='winpty $EMACSNATIVE'
     elif [ $UNAMEOS == Cygwin ] ; then
         alias packages='/z/Setup/Misc/DevelTools/cygwin-setup-$UNAMEMACHINE.exe'
         alias gdb='/bin/gdb $GDBOPTIONS'
@@ -173,8 +172,10 @@ if [ ! -z $UNAMEOS ] ; then
         alias pkgremove='pacman -Rcns'
         alias pkginstalled='pacman -Q'
         alias pkgfiles='pacman -Ql'
+        alias emacs=$EMACSNATIVE
         #export EDITOR=vim # emacs-nox is very broken on mingw
-	export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
+        export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
+        export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:$PATH
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
         alias pkgget='apt-cyg install'
