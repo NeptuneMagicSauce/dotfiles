@@ -24,7 +24,7 @@ command -v ffmpeg > /dev/null
 # if [ $? == 0 ] ; then
     # TODO alias transcodeipod='...'
     # see https://devblogs.nvidia.com/nvidia-ffmpeg-transcoding-guide/
-    # ffmpeg.exe -vsync 0 -hwaccel cuvid -c:v h264_cuvid -i *S01E01*.mkv -c:a copy -c:v h264_nvenc -b:v 4M The.Witcher.S01E01.mp4
+    # ffmpeg.exe -vsync 0 -hwaccel cuvid -c:v h264_cuvid -i *S01E01*.mkv -c:a copy -c:v h264_nvenc -b:v 4M input.mp4
     # maybe bitrates : 5M for 720p, 10M for 1080p
 # fi
 
@@ -175,7 +175,7 @@ if [ ! -z $UNAMEOS ] ; then
         alias emacs=$EMACSNATIVE
         #export EDITOR=vim # emacs-nox is very broken on mingw
         export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
-        export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:$PATH
+        export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:/mingw64/bin:$PATH
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
         alias pkgget='apt-cyg install'
