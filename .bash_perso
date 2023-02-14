@@ -173,7 +173,8 @@ if [ ! -z $UNAMEOS ] ; then
         alias pkgremove='pacman -Rcns'
         alias pkginstalled='pacman -Q'
         alias pkgfiles='pacman -Ql'
-        export EDITOR=vim # emacs-nox is very broken on mingw
+        #export EDITOR=vim # emacs-nox is very broken on mingw
+	export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
         alias pkgget='apt-cyg install'
