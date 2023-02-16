@@ -140,7 +140,10 @@ alias emaconfig='ema ~/.emacs'
 alias gs='~/.git-status.sh'
 alias gss='git status'
 alias gd='git diff -w'
-alias gdcat='git diff --color=always --ignore-space-change| cat'
+gdcat()
+{
+    git diff --color=always --ignore-space-change $*| cat
+}
 alias gc='git commit'
 alias ga='git add'
 alias gpush='git push'
@@ -187,6 +190,7 @@ else
         echo "pkgget source-highlight"
     fi
 fi
+LESS+=" -F" # do not paginate if shorter than one screen
 
 # functions
 ff()
