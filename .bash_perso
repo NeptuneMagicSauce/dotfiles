@@ -175,7 +175,9 @@ if [ ! -z $UNAMEOS ] ; then
         #export EDITOR=vim # emacs-nox is very broken on mingw
         export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
         export PATH=/mingw64/bin:$PATH
-        export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:$PATH
+        # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
+        # export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:$PATH
+        export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
         export MSYS=winsymlinks:nativestrict
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
