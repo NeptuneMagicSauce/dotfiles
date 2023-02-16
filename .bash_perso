@@ -119,6 +119,10 @@ elif [ $UNAMEOS == GNU/Linux ] ; then
     alias pkginstalled='dpkg -la'
     alias pkgfiles='dpkg -L'
     alias pkgautoremove='sudo apt-get autoremove'
+
+    if [ ! -z $INSIDE_WSL ] ; then
+        export GITBRANCH="λ"
+    fi
 fi
 
 # how to GIF :
