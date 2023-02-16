@@ -1,5 +1,6 @@
 #!/bin/sh
-# comment
+
+# test sanity
 command -v ls > /dev/null
 if [ $? == 1 ] ; then
     echo "ls is not found in path"
@@ -44,9 +45,6 @@ add_prompt_wdir()
     # else
         # PS1+="\[$PROMPTRETFAIL\] "
     # fi
-
-    # OS
-    # PS1+="$PROMPTOS"
 }
 add_prompt_conda()
 {
@@ -152,7 +150,6 @@ alias explo='explorer .'
 alias vlcminview='vlc --qt-minimal-view'
 alias sema='sudo emacs -nw'
 alias Youtube-audio='youtube-dl -f 140 --embed-thumbnail'
-# cd $INCOMING/iTunes/IPOD/;
 alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
 
@@ -170,14 +167,25 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 
 # less syntax highlighting
-which source-highlight 2>/dev/null 1>&2
+command -v source-highlight > /dev/null
 if [ $? == 0 ] ; then
     # if [ $UNAMEOS == Cygwin ] || [ $UNAMEOS == Msys ] ; then
     export LESSOPEN="| source-highlight --failsafe --infer-lang -f esc --style-file=$HOME/.syntax-highlight.style -i %s"
-    # elif [ $UNAMEOS == GNU/Linux ] ; then
-    # export LESSOPEN="| src-hilite-lesspipe.sh %s"
-    # fi
     export LESS=-R
+    # doc says this:
+    # export LESSOPEN="| src-hilite-lesspipe.sh %s"
+else
+    echo "missing source-highlight"
+    if [ $UNAMEOS == MinGW ] ; then
+        echo "pkgget mingw-w64-clang-x86_64-source-highlight"
+        echo "or if broken, copy from old working msys:"
+        echo "mkdir -p ~/.local/MinGW/share ~/.local/MinGW/bin"
+        echo "cp -ar ./mingw64/bin/*source-highlight* ~/.local/MinGW/bin/"
+        echo "cp -ar ./mingw64/share/source-highlight/ ~/.local/MinGW/share/"
+        echo "for i in gcc_s_seh-1 stdc++-6 winpthread-1 boost_regex-mt icuuc67 icudt67; do cp -ar ./mingw64/bin/lib\$i.dll ~/.local/MinGW/bin/; done"
+    else
+        echo "pkgget source-highlight"
+    fi
 fi
 
 # functions
@@ -250,17 +258,6 @@ export LANG=en_US.UTF-8
 
 # add BATCAT alias
 command -v batcat >/dev/null && alias bat=batcat
-
-# add ~/local to path
-if [ -d ~/local/bin ] ; then
-    add_path "~/local/bin" "begin"
-fi
-if [ -d ~/.local/bin ]; then
-    add_path "~/.local/bin" "begin"
-fi
-if [ -d ~/bin ]; then
-    add_path "~/local/bin" "begin"
-fi
 
 # add current dir . at start
 if [ ${PATH::2} != ".:" ] ; then
