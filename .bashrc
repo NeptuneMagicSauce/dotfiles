@@ -248,28 +248,21 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# add VLC to path
-if [ -x "/c/Program Files/VideoLAN/VLC/vlc.exe" ]
-then
-    command -v vlc > /dev/null
-    if [ $? == 1 ]
-    then
-        PATH=$PATH:"/c/Program Files/VideoLAN/VLC/"
-    fi
-fi
-
-if [ $HOSTNAME == "xoaltecuhtli" ]; then
-    # . "/usr/etc/profile.d/conda.sh"  # old location
-    . "/home/rlacroix/miniconda3/etc/profile.d/conda.sh"
-fi
-
 # add BATCAT alias
 command -v batcat >/dev/null && alias bat=batcat
 
 # add ~/local to path
 if [ -d ~/local/bin ] ; then
-    export PATH=~/local/bin:$PATH
+    add_path "~/local/bin" "begin"
 fi
 if [ -d ~/.local/bin ]; then
-    export PATH=~/.local/bin:$PATH
+    add_path "~/.local/bin" "begin"
+fi
+if [ -d ~/bin ]; then
+    add_path "~/local/bin" "begin"
+fi
+
+# add current dir . at start
+if [ ${PATH::2} != ".:" ] ; then
+    PATH=".:""$PATH"
 fi
