@@ -13,6 +13,10 @@ elif [ $HOSTNAME == "JOJO-LAPTOP" ]; then
     MYLAPTOP=1
 fi
 
+if [ $UNAMEOS == Msys ] ; then
+    export UNAMEOS=MinGW
+fi
+
 if grep -qi microsoft /proc/version; then
     INSIDE_WSL=1
 fi
@@ -40,21 +44,25 @@ add_path() # add only if missing
     fi
 }
 
+# add ~/local to path
+if [ -d ~/.local/bin ]; then
+    add_path "~/.local/bin" "begin"
+fi
+# add ~/local/$UNAMEOS
+if [ -d ~/.local/$UNAMEOS ]; then
+    add_path "~/.local/$UNAMEOS/bin" "begin"
+fi
+
 if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     # env vars
     export DEV='/c/Devel/Workspace/DLAM'
     export DEVDATA='/c/Devel/Data'
     export DEVLIBS='/c/Devel/Libs/Win64'
     export BUILDLOGECLIPSE="C:\Devel\Workspace\.metadata\.plugins\org.eclipse.cdt.ui\DLAM.build.log"
-    export GITBRANCH="λ"
     export EMACSNATIVE="/c/Devel/Tools/Emacs/bin/emacs"
 
     # path
     add_path "$DEV/Data/Scripts"
-
-    if [ $UNAMEOS == Msys ] ; then
-        export UNAMEOS=MinGW
-    fi
 fi
 
 if [ $MYPC == 1 ] ; then
@@ -85,13 +93,17 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias pkginstalled='pacman -Q'
     alias pkgfiles='pacman -Ql'
     alias emacs=$EMACSNATIVE
+    export GITBRANCH="λ"
     export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
-    # export PATH=/mingw64/bin:$PATH
-    # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
-    # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
-    add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
+    add_path "/clang64/bin"
+    if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
+        # export PATH=/mingw64/bin:$PATH
+        # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
+        # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
+        add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
+    fi
 elif [ $UNAMEOS == Cygwin ] ; then
     alias pkgsearch='apt-cyg listall'
     alias pkgget='apt-cyg install'
