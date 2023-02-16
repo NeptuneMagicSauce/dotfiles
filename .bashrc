@@ -236,6 +236,7 @@ cgdbattachto()
 shopt -s cdspell
 
 # man pages colors https://unix.stackexchange.com/a/147
+# not supported by Windows Terminal
 export GROFF_NO_SGR=1
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
