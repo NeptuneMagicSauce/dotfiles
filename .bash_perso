@@ -149,7 +149,6 @@ elif [ $MYLAPTOP == 1 ] ; then
     if [ $UNAMEOS != "GNU/Linux" ] ; then
         GITBRANCH="λ"
     fi
-    WINSYMLINKS=winsymlinks:nativestrict
     alias gdb='gdb $GDBOPTIONS'
     if [ $UNAMEOS == Msys ] ; then
         export PATH=~/local/msys/bin:$PATH # needed for source-highlight
@@ -176,6 +175,7 @@ if [ ! -z $UNAMEOS ] ; then
         #export EDITOR=vim # emacs-nox is very broken on mingw
         export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
         export PATH=/c/Devel/Tools/WinLibs-8.4.0/bin:/mingw64/bin:$PATH
+        export MSYS=winsymlinks:nativestrict
     elif [ $UNAMEOS == Cygwin ] ; then
         alias pkgsearch='apt-cyg listall'
         alias pkgget='apt-cyg install'
