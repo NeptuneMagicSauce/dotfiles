@@ -5,8 +5,6 @@
 [user]
     email = not.an.email@email.email
     name = Neptune Magic Sauce
-[includeIf "gitdir:~/OAI/"]
-    path = ~/OAI/.gitconfig
 [color]
     ui = true
 [core]
