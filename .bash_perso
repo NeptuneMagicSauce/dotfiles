@@ -79,6 +79,11 @@ if [ $MYPC == 1 ] ; then
     # alias
     alias mplayer='mplayer.exe'
     alias m='mplayer.exe'
+
+    # fix needed for old msys only /c/Deve/Tools/Msys2-64
+    # because it is not launched correctly throught msys2_shell.cmd
+    # it does not have this in path:
+    add_path "/mingw64/bin"
 fi
 
 if [ $MYLAPTOP == 1 ] ; then
