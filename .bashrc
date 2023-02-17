@@ -155,6 +155,7 @@ alias sema='sudo emacs -nw'
 alias Youtube-audio='youtube-dl -f 140 --embed-thumbnail'
 alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
+alias time='TIME="Time %E" time'
 
 if [ -z $CPUCOUNT ] ; then
     # CPUCOUNT=`grep ^processor /proc/cpuinfo|wc -l`
