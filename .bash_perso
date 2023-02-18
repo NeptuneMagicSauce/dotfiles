@@ -63,6 +63,7 @@ if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
 
     # path
     add_path "$DEV/Data/Scripts"
+    add_path "$DEV/Data/Scripts/ninja"
 fi
 
 if [ $MYPC == 1 ] ; then
