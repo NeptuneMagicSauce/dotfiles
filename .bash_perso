@@ -101,7 +101,7 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias emacs=$EMACSNATIVE
     export GITBRANCH="λ"
     # export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
-    export EDITOR=vim
+    export EDITOR="vim  -c 'startinsert'"
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
     add_path "/clang64/bin"
