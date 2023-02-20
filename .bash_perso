@@ -59,7 +59,6 @@ if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     export DEVDATA='/c/Devel/Data'
     export DEVLIBS='/c/Devel/Libs/Win64'
     export BUILDLOGECLIPSE="C:\Devel\Workspace\.metadata\.plugins\org.eclipse.cdt.ui\DLAM.build.log"
-    export EMACSNATIVE="/c/Devel/Tools/Emacs/bin/emacs"
 
     # path
     add_path "$DEV/Data/Scripts"
@@ -82,10 +81,10 @@ if [ $MYPC == 1 ] ; then
     alias mplayer='mplayer.exe'
     alias m='mplayer.exe'
 
-    # fix needed for old msys only /c/Deve/Tools/Msys2-64
+    # fix needed for old msys only /c/Devel/Tools/Msys2-64
     # because it is not launched correctly throught msys2_shell.cmd
     # it does not have this in path:
-    add_path "/mingw64/bin"
+    # add_path "/mingw64/bin"
 fi
 
 if [ $MYLAPTOP == 1 ] ; then
@@ -99,9 +98,7 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias pkgremove='pacman -Rcns'
     alias pkginstalled='pacman -Q'
     alias pkgfiles='pacman -Ql'
-    alias emacs=$EMACSNATIVE
     export GITBRANCH="λ"
-    export EDITOR="$EMACSNATIVE -nw -q -l $HOME/.emacs.d/min-settings.el"
     # export EDITOR='vim  -c "startinsert"' # now emacs-nox works in MinGW
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
@@ -112,6 +109,15 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
         # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
         add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
     fi
+
+    # GDB ...
+    # in bash, we prefer msys/gdb because
+    # it works better with cgdb: colors are working
+    # in Eclipse, we prefer mingw64/gdb because it fails to launch msys/gdb
+    # -> in bash, provide aliases for finding msys/gdb before mingw64/gdb which is first in path
+    alias gdb='/usr/bin/gdb'
+    alias cgdb='PATH=/usr/bin:$PATH cgdb'
+
 elif [ $UNAMEOS == Cygwin ] ; then
     alias pkgsearch='apt-cyg listall'
     alias pkgget='apt-cyg install'
