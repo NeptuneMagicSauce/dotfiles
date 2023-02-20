@@ -70,7 +70,7 @@ fi
 if [ $MYPC == 1 ] ; then
     # env vars
     export INCOMING=/z/Incoming
-    export DEVSETUP='/z/Setup/Misc/DevelTools/PCdev'
+    export DEVSETUP=/z/Setup/Misc/DevelTools/PCdev
     export GOOGLEDRIVE=/z/GoogleDrive
 
     # path
@@ -101,8 +101,8 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias pkgfiles='pacman -Ql'
     alias emacs=$EMACSNATIVE
     export GITBRANCH="λ"
-    # export EDITOR="$EMACSNATIVE -q -l $HOME/.emacs.d/min-settings.el"
-    export EDITOR="vim  -c 'startinsert'"
+    export EDITOR="$EMACSNATIVE -nw -q -l $HOME/.emacs.d/min-settings.el"
+    # export EDITOR='vim  -c "startinsert"' # now emacs-nox works in MinGW
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
     add_path "/clang64/bin"
