@@ -404,12 +404,12 @@ M-x compile.
        0 -1))
 (setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " nproc)))
 
-;; Zeal dev doc
-(let ((zeal-dir "c:/Program Files/Zeal"))
-  (when (file-directory-p zeal-dir)
-    (add-to-list 'exec-path zeal-dir)
-    (load-file "~/.emacs.d/zeal-at-point.el")
-    (bind-key* "C-z" 'zeal-at-point)))
+;; ;; Zeal dev doc
+;; (let ((zeal-dir "c:/Program Files/Zeal"))
+;;   (when (file-directory-p zeal-dir)
+;;     (add-to-list 'exec-path zeal-dir)
+;;     (load-file "~/.emacs.d/zeal-at-point.el")
+;;     (bind-key* "C-z" 'zeal-at-point)))
 
 ;; add path to Unix programs : make, git
 (when (display-graphic-p)
