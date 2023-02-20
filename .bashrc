@@ -137,7 +137,7 @@ alias mydate='date +%Y.%m.%d.%Hh.%Mm'
 alias ema='emacs -nw'
 alias bahsconfig='bashconfig'
 alias emaconfig='ema ~/.emacs'
-alias gs='~/.git-status.sh'
+# alias gs='~/.git-status.sh' # shadows command gs from package ghostscript
 alias gss='git status'
 alias gd='git diff -w'
 gdcat()
