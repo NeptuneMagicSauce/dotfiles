@@ -269,6 +269,9 @@ export WATCH_INTERVAL=1
 # add BATCAT alias
 command -v batcat >/dev/null && alias bat=batcat
 
+# do not remember the dangerous command(s)
+export HISTIGNORE='rm *'
+
 # add current dir . at start
 if [ ${PATH::2} != ".:" ] ; then
     PATH=".:""$PATH"
