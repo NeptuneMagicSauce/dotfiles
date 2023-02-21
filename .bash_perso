@@ -62,7 +62,7 @@ if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
 
     # path
     add_path "$DEV/Data/Scripts"
-    add_path "$DEV/Data/Scripts/ninja"
+    add_path "$DEV/Data/Scripts/build"
     add_path "$DEV/Build/Latest"
 fi
 
@@ -103,12 +103,14 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
     add_path "/clang64/bin"
-    if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
+    # if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
         # export PATH=/mingw64/bin:$PATH
         # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
         # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
-        add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
-    fi
+
+        # NO, we now prefer /mingw64/bin/g++ because it supports pre compiled headers
+        # add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
+    # fi
 
     # GDB ...
     # in bash, we prefer msys/gdb because
