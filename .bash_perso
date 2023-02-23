@@ -63,7 +63,8 @@ if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     # path
     add_path "$DEV/Data/Scripts"
     add_path "$DEV/Data/Scripts/build"
-    add_path "$DEV/Build/Latest"
+    add_path "$DEV/Build"
+    alias n='metaninja'
 fi
 
 if [ $MYPC == 1 ] ; then
@@ -102,7 +103,6 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     # export EDITOR='vim  -c "startinsert"' # now emacs-nox works in MinGW
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
-    add_path "/clang64/bin"
     # if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
         # export PATH=/mingw64/bin:$PATH
         # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH

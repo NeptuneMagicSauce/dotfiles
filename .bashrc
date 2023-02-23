@@ -271,6 +271,7 @@ command -v batcat >/dev/null && alias bat=batcat
 
 # do not remember the dangerous command(s)
 export HISTIGNORE='rm *'
+export HISTCONTROL=ignoreboth:erasedups
 
 # add current dir . at start
 if [ ${PATH::2} != ".:" ] ; then
