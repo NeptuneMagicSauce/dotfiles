@@ -120,6 +120,11 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias gdb='/usr/bin/gdb'
     alias cgdb='PATH=/usr/bin:$PATH cgdb'
 
+    rgpipe() # translate path delimitor for unix use
+    {
+        rg  $* | sed 's+\\+/+g'
+    }
+
 elif [ $UNAMEOS == Cygwin ] ; then
     alias pkgsearch='apt-cyg listall'
     alias pkgget='apt-cyg install'
