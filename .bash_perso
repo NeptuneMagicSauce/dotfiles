@@ -65,6 +65,7 @@ if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     add_path "$DEV/Data/Scripts/build"
     add_path "$DEV/Build"
     alias n='metaninja'
+    alias nn='ninja'
 fi
 
 if [ $MYPC == 1 ] ; then
