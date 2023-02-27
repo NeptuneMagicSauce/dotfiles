@@ -68,6 +68,7 @@ TO*DELETE*
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
+.emacs.d/server/
 .emacs.d/transient/
 .fontconfig/
 .source-highlight/

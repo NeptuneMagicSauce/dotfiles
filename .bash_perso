@@ -126,6 +126,14 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
         rg  $* | sed 's+\\+/+g'
     }
 
+    # emacs as a client from wsl daemon ...
+    # starts very fast
+    # but fails to be GIT_EDITOR
+    # with this error:
+    # File no longer exists: /c/Directory/C:/Directory/.git/COMMIT_EDITMSG
+    alias wstartemacsdaemon="wsl emacs --daemon"
+    alias wemacs="wsl emacsclient -t"
+
 elif [ $UNAMEOS == Cygwin ] ; then
     alias pkgsearch='apt-cyg listall'
     alias pkgget='apt-cyg install'
