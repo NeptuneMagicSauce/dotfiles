@@ -140,6 +140,7 @@ alias emaconfig='ema ~/.emacs'
 # alias gs='~/.git-status.sh' # shadows command gs from package ghostscript
 alias gss='git status'
 alias gd='git diff -w'
+alias gdu='gd -U0'
 gdcat()
 {
     git diff --color=always --ignore-space-change $*| cat
@@ -157,6 +158,23 @@ alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
 alias time='TIME="Time %E" time'
 alias vim='vim -c startinsert'
+command -v killall > /dev/null
+if [ $? == 1 ]
+then
+    # killall not provided by system
+    killall()
+    {
+        if [ $# != 1 ]
+        then
+            echo "Usage: $(basename $0) <name of program to kill>"
+            exit 1
+        fi
+        for pid in $(pidof $1)
+        do
+            kill $pid
+        done
+    }
+fi
 
 if [ -z $CPUCOUNT ] ; then
     # CPUCOUNT=`grep ^processor /proc/cpuinfo|wc -l`
