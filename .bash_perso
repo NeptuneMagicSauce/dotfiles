@@ -134,6 +134,25 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias wstartemacsdaemon="wsl emacs --daemon"
     alias wemacs="wsl emacsclient -t"
 
+    clang-analyze-module()
+    {
+        module="$1"
+        metagenerate.sh Analysis
+        cd $DEV/.Build/Analysis
+        nfile=analysemodule.ninja
+        cat build.ninja | grep -vw ^build > $nfile
+        out="$HOME/tmp/$module.analysis"
+        rm -f $out/*html
+        echo "build $out: analyze-html ../../src/$module.cpp" >> $nfile
+        ninja -f $nfile -vn
+        ninja -f $nfile --quiet
+        cd "$OLDPWD"
+        echo ""
+        echo "Results in $out"
+        ls $out/* > /dev/null 2>&1 && \
+            start $(cygpath -m $out)
+    }
+
 elif [ $UNAMEOS == Cygwin ] ; then
     alias pkgsearch='apt-cyg listall'
     alias pkgget='apt-cyg install'
