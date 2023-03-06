@@ -35,6 +35,6 @@
     new = green bold
     whitespace = red reverse
 [pager]
-    log  = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-    show = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
-    diff = perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight | less
+    log  = perl ~/.diff-highlight | less
+    show = perl ~/.diff-highlight | less
+    diff = perl ~/.diff-highlight | less
