@@ -1,6 +1,7 @@
 [alias]
     st = status
-    lol = log --pretty=format:'%C(auto)%h%d %ad %aN %s' --abbrev-commit --graph --decorate --topo-order --date=short
+    l = log --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80)%s%C(auto)%d %Cgreen%an%Creset' --abbrev-commit --graph --decorate --topo-order --date=short
+    # l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
     amend = commit --amend --date=now --no-edit
 [user]
     email = not.an.email@email.email
@@ -12,9 +13,6 @@
     symlinks = true
     autocrlf = false # needed for cygwin/wsl (not msys) so that git checkout gets unix eol (not dos eol)
     safecrlf = false # default is warn, it is too verbose on broken windows configs
-# [alias]
-    # nice logs
-    # l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
 [pull]
     rebase = false
 [diff]
