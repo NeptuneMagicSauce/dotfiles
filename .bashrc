@@ -211,6 +211,7 @@ else
     fi
 fi
 LESS+=" -F" # do not paginate if shorter than one screen
+LESS+=" -I" # search is case insensitive
 
 # functions
 ff()
