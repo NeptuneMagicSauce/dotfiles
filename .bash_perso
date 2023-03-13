@@ -21,7 +21,7 @@ if grep -qi microsoft /proc/version; then
     INSIDE_WSL=1
 fi
 
-EDITOR='emacs -nw -q -l ~/.emacs.d/min-settings.el'
+EDITOR='emacs -nw -q -l $HOME/.emacs.d/min-settings.el'
 
 add_path() # add only if missing
 {
