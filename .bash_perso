@@ -100,6 +100,7 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     alias pkgremove='pacman -Rcns'
     alias pkginstalled='pacman -Q'
     alias pkgfiles='pacman -Ql'
+    alias emacs='emacs -nw'
     export GITBRANCH="λ"
     # export EDITOR='vim  -c "startinsert"' # now emacs-nox works in MinGW
     export MSYS=winsymlinks:nativestrict
