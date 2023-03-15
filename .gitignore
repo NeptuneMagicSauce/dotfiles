@@ -65,6 +65,7 @@ TO*DELETE*
 .config/Slack/
 .config/Zeal/
 .emacs.d/bookmarks
+.emacs.d/eln-cache/
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
