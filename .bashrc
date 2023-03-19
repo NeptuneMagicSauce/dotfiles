@@ -250,9 +250,9 @@ bashconfig()
 cgdbattachto()
 {
     if [ -z $1 ] ; then
-        echo Usage : cgdbattachto PID-value
+        echo Usage : cgdbattachto NameOfProgram
     else
-        cgdb --eval-command="attach $1"
+        cgdb --eval-command="attach $(pidof $1)"
     fi
 }
 
