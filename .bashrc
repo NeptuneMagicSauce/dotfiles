@@ -296,3 +296,7 @@ export HISTCONTROL=erasedups
 if [ ${PATH::2} != ".:" ] ; then
     PATH=".:""$PATH"
 fi
+
+if [ -f ${HOME}/.bash_local ] ; then
+    source ${HOME}/.bash_local
+fi
