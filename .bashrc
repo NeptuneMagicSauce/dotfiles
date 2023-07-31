@@ -15,17 +15,17 @@ source ~/.bash_perso  # for my machine
 source ~/.bash_work   # pro work specific
 
 # completion : git, docker, ...
-# if [ -f /usr/share/bash-completion/bash_completion ] ; then
+if [ -f /usr/share/bash-completion/completions/git ] ; then
 #     # ubuntu 22.4
-#     source /usr/share/bash-completion/bash_completion
+    source /usr/share/bash-completion/completions/git
 #     # to disable equal to upstream (develop=)
 #     # edit /usr/lib/git-core/git-sh-prompt
 #     # "0      0") # equal to upstream
 #     #        p="" ;;
 #     #        #p="=" ;;
-# else
+else
     source ~/.git-completion.bash
-# fi
+fi
 
 # customisations / user choices
 PROMPT_INCLUDE_GIT=1
