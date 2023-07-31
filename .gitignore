@@ -25,6 +25,7 @@ tmp*
 TO*DELETE*
 TODO*
 
+.adp_user
 .anyconnectvpn/
 .bash_history
 .bash_local
@@ -115,6 +116,7 @@ TODO*
 .nvidia-settings-rc
 .pki/
 .python_history
+.ssp_systems.json
 .steam/
 .steampath
 .steampid
