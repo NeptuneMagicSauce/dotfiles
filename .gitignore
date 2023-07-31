@@ -42,6 +42,7 @@ TODO*
 .cups/
 .dbus-keyrings
 .docker/
+.gitconfig-workspace
 .gnome/
 .gnupg/
 .hushlogin

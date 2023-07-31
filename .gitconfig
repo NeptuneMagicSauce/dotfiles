@@ -6,6 +6,8 @@
 [user]
     email = not.an.email@email.email
     name = Neptune Magic Sauce
+[includeIf "gitdir:~/workspace/"]
+    path = .gitconfig-workspace
 [color]
     ui = true
 [core]
