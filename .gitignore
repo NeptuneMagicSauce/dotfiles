@@ -35,6 +35,7 @@ TODO*
 .cgdb/logs/
 .cgdb/readline_history*
 .config/bashtop/
+.config/eog/
 .config/evince/
 .config/font-manager/
 .config/fontconfig/
