@@ -32,9 +32,6 @@
   (setq custom-font-size 110)
   (setq custom-theme-color "light")
   )
-(when (string-equal system-name "ncelrnd2841") ;; work laptop 2023
-  (setq custom-theme-color "light")
-  )
 (unless (display-graphic-p)
   ;; in terminal, assume we're in dark mode
   (setq custom-theme-color "dark")
@@ -51,6 +48,12 @@
 (defun is-theme-dark ()
   (string-equal custom-theme-color "dark")
   )
+(defun is-workplace-23 () ;; is this setup for the workplace started in 2023
+  (string-equal system-name "ncelrnd2841")
+  )
+(when (is-workplace-23) ;; work laptop 2023
+ (setq custom-theme-color "light")
+ )
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -391,8 +394,10 @@ M-x compile.
  ;; default compile command : enable parallelism, default to dir of current buffer
  ;; set it on first invocation of compile command, not at startup because no buffer
  (setq compile-command
-       (concat
-        "make -C " (file-name-directory (buffer-file-name))))
+       (if (is-workplace-23)
+           "~/workspace/compile.sh"
+         (concat
+          "make -C " (file-name-directory (buffer-file-name)))))
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
@@ -602,9 +607,10 @@ M-x compile.
     (save-some-buffers 1)
     (call-interactively 'cmake-ide-compile)
     )
-  (unless (string-equal system-name "potassium")
-    (bind-key* "C-b" 'cmake-ide-save-and-compile)
-    )
+
+ (unless (is-workplace-23)
+   (bind-key* "C-b" 'cmake-ide-save-and-compile)
+   )
 
   ;; (setq completion-ignore-case t) ;; does not work
   ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
