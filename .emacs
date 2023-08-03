@@ -32,6 +32,9 @@
   (setq custom-font-size 110)
   (setq custom-theme-color "light")
   )
+(when (string-equal system-name "ncelrnd2841") ;; work laptop 2023
+  (setq custom-theme-color "light")
+  )
 (unless (display-graphic-p)
   ;; in terminal, assume we're in dark mode
   (setq custom-theme-color "dark")
@@ -65,7 +68,7 @@
  '(inhibit-startup-screen t)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -609,7 +612,20 @@ M-x compile.
   ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
   ;; (setq company-dabbrev-ignore-case t) ;; does not work
   ;; C-o does not work on "= new T{}" (also M-o)
-)
+  )
+
+;; clang-format
+(defun clang-format-save-hook-for-this-buffer ()
+  (add-hook 'before-save-hook
+            (lambda ()
+                (clang-format-buffer)
+              ;; Continue to save.
+              nil)
+            nil
+            ;; Buffer local hook.
+            t))
+(add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+(add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
