@@ -96,8 +96,8 @@
    ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
    ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
    ;; Cascadia Mono is more condensed horizontally than Cascadia Code
-   ;; '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight semi-bold :height 102 :width normal))))
-   '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
+   '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight semi-bold :height 102 :width normal))))
+   ;; '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
    ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
    ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
   )
