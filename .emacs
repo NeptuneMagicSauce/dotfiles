@@ -32,10 +32,6 @@
   (setq custom-font-size 110)
   (setq custom-theme-color "light")
   )
-(unless (display-graphic-p)
-  ;; in terminal, assume we're in dark mode
-  (setq custom-theme-color "dark")
-  )
 
 (setq font-size-reset custom-font-size)
 
@@ -54,6 +50,10 @@
 (when (is-workplace-23) ;; work laptop 2023
  (setq custom-theme-color "light")
  )
+(unless (display-graphic-p)
+  ;; in terminal, assume we're in dark mode
+  (setq custom-theme-color "dark")
+  )
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
