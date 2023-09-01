@@ -492,6 +492,9 @@ M-x compile.
 (bind-key* "M-," 'rg-dwim)    ;; search at point
 (bind-key* "C-," 'rg-project) ;; search after asking for input
 
+;; Find File In Project
+(bind-key* "C-f" 'project-find-file)
+
 (when (display-graphic-p)
 
   ;; Change text size with Ctrl and mouse wheel
@@ -527,6 +530,7 @@ M-x compile.
 
 ;; switch header - cpp
 (bind-key* "C-<tab>" 'ff-find-other-file)
+(setq ff-search-directories '("." "../src" "../include" "../Include" "../C"))
 ;; next 3 lines : alternate method for switching header - cpp from Nico N.
 ;; (add-hook 'c-mode-common-hook
   ;; (lambda()
@@ -573,6 +577,9 @@ M-x compile.
 ;; needs this ubuntu package -> rtags and elpa-company
 ;; company from emacs package-manager fails to show tooltip
 ;; company from ubuntu package-manager works as intended
+(when (and (display-graphic-p) (is-workplace-23))
+  (global-company-mode 1)
+  )
 (when (and (display-graphic-p) (not (is-workplace-23)))
   ;; ubuntu packages does not provide "rc" but "rtags-rc"
   ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
