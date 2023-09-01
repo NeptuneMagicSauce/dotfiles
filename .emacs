@@ -573,7 +573,7 @@ M-x compile.
 ;; needs this ubuntu package -> rtags and elpa-company
 ;; company from emacs package-manager fails to show tooltip
 ;; company from ubuntu package-manager works as intended
-(when (display-graphic-p)
+(when (and (display-graphic-p) (not (is-workplace-23)))
   ;; ubuntu packages does not provide "rc" but "rtags-rc"
   ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
   ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
