@@ -572,6 +572,10 @@ M-x compile.
 ;; Scroll bar
 ;; (when (display-graphic-p) (scroll-bar-mode -1))
 
+;; Bell: disable the audible bell (by enabling the visible bell)
+(setq visible-bell t)
+(setq ring-bell-function 'ignore)
+
 ;; C++ IDE
 ;; https://github.com/atilaneves/cmake-ide
 ;; needs this ubuntu package -> rtags and elpa-company
