@@ -67,11 +67,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("30cea153d8a3dbae3de5ab66775ab09acd3e9f1ef1b437cdb9beb1ba2d31c22e" "58a2e993177ddc35dfe4cc241c0e4494c083b7e3f479e49e0f0d7e8bb675c626" "fa116d8cc5b249705e891486cb07783f7f9106e71a9199c15c355e83ccf455a1" default))
- '(inhibit-startup-screen t)
+   '("8fb95b7c2d294197508d2140faf8142e242200fb40f5e1c334ab3611974022aa" "29edf572d22a7459ccbf8baa9d5b097eb5230496a972e5521fb5a98e2612f8ec" default))
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(which-key lsp-mode clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons))
+)
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -285,8 +285,9 @@
 (defun load-chosen-theme()
   (if (is-theme-dark)
       ;; 0
-      ;; (load-theme 'romulus) ;; mine
-      (load-theme 'doom-vibrant) ;; nice but comments
+      (load-theme 'romulus-dark) ;; mine
+      ;; (load-theme 'romulus-dark-old) ;; mine
+      ;; (load-theme 'doom-vibrant) ;; nice but comments
       ;; 1
       ;; (load-theme 'doom-dracula) ;; nice but comments
       ;; 2
@@ -530,7 +531,7 @@ M-x compile.
 
 ;; switch header - cpp
 (bind-key* "C-<tab>" 'ff-find-other-file)
-(setq ff-search-directories '("." "../src" "../include" "../Include" "../C"))
+(setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
 ;; next 3 lines : alternate method for switching header - cpp from Nico N.
 ;; (add-hook 'c-mode-common-hook
   ;; (lambda()
@@ -644,6 +645,41 @@ M-x compile.
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 
+;; TO DOCUMENT
+;; TODO conditions graphics-mode and workplace23
+(when (display-graphic-p)
+  (add-hook 'c-mode-hook #'lsp-deferred)
+  (add-hook 'c++-mode-hook #'lsp-deferred)
+  (setq lsp-keymap-prefix "C-c l")
+
+;; ;; (use-package lsp-mode
+;; ;;   :commands (lsp lsp-deferred)
+;; ;;   :init
+;; ;;   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+;; ;;   :config
+;; ;;   (lsp-enable-which-key-integration t))
+
+
+  (with-eval-after-load 'lsp-mode
+    (setq lsp-log-io nil
+          lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
+    (setq company-dabbrev-downcase 0)
+    (setq company-idle-delay 0.1)
+    (setq lsp-enable-file-watchers nil)
+    (setq lsp-idle-delay 0.1)
+    (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
+                                    "--header-insertion-decorators=0"
+                                    "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
+                                    "--log=verbose"
+                                    "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
+                                    "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
+                                    "--cross-file-rename"
+                                    "--background-index"
+                                    "--limit-results=100000"
+                                    "-j=4")) ;; Don't take up too much resources
+    (setq lsp-disabled-clients '(ccls))
+    )
+  )
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
 ;;;;;;;;;;;;;;;;
