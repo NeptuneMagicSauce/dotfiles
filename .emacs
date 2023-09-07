@@ -667,27 +667,32 @@ M-x compile.
       company-minimum-prefix-length 1
       lsp-idle-delay 0.1)  ;; clangd is fast
 
-(bind-key* "C-i" 'xref-find-definitions)    ; Go To Definition
+
+; Fix C-i interpreted as TAB ->
+; https://emacs.stackexchange.com/a/17510
+(define-key input-decode-map "\C-i" [C-i])
+
+(bind-key* "<C-i>" 'xref-find-definitions)  ; Go To Definition
 (bind-key* "C-o" 'xref-find-references)     ; Find All References
 (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
 (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
-(bind-key* "<tab>" 'indent-region)
+;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
 
 (when (display-graphic-p)
 
   (add-hook 'c-mode-hook #'lsp-deferred)
   (add-hook 'c++-mode-hook #'lsp-deferred)
 
-  (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp...
+  (setq company-idle-delay 0.0)
+  (setq lsp-idle-delay 0.0)
 
+  (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
   (with-eval-after-load 'lsp-mode
 
     (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
     ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
     (yas-global-mode)
-    (setq company-idle-delay 0)
-    (setq lsp-idle-delay 0)
 
     (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
