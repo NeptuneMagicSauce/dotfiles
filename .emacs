@@ -48,9 +48,10 @@
   (string-equal system-name "ncelrnd2841")
   )
 (when (is-workplace-23) ;; work laptop 2023
- (setq custom-theme-color "light")
+ ;; (setq custom-theme-color "light")
+ (setq custom-theme-color "dark")
  )
-(unless (display-graphic-p)
+(when (not (display-graphic-p))
   ;; in terminal, assume we're in dark mode
   (setq custom-theme-color "dark")
   )
@@ -68,10 +69,12 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("8fb95b7c2d294197508d2140faf8142e242200fb40f5e1c334ab3611974022aa" "29edf572d22a7459ccbf8baa9d5b097eb5230496a972e5521fb5a98e2612f8ec" default))
+ '(helm-completion-style 'helm)
+ '(inhibit-startup-screen t)
+ '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(which-key lsp-mode clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons))
-)
+   '(helm-xref projectile helm-lsp yasnippet lsp-treemacs which-key lsp-mode clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -474,7 +477,8 @@ M-x compile.
 ;; IDO mode : better switch-to-buffer with choices and arrow support
 (ido-mode 1)
 (setq ido-enable-flex-matching t) ;; fuzzy helps with typos
-(setq ido-everywhere t)
+;; (setq ido-everywhere t)
+(setq ido-everywhere nil) ; ido everywhere is not compatible with helm mode
 
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
@@ -490,8 +494,8 @@ M-x compile.
 ;; RipGrep for searching
 ;; https://rgel.readthedocs.io/en/latest/usage.html
 (rg-enable-default-bindings)  ;; C-c s
-(bind-key* "M-," 'rg-dwim)    ;; search at point
-(bind-key* "C-," 'rg-project) ;; search after asking for input
+(bind-key* "C-," 'rg-dwim)    ;; search at point
+(bind-key* "M-," 'rg-project) ;; search after asking for input
 
 ;; Find File In Project
 (bind-key* "C-f" 'project-find-file)
@@ -507,7 +511,7 @@ M-x compile.
   (bind-key* "C-à" 'zoom-text-reset)    ; azerty
   (bind-key* "C-0" 'zoom-text-reset)    ; qwerty
 
-  (bind-key* "<mouse-3>" 'mouse-buffer-menu)
+  ;; (bind-key* "<mouse-3>" 'mouse-buffer-menu) ; dont bind right-click to buffer-list, it breaks the LSP mouse menu
   ;; mouse-buffer-menu-mode-mult : so that buffer-menu does not have submenus
   (custom-set-variables '(mouse-buffer-menu-mode-mult 99))
   )
@@ -642,42 +646,69 @@ M-x compile.
             nil
             ;; Buffer local hook.
             t))
+
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 
 ;; TO DOCUMENT
-;; TODO conditions graphics-mode and workplace23
+
+;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
+;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
+(helm-mode)
+(require 'helm-xref)
+(define-key global-map [remap find-file] #'helm-find-files)
+(define-key global-map [remap execute-extended-command] #'helm-M-x)
+(define-key global-map [remap switch-to-buffer] #'helm-mini)
+(which-key-mode)
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      treemacs-space-between-root-nodes nil
+      company-idle-delay 0.0
+      company-minimum-prefix-length 1
+      lsp-idle-delay 0.1)  ;; clangd is fast
+
+(bind-key* "C-i" 'xref-find-definitions)    ; Go To Definition
+(bind-key* "C-o" 'xref-find-references)     ; Find All References
+(bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
+(bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
+(bind-key* "<tab>" 'indent-region)
+
 (when (display-graphic-p)
+
   (add-hook 'c-mode-hook #'lsp-deferred)
   (add-hook 'c++-mode-hook #'lsp-deferred)
-  (setq lsp-keymap-prefix "C-c l")
 
-;; ;; (use-package lsp-mode
-;; ;;   :commands (lsp lsp-deferred)
-;; ;;   :init
-;; ;;   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
-;; ;;   :config
-;; ;;   (lsp-enable-which-key-integration t))
+  (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp...
 
 
   (with-eval-after-load 'lsp-mode
-    (setq lsp-log-io nil
-          lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
-    (setq company-dabbrev-downcase 0)
-    (setq company-idle-delay 0.1)
-    (setq lsp-enable-file-watchers nil)
-    (setq lsp-idle-delay 0.1)
-    (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
-                                    "--header-insertion-decorators=0"
-                                    "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
-                                    "--log=verbose"
-                                    "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
-                                    "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
-                                    "--cross-file-rename"
-                                    "--background-index"
-                                    "--limit-results=100000"
-                                    "-j=4")) ;; Don't take up too much resources
-    (setq lsp-disabled-clients '(ccls))
+
+    (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+    ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
+    (yas-global-mode)
+    (setq company-idle-delay 0)
+    (setq lsp-idle-delay 0)
+
+    (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
+
+    (when (is-workplace-23)
+      (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
+      (setq company-dabbrev-downcase 0)
+      ;; (setq company-idle-delay 0.1)
+      ;; (setq lsp-idle-delay 0.1)
+      (setq lsp-enable-file-watchers nil)
+      (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
+                                      "--header-insertion-decorators=0"
+                                      "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
+                                      "--log=verbose"
+                                      "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
+                                      "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
+                                      "--cross-file-rename"
+                                      "--background-index"
+                                      "--limit-results=100000"
+                                      "-j=4")) ;; Don't take up too much resources
+      (setq lsp-disabled-clients '(ccls))
+      )
     )
   )
 ;;;;;;;;;;;;;;;;
