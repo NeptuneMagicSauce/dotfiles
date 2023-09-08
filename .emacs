@@ -587,9 +587,6 @@ M-x compile.
 ;; needs this ubuntu package -> rtags and elpa-company
 ;; company from emacs package-manager fails to show tooltip
 ;; company from ubuntu package-manager works as intended
-(when (and (display-graphic-p) (is-workplace-23))
-  (global-company-mode 1)
-  )
 (when (and (display-graphic-p) (not (is-workplace-23)))
   ;; ubuntu packages does not provide "rc" but "rtags-rc"
   ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
@@ -671,9 +668,10 @@ M-x compile.
 
 ; Fix C-i interpreted as TAB ->
 ; https://emacs.stackexchange.com/a/17510
-(define-key input-decode-map "\C-i" [C-i])
-
-(bind-key* "<C-i>" 'xref-find-definitions)  ; Go To Definition
+(when (display-graphic-p)
+  (define-key input-decode-map "\C-i" [C-i])  ; this breaks may tab-bound functions in terminal mode
+  (bind-key* "<C-i>" 'xref-find-definitions)  ; Go To Definition
+  )
 (bind-key* "C-o" 'xref-find-references)     ; Find All References
 (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
 (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
@@ -682,6 +680,7 @@ M-x compile.
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
 
+(global-company-mode 1)
 (setq company-idle-delay 0.0)
 (setq lsp-idle-delay 0.0)
 
