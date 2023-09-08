@@ -90,6 +90,7 @@ TODO*
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
 .emacs.d/network-security.data
+.emacs.d/recentf
 .emacs.d/server/
 .emacs.d/transient/
 .fontconfig/

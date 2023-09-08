@@ -48,6 +48,7 @@
   (string-equal system-name "ncelrnd2841")
   )
 (when (is-workplace-23) ;; work laptop 2023
+  (setq custom-font-size 125)
  ;; (setq custom-theme-color "light")
  (setq custom-theme-color "dark")
  )
@@ -647,10 +648,10 @@ M-x compile.
             ;; Buffer local hook.
             t))
 
+;; TO DOCUMENT
+
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
-
-;; TO DOCUMENT
 
 ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
 ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
@@ -678,44 +679,42 @@ M-x compile.
 (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
 ;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
 
-(when (display-graphic-p)
+(add-hook 'c-mode-hook #'lsp-deferred)
+(add-hook 'c++-mode-hook #'lsp-deferred)
 
-  (add-hook 'c-mode-hook #'lsp-deferred)
-  (add-hook 'c++-mode-hook #'lsp-deferred)
+(setq company-idle-delay 0.0)
+(setq lsp-idle-delay 0.0)
 
-  (setq company-idle-delay 0.0)
-  (setq lsp-idle-delay 0.0)
+(setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
-  (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
+(with-eval-after-load 'lsp-mode
 
-  (with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
+  (yas-global-mode)
 
-    (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-    ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
-    (yas-global-mode)
+  (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
-    (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
-
-    (when (is-workplace-23)
-      (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
-      (setq company-dabbrev-downcase 0)
-      ;; (setq company-idle-delay 0.1)
-      ;; (setq lsp-idle-delay 0.1)
-      (setq lsp-enable-file-watchers nil)
-      (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
-                                      "--header-insertion-decorators=0"
-                                      "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
-                                      "--log=verbose"
-                                      "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
-                                      "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
-                                      "--cross-file-rename"
-                                      "--background-index"
-                                      "--limit-results=100000"
-                                      "-j=4")) ;; Don't take up too much resources
-      (setq lsp-disabled-clients '(ccls))
-      )
+  (when (is-workplace-23)
+    (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
+    (setq company-dabbrev-downcase 0)
+    ;; (setq company-idle-delay 0.1)
+    ;; (setq lsp-idle-delay 0.1)
+    (setq lsp-enable-file-watchers nil)
+    (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
+                                    "--header-insertion-decorators=0"
+                                    "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
+                                    "--log=verbose"
+                                    "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
+                                    "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
+                                    "--cross-file-rename"
+                                    "--background-index"
+                                    "--limit-results=100000"
+                                    "-j=4")) ;; Don't take up too much resources
+    (setq lsp-disabled-clients '(ccls))
     )
   )
+
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
 ;;;;;;;;;;;;;;;;
