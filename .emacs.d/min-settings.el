@@ -24,7 +24,8 @@
 ;; set modeline if not set not-minimum
 (set-face-attribute 'mode-line nil
                     :foreground "black"
-                    :background "#00FF00" ; "green"
+                    :background "#00BD00" ; Green
+                    ;; :background "#ff9f00" ; DarkOrange
                     )
 
 ;; disable backups with ~ after filename
