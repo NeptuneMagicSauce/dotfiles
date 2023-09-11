@@ -690,7 +690,10 @@ M-x compile.
 (if (display-graphic-p)
     (bind-key* "C-²" 'company-complete) ; azerty
     (bind-key* "C-`" 'company-complete) ; qwerty
-  (bind-key* "C-@" 'company-complete)
+    ;; in terminal mode this keypress generates C-@
+    ;; which is the same as C-space
+    ;; -> broken in terminal
+    ;; -> disabled in terminal
   )
 
 (add-hook 'c-mode-hook #'lsp-deferred)
