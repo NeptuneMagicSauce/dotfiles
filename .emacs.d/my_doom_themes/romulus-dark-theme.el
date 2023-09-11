@@ -39,13 +39,13 @@ Can be an integer to determine the exact padding."
 ;;; Theme definition
 
 (def-doom-theme romulus-dark
+
   "A dark theme based off of doom-one with more vibrant colors."
 
   ;; name        gui       256           16
   ( ;;(bg         '("#242730" "black"       "black" ))
    (bg         '("#2D2D2D" nil       nil            ))
    (fg         '("#bbc2cf" "#bfbfbf"     "brightwhite" ))
-
    ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
    ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
    ;; or region), especially when paired with the `doom-darken', `doom-lighten',
@@ -85,6 +85,7 @@ Can be an integer to determine the exact padding."
    (highlight      blue)
    (vertical-bar   base0)
    (selection      dark-blue)
+
    (builtin        magenta)
    (comments       (if doom-vibrant-brighter-comments dark-cyan base5))
    (doc-comments   (if doom-vibrant-brighter-comments (doom-lighten dark-cyan 0.15) (doom-lighten base4 0.3)))
@@ -117,7 +118,7 @@ Can be an integer to determine the exact padding."
                               `(,(car bg-alt) ,@(cdr base0))))
    (modeline-bg-inactive     `(,(doom-darken (car bg-alt) 0.2) ,@(cdr base0)))
    (modeline-bg-alt-inactive (doom-darken bg 0.25))
-
+   ;((lazy-highlight &override) :background "#0000d7" :foreground "#dfdfdf")
    (-modeline-pad
     (when doom-vibrant-padded-modeline
       (if (integerp doom-vibrant-padded-modeline) doom-vibrant-padded-modeline 4))))
@@ -126,11 +127,12 @@ Can be an integer to determine the exact padding."
   ;;;; Base theme face overrides
   (((font-lock-comment-face &override)
     :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
-   ((line-number &override)
-    :background "#222"
-    :foreground "#999999")
+
+   ; my customisations ->
    ;; ((line-number &override) :background "#222" :foreground "#999999")
-   ;; ((line-number &override) :foreground base4)
+   (line-number :background "#222" :foreground "#999999")
+   (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
+
    ((line-number-current-line &override) :foreground blue :bold bold)
    (mode-line
     :background modeline-bg :foreground modeline-fg
@@ -173,5 +175,4 @@ Can be an integer to determine the exact padding."
   ;;;; Base theme variable overrides
   ;; ()
   )
-
 ;;; doom-vibrant-theme.el ends here
