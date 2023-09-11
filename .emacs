@@ -465,10 +465,10 @@ M-x compile.
 (bind-key* "M-<right>" 'next-buffer)
 
 ;; Next Error
-(bind-key* "C-²" 'next-error) ; azerty
-(bind-key* "C-`" 'next-error) ; qwerty
-(bind-key* "M-²" 'previous-error)
-(bind-key* "M-`" 'previous-error)
+;; (bind-key* "C-²" 'next-error) ; azerty ; NO, use TAB and C-TAB for cycling through errors
+;; (bind-key* "C-`" 'next-error) ; qwerty
+;; (bind-key* "M-²" 'previous-error)
+;; (bind-key* "M-`" 'previous-error)
 (setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
 (setq compilation-skip-threshold 2) ; do not auto-jump to warnings
 
@@ -676,6 +676,13 @@ M-x compile.
 (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
 (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
 ;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
+
+
+(if (display-graphic-p)
+    (bind-key* "C-²" 'company-complete) ; azerty
+    (bind-key* "C-`" 'company-complete) ; qwerty
+  (bind-key* "C-@" 'company-complete)
+  )
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
