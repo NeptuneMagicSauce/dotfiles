@@ -128,10 +128,11 @@ Can be an integer to determine the exact padding."
   (((font-lock-comment-face &override)
     :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
 
-   ; my customisations ->
+   ; my customisations, there are broken in terminal mode
    ;; ((line-number &override) :background "#222" :foreground "#999999")
    (line-number :background "#222" :foreground "#999999")
    (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
+   (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
 
    ((line-number-current-line &override) :foreground blue :bold bold)
    (mode-line

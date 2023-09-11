@@ -69,7 +69,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("29edf572d22a7459ccbf8baa9d5b097eb5230496a972e5521fb5a98e2612f8ec" "961ffefb812c7dff9ed467648ef1314a082bbefebccad735bdf6659e098e032f" default))
+   '("29edf572d22a7459ccbf8baa9d5b097eb5230496a972e5521fb5a98e2612f8ec" "b35c827c97a57842493cd673c529f93a4896a1a3477a15b6381e1dd40f2d02b4" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
