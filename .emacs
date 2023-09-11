@@ -539,12 +539,10 @@ M-x compile.
     (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 ;; switch header - cpp
-(bind-key* "C-<tab>" 'ff-find-other-file)
-(setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
-;; next 3 lines : alternate method for switching header - cpp from Nico N.
-;; (add-hook 'c-mode-common-hook
-  ;; (lambda()
-    ;; (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+;; (bind-key* "C-<tab>" 'ff-find-other-file)
+;; (setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
+; with Projectile: it can find the other file in any directory of the project
+(bind-key* "C-<tab>" 'projectile-find-other-file)
 
 ;; CMakeLists mode
 (setq load-path (cons (expand-file-name "~/.emacs.d/cmake/") load-path))
