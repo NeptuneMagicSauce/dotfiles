@@ -64,7 +64,8 @@
      ;; :foreground "#000")
      :background "#eee"
      :foreground "#000")
-   )
+    (hl-line :background "#C0C0C0" :foreground "#000000")
+    )
 )
 
 ;;; doom-one-light-theme.el ends here

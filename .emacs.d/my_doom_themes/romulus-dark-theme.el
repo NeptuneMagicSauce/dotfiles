@@ -133,6 +133,7 @@ Can be an integer to determine the exact padding."
    (line-number :background "#222" :foreground "#999999")
    (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
    (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
+   (hl-line :background "#375467" :foreground "#DFDFDF")
 
    ((line-number-current-line &override) :foreground blue :bold bold)
    (mode-line
