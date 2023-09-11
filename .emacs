@@ -69,7 +69,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("29edf572d22a7459ccbf8baa9d5b097eb5230496a972e5521fb5a98e2612f8ec" "b35c827c97a57842493cd673c529f93a4896a1a3477a15b6381e1dd40f2d02b4" default))
+   '("0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
@@ -469,8 +469,12 @@ M-x compile.
 ;; (bind-key* "C-`" 'next-error) ; qwerty
 ;; (bind-key* "M-²" 'previous-error)
 ;; (bind-key* "M-`" 'previous-error)
-(setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
-(setq compilation-skip-threshold 2) ; do not auto-jump to warnings
+
+;; Auto open error location on compile
+(unless (is-workplace-23) ;; it is broken at workplace23, fails to find error location
+  (setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
+  (setq compilation-skip-threshold 2) ; do not auto-jump to warnings
+  )
 
 ;; Change Buffer
 (bind-key* "C-v" 'switch-to-buffer)
