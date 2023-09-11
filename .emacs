@@ -33,8 +33,6 @@
   (setq custom-theme-color "light")
   )
 
-(setq font-size-reset custom-font-size)
-
 (defun my-machines ()
   (or
    (string-equal system-name "JOJO-PC")
@@ -48,7 +46,7 @@
   (string-equal system-name "ncelrnd2841")
   )
 (when (is-workplace-23) ;; work laptop 2023
-  (setq custom-font-size 125)
+  (setq custom-font-size 130)
  ;; (setq custom-theme-color "light")
  (setq custom-theme-color "dark")
  )
@@ -56,6 +54,8 @@
   ;; in terminal, assume we're in dark mode
   (setq custom-theme-color "dark")
   )
+
+(setq font-size-reset custom-font-size)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -126,10 +126,10 @@
     (apply-zoom-text))
   (defun zoom-text-increase ()
     (interactive)
-    (zoom-text 6))
+    (zoom-text 10))
   (defun zoom-text-decrease ()
     (interactive)
-    (zoom-text -6))
+    (zoom-text -10))
   (defun zoom-text-reset ()
     (interactive)
     (setq custom-font-size font-size-reset)
