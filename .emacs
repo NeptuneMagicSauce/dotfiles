@@ -679,6 +679,13 @@ M-x compile.
 (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
 ;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
 
+;; Treemacs error list: auto expand is enabled like this:
+;; https://github.com/emacs-lsp/lsp-treemacs/pull/148
+;; remove .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.elc
+;; patch .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.el
+;; @@ -1025 +1025
+;; -   nil
+;; +   10
 
 (if (display-graphic-p)
     (bind-key* "C-²" 'company-complete) ; azerty
