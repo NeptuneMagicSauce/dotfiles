@@ -692,13 +692,13 @@ M-x compile.
 ;;     lsp-treemacs-errors-buffer-name
 ;;     `(["Cycle Severity" lsp-treemacs-cycle-severity])))
 
-(if (display-graphic-p)
-    (bind-key* "C-²" 'company-complete) ; azerty
-    (bind-key* "C-`" 'company-complete) ; qwerty
-    ;; in terminal mode this keypress generates C-@
-    ;; which is the same as C-space
-    ;; -> broken in terminal
-    ;; -> disabled in terminal
+(when (display-graphic-p)
+  (bind-key* "C-²" 'company-complete) ; azerty
+  (bind-key* "C-`" 'company-complete) ; qwerty
+  ;; in terminal mode this keypress generates C-@
+  ;; which is the same as C-space
+  ;; -> broken in terminal
+  ;; -> disabled in terminal
   )
 
 (add-hook 'c-mode-hook #'lsp-deferred)
