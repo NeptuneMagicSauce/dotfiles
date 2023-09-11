@@ -1022,7 +1022,7 @@ With prefix 2 show both."
           (lsp-session-folders)
           (-keep #'lsp-treemacs--build-error-list)))
    "Errors List"
-   nil
+   10
    lsp-treemacs-errors-buffer-name
    `(["Cycle Severity" lsp-treemacs-cycle-severity])))
 
