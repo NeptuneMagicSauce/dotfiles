@@ -683,9 +683,14 @@ M-x compile.
 ;; https://github.com/emacs-lsp/lsp-treemacs/pull/148
 ;; remove .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.elc
 ;; patch .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.el
-;; @@ -1025 +1025
+;; @@ -1022,7 +1022,7 @@ With prefix 2 show both."
+;;            (lsp-session-folders)
+;;            (-keep #'lsp-treemacs--build-error-list)))
+;;     "Errors List"
 ;; -   nil
 ;; +   10
+;;     lsp-treemacs-errors-buffer-name
+;;     `(["Cycle Severity" lsp-treemacs-cycle-severity])))
 
 (if (display-graphic-p)
     (bind-key* "C-²" 'company-complete) ; azerty
