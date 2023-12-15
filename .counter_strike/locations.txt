@@ -1,0 +1,5 @@
+cs2_user_keys...
+$STEAM/userdata/$STEAMID/730/local/cfg
+
+autoexec.cfg
+$STEAM/steamapps/common/Counter-Strike Global Offensive/game/csgo/cfg
