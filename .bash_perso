@@ -87,6 +87,14 @@ if [ $MYPC == 1 ] ; then
     # because it is not launched correctly throught msys2_shell.cmd
     # it does not have this in path:
     # add_path "/mingw64/bin"
+
+    csconfig()
+    {
+        F1=/c/Games/Steam/userdata/1*/730/local/cfg/cs2_user_keys_0_slot0.vcfg
+        F2=/d/Games/SteamLibrary/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
+        emacs $F1 $F2
+        cp -av $F1 $F2 ~/.counter_strike/
+    }
 fi
 
 if [ $MYLAPTOP == 1 ] ; then
