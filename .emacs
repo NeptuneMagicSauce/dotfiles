@@ -47,8 +47,8 @@
   )
 (when (is-workplace-23) ;; work laptop 2023
   (setq custom-font-size 130)
- ;; (setq custom-theme-color "light")
- (setq custom-theme-color "dark")
+ (setq custom-theme-color "light")
+ ;; (setq custom-theme-color "dark")
  )
 (when (not (display-graphic-p))
   ;; in terminal, assume we're in dark mode
@@ -480,10 +480,10 @@ M-x compile.
 (bind-key* "C-v" 'switch-to-buffer)
 
 ;; IDO mode : better switch-to-buffer with choices and arrow support
-(ido-mode 1)
-(setq ido-enable-flex-matching t) ;; fuzzy helps with typos
-;; (setq ido-everywhere t)
-(setq ido-everywhere nil) ; ido everywhere is not compatible with helm mode
+;; ido breaks helm switch-to-buffer command !
+;; (ido-mode 1)
+;; (setq ido-enable-flex-matching t) ;; fuzzy helps with typos
+;; (setq ido-everywhere nil) ; ido everywhere is not compatible with helm mode
 
 ;; Change Window : done in min-settings.el with windmove-default-keybindings
 
