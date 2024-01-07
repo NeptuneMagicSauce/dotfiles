@@ -92,7 +92,7 @@ if [ $MYPC == 1 ] ; then
     {
         F1=/c/Games/Steam/userdata/1*/730/local/cfg/cs2_user_keys_0_slot0.vcfg
         F2=/d/Games/SteamLibrary/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
-        emacs $F1 $F2
+        emacs -nw $F1 $F2
         cp -av $F1 $F2 ~/.counter_strike/
     }
 fi
