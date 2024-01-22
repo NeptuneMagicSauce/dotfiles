@@ -4,4 +4,4 @@
    # [ $OSNAME == GNU/Linux ] ; then
     # source ~/.bashrc
 # fi
-source .bashrc
+source ~/.bashrc
