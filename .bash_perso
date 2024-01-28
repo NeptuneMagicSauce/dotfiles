@@ -95,6 +95,8 @@ if [ $MYPC == 1 ] ; then
         emacs -nw $F1 $F2
         cp -av $F1 $F2 ~/.counter_strike/
     }
+
+    add_path /ucrt64/bin begin # for convert imagemagick
 fi
 
 if [ $MYLAPTOP == 1 ] ; then

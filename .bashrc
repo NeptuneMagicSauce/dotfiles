@@ -259,6 +259,35 @@ cgdbattachto()
         cgdb --eval-command="attach $(pidof $1)"
     fi
 }
+jpegsmaller_onefile()
+{
+    convert -quality 80 -resize 50% "$1" "$2"
+}
+jpegsmaller()
+{
+    echo -n "... "
+    outdir="jpegsmaller"
+    mkdir -p $outdir
+    count=0
+    for extension in jpg jpeg JPG JPEG
+    do
+        if [ $(ls *.$extension 2>/dev/null | wc -l) -gt 0 ]
+        then
+            for i in *.$extension
+            do
+                count=$(expr $count + 1)
+                convert -quality 80 -resize 50% "$i" "$outdir/$i"
+            done
+        fi
+    done
+
+    if [ $count == 0 ]
+    then
+        echo "No jpg found in $PWD"
+    else
+        echo "converted $count files in directory $PWD/$outdir"
+    fi
+}
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
