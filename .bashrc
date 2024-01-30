@@ -162,6 +162,7 @@ alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
 alias time='TIME="Time %E" time'
 alias vim='vim -c startinsert'
+alias bc='bc -l'
 command -v killall > /dev/null
 if [ $? == 1 ]
 then
