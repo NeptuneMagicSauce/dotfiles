@@ -1,5 +1,3 @@
-
-
 .adp_user
 .anyconnect
 .anyconnectvpn*
@@ -8,7 +6,6 @@
 .bash_local
 .bash_logout
 .bash_profile
-bin/
 bin/*.exe
 bin/qemu*
 bin/youtube-dl*
