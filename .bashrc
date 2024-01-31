@@ -289,6 +289,10 @@ jpegsmaller()
         echo "converted $count files in directory $PWD/$outdir"
     fi
 }
+findsimilar()
+{
+    find -type f -print0 |     awk -F/ 'BEGIN { RS="\0" } { n=$NF } k[n]==1 { print p[n]; } k[n] { print $0 } { p[n]=$0; k[n]++ }'
+}
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
