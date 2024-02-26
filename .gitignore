@@ -127,6 +127,7 @@ TO*DELETE*
 TODO*
 .vboxclient-*
 .viminfo
+.vim/.netrwhist
 .vs/
 Wallpapers/
 .wget-hsts
