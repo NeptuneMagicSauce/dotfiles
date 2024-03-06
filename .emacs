@@ -11,6 +11,7 @@
 (setq custom-theme-color "dark") ;; dark or light
 
 ;; customisations per machine
+(when (string-equal system-name "JOJO2-PC") (setq custom-font-size 90))
 (when (string-equal system-name "JOJO-PC") (setq custom-font-size 100))
 (when (string-equal system-name "JOJO-LAPTOP")
   (setq custom-font-size 100)
