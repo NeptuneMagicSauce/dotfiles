@@ -9,6 +9,8 @@ MYPC=0
 MYLAPTOP=0
 if [ $HOSTNAME == "JOJO-PC" ]; then
     MYPC=1
+elif [ $HOSTNAME == "JOJO2-PC" ]; then
+    MYPC=1
 elif [ $HOSTNAME == "JOJO-LAPTOP" ]; then
     MYLAPTOP=1
 fi
@@ -70,18 +72,12 @@ fi
 
 if [ $MYPC == 1 ] ; then
     # env vars
-    export INCOMING=/z/Incoming
-    export DEVSETUP=/z/Setup/Misc/DevelTools/PCdev
-    export GOOGLEDRIVE=/z/GoogleDrive
+    export INCOMING=/c/Incoming
+    export DEVSETUP=/d/Setup/Misc/DevelTools/PCdev
 
     # path
-    add_path "/c/Devel/Tools/ffmpeg-20200101-7b58702-win64-static/bin"
-    add_path "/c/Program Files (x86)/MPlayer"
-    add_path "/c/Program Files (x86)/NVIDIA Corporation/NVIDIA Texture Tools 2/bin"
 
     # alias
-    alias mplayer='mplayer.exe'
-    alias m='mplayer.exe'
 
     # fix needed for old msys only /c/Devel/Tools/Msys2-64
     # because it is not launched correctly throught msys2_shell.cmd
@@ -90,7 +86,7 @@ if [ $MYPC == 1 ] ; then
 
     csconfig()
     {
-        F1=/d/Games/SteamLibrary/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
+        F1=/c/Games/Steam/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
         F2=/c/Games/Steam/userdata/1*/730/local/cfg/cs2_user_keys_0_slot0.vcfg
         emacs -nw $F1 $F2
         cp -av $F1 $F2 ~/.counter_strike/
