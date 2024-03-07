@@ -138,8 +138,8 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     # but fails to be GIT_EDITOR
     # with this error:
     # File no longer exists: /c/Directory/C:/Directory/.git/COMMIT_EDITMSG
-    alias wstartemacsdaemon="wsl emacs --daemon"
-    alias wemacs="wsl emacsclient -t"
+    # alias wstartemacsdaemon="wsl emacs --daemon"
+    # alias wemacs="wsl emacsclient -t"
 
     clang-analyze-module()
     {
