@@ -74,6 +74,7 @@ Downloads/
 .emacs.d/eshell/
 .emacs.d/ido.last
 .emacs.d/network-security.data
+.emacs.d/projects
 .emacs.d/recentf
 .emacs.d/server/
 .emacs.d/session*
