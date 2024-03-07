@@ -58,7 +58,7 @@ add_prompt_git()
     if [ ! -z $INSIDE_WSL ] ; then
         # very slow in windows filesystems: /c/...
         dir=`realpath .`
-        if [ ${dir::3} == "/c/" ] ; then
+        if [ ${dir::3} == "/c/" ] || [ ${dir::7} == "/mnt/c/" ] ; then
             return
         fi
     fi
