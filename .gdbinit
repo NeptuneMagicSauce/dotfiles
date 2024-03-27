@@ -11,3 +11,7 @@ set print frame-arguments presence
 # save history
 # https://sourceware.org/gdb/current/onlinedocs/gdb.html/Command-History.html
 set history save on
+
+# print structures with indentation
+# https://sourceware.org/gdb/current/onlinedocs/gdb.html/Print-Settings.html
+set print pretty on
