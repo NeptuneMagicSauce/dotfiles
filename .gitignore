@@ -73,6 +73,7 @@ Downloads/
 .emacs.d/emojis/emojione/
 .emacs.d/eshell/
 .emacs.d/ido.last
+.emacs.d/.lsp-session-v1
 .emacs.d/network-security.data
 .emacs.d/projects
 .emacs.d/recentf
