@@ -84,6 +84,7 @@ Downloads/
 .fltk/
 .fontconfig/
 Games/
+.gdb_history
 .gdb_proxy-symlinks/
 .gdb/*/*.pyc
 .gdb/*/*/*.pyc
