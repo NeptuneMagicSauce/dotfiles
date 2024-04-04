@@ -15,3 +15,7 @@ set history save on
 # print structures with indentation
 # https://sourceware.org/gdb/current/onlinedocs/gdb.html/Print-Settings.html
 set print pretty on
+
+# store the history file in the home directory
+# default is current directory .
+set history filename ~/.gdb_history
