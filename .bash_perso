@@ -91,6 +91,21 @@ if [ $MYPC == 1 ] ; then
         emacs -nw $F1 $F2
         cp -av $F1 $F2 ~/.counter_strike/
     }
+    cs2ded() {
+        if [ $# -lt 1 ]
+        then
+            echo "Wingman"
+            echo "  cs2ded +game_type 0 +game_mode 2 +map de_inferno"
+            echo "Deathmatch"
+            echo "  cs2ded +game_type 1 +game_mode 2 +map de_inferno"
+            echo ""
+            echo "fy_pool_day: 3070923343"
+            echo "https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive/Dedicated_Servers"
+            echo "https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive/Game_Modes"
+            return
+        fi
+        (cd ~/cs2; cs2 -dedicated -usercon $*)
+    }
 
     add_path /ucrt64/bin begin # for convert imagemagick
 fi
