@@ -266,6 +266,7 @@ jpegsmaller_onefile()
 }
 jpegsmaller()
 {
+    echo "converting in directory $PWD/$outdir"
     echo -n "... "
     outdir="jpegsmaller"
     mkdir -p $outdir
@@ -277,7 +278,7 @@ jpegsmaller()
             for i in *.$extension
             do
                 count=$(expr $count + 1)
-                convert -quality 80 -resize 50% "$i" "$outdir/$i"
+                convert -quality 90 -resize 75% "$i" "$outdir/$i"
             done
         fi
     done
@@ -286,7 +287,7 @@ jpegsmaller()
     then
         echo "No jpg found in $PWD"
     else
-        echo "converted $count files in directory $PWD/$outdir"
+        echo "converted $count files"
     fi
 }
 findsimilar()
