@@ -211,3 +211,14 @@ fi
 
 # how to TRANSCODE UPSCALE
 # alias ffmpeg1440p='ffmpeg -i $1 -vf scale=2560x1440:flags=lanczos -c:v libx264 -preset slow -crf 21'
+
+# https://superuser.com/a/556031
+gif_from_video()
+{
+    if [ $# != 2 ]
+    then
+        echo Usage: $0 input.mp4 output.gif
+        return
+    fi
+    ffmpeg -i "$1" -vf "fps=20,scale=160:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
+}
