@@ -205,12 +205,13 @@ if [ $? == 0 ] ; then
 else
     echo "missing source-highlight"
     if [ $UNAMEOS == MinGW ] ; then
-        echo "pkgget mingw-w64-clang-x86_64-source-highlight"
-        echo "or if broken, copy from old working msys:"
-        echo "mkdir -p ~/.local/MinGW/share ~/.local/MinGW/bin"
-        echo "cp -ar ./mingw64/bin/*source-highlight* ~/.local/MinGW/bin/"
-        echo "cp -ar ./mingw64/share/source-highlight/ ~/.local/MinGW/share/"
-        echo "for i in gcc_s_seh-1 stdc++-6 winpthread-1 boost_regex-mt icuuc67 icudt67; do cp -ar ./mingw64/bin/lib\$i.dll ~/.local/MinGW/bin/; done"
+        echo "pkgget mingw-w64-x86_64-source-highlight"
+        # echo "pkgget mingw-w64-clang-x86_64-source-highlight"
+        # echo "or if broken, copy from old working msys:"
+        # echo "mkdir -p ~/.local/MinGW/share ~/.local/MinGW/bin"
+        # echo "cp -ar ./mingw64/bin/*source-highlight* ~/.local/MinGW/bin/"
+        # echo "cp -ar ./mingw64/share/source-highlight/ ~/.local/MinGW/share/"
+        # echo "for i in gcc_s_seh-1 stdc++-6 winpthread-1 boost_regex-mt icuuc67 icudt67; do cp -ar ./mingw64/bin/lib\$i.dll ~/.local/MinGW/bin/; done"
     else
         echo "pkgget source-highlight"
     fi
