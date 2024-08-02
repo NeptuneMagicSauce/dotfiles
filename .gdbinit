@@ -19,3 +19,11 @@ set print pretty on
 # store the history file in the home directory
 # default is current directory .
 set history filename ~/.gdb_history
+
+# c++ pretty-printers (Ubuntu 22.4)
+python
+import sys
+sys.path.insert(0, '/usr/share/gcc/python')
+from libstdcxx.v6.printers import register_libstdcxx_printers
+register_libstdcxx_printers (None)
+end
