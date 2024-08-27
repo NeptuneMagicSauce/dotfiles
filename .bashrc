@@ -293,7 +293,17 @@ jpegsmaller()
 }
 findsimilar()
 {
-    # https://unix.stackexchange.com/questions/468440/find-all-files-with-the-same-name/468461#468461
+    # https://stackoverflow.com/a/53592290
+    find -type f -print0 | xargs -0 md5sum | sort -k1,32 | uniq -w32 -D
+}
+removesimilar()
+{
+    # https://unix.stackexchange.com/a/192712
+    find -type f -print0 | xargs -0 md5sum | sort | awk 'BEGIN{lasthash = ""} $1 == lasthash {print $2} {lasthash = $1}' | xargs echo rm
+}
+findsamename()
+{
+    # https://unix.stackexchange.com/a/468461
     find -type f -print0 |     awk -F/ 'BEGIN { RS="\0" } { n=$NF } k[n]==1 { print p[n]; } k[n] { print $0 } { p[n]=$0; k[n]++ }'
 }
 
