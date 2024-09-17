@@ -11,7 +11,7 @@ set diffopt+=iwhiteall
 "Show line number on the left side
 :set number
 
-" highlitght the delimiter which matches the one under the cursor
+" highlight the delimiter which matches the one under the cursor
 set showmatch
 
 "Command to display constantly the current filename
