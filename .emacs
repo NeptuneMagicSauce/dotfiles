@@ -499,9 +499,10 @@ M-x compile.
 
 ;; RipGrep for searching
 ;; https://rgel.readthedocs.io/en/latest/usage.html
-(rg-enable-default-bindings)  ;; C-c s
-(bind-key* "C-," 'rg-dwim)    ;; search at point
-(bind-key* "M-," 'rg-project) ;; search after asking for input
+(rg-enable-default-bindings)                ;; C-c s
+(bind-key* "C-," 'rg-dwim)                  ;; search at point in project
+(bind-key* "C-M-," 'rg-dwim-current-file)   ;; search at point in current file
+(bind-key* "M-," 'rg-project)               ;; search after asking for input
 
 ;; Find File In Project
 (bind-key* "C-f" 'project-find-file)
