@@ -341,7 +341,7 @@ export WATCH_INTERVAL=1
 command -v batcat >/dev/null && alias bat=batcat
 
 # do not remember the dangerous command(s)
-export HISTIGNORE='rm *'
+export HISTIGNORE='rm *:*password*'
 export HISTCONTROL=erasedups
 
 # add current dir . at start
