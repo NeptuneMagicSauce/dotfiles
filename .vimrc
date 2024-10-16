@@ -1,7 +1,16 @@
 syntax on
+
 colorscheme koehler
+
 " next line enables line wrap in vimdiff
 au VimEnter * if &diff | execute 'windo set wrap' | endif
+
+" next lines chooses a better coloscheme for vimdiff
+" TODO only change colors of diff highlights
+" see https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+au VimEnter * if &diff | execute 'colorscheme industry' | endif
+
+" diff ignores whitespace
 set diffopt+=iwhite
 set diffopt+=iwhiteall
 
