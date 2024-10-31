@@ -191,7 +191,7 @@ export GIT_EDITOR=$EDITOR
 # git prompt
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
-GIT_PS1_SHOWSTASHSTATE=1
+#GIT_PS1_SHOWSTASHSTATE=1 # not interesting when it's always true
 GIT_PS1_SHOWUNTRACKEDFILES=1
 
 # less syntax highlighting
