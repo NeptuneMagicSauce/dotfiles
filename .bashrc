@@ -306,6 +306,10 @@ findsamename()
     # https://unix.stackexchange.com/a/468461
     find -type f -print0 |     awk -F/ 'BEGIN { RS="\0" } { n=$NF } k[n]==1 { print p[n]; } k[n] { print $0 } { p[n]=$0; k[n]++ }'
 }
+ffmpeg1080p()
+{
+    ffmpeg -i "$1" -filter:v scale=-1:1080 "$2" $3 $4 $5 $6 $7 $8 $9
+}
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
