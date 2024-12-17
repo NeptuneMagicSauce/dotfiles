@@ -472,10 +472,9 @@ M-x compile.
 ;; (bind-key* "M-`" 'previous-error)
 
 ;; Auto open error location on compile
-(unless (is-workplace-23) ;; it is broken at workplace23, fails to find error location
-  (setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
-  (setq compilation-skip-threshold 2) ; do not auto-jump to warnings
-  )
+;; now working at workplace23 (unless (is-workplace-23)
+(setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
+(setq compilation-skip-threshold 2) ; do not auto-jump to warnings
 
 ;; Change Buffer
 (bind-key* "C-v" 'switch-to-buffer)
