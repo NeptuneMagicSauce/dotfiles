@@ -9,6 +9,7 @@
 bin/*.exe
 bin/qemu*
 bin/youtube-dl*
+bin/build.stress.test.sh
 .cache/
 .cgdb/logs/
 .cgdb/readline_history*
