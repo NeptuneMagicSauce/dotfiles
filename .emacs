@@ -11,7 +11,10 @@
 (setq custom-theme-color "dark") ;; dark or light
 
 ;; customisations per machine
-(when (string-equal system-name "JOJO2-PC") (setq custom-font-size 90))
+(when (string-equal system-name "JOJO2-PC")
+  (if (string-equal system-configuration "x86_64-pc-linux-gnu")
+      (setq custom-font-size 200)
+    (setq custom-font-size 90)))
 (when (string-equal system-name "JOJO-PC") (setq custom-font-size 100))
 (when (string-equal system-name "JOJO-LAPTOP")
   (setq custom-font-size 100)
@@ -94,18 +97,18 @@
 (when (display-graphic-p)
   ;; My preferred FONT
   (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-   ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
-   ;; Cascadia Mono is more condensed horizontally than Cascadia Code
-   '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight semi-bold :height 102 :width normal))))
-   ;; '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
-   ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-   ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
-  )
+   (if (and (string-equal system-name "JOJO2-PC")
+            (string-equal system-configuration "x86_64-pc-linux-gnu"))
+       ;; that's WSL on big computer
+       '(default ((t (:family "Monospace Bold" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
+     ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
+     ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
+     ;; Cascadia Mono is more condensed horizontally than Cascadia Code
+     '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight semi-bold :height 102 :width normal))))
+     ;; '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
+     ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
+     ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
+  ))
   ;; mouse-paste at emacs-cursor, not at mouse-cursor
   (setq mouse-yank-at-point t)
 
