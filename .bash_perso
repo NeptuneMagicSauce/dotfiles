@@ -20,7 +20,7 @@ if [ $UNAMEOS == Msys ] ; then
 fi
 
 if grep -qi microsoft /proc/version; then
-    INSIDE_WSL=1
+    export INSIDE_WSL=1
 fi
 
 EDITOR='emacs -nw -q -l $HOME/.emacs.d/min-settings.el'
@@ -193,6 +193,14 @@ elif [ $UNAMEOS == GNU/Linux ] ; then
 
     if [ ! -z $INSIDE_WSL ] ; then
         export GITBRANCH="λ"
+
+        # fix ls colors
+        # inside WSL, directories permissions are 777
+        # which is printed with accented colors
+        # which is annoying
+        # -> disable this
+        # from https://unix.stackexchange.com/a/670527
+        export LS_COLORS=ow=
     fi
 fi
 
