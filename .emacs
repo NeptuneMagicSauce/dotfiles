@@ -14,7 +14,7 @@
 (when (string-equal system-name "JOJO2-PC")
   (if (string-equal system-configuration "x86_64-pc-linux-gnu")
       (setq custom-font-size 200)
-    (setq custom-font-size 90)))
+    (setq custom-font-size 85)))
 (when (string-equal system-name "JOJO-PC") (setq custom-font-size 100))
 (when (string-equal system-name "JOJO-LAPTOP")
   (setq custom-font-size 100)
@@ -104,7 +104,7 @@
      ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
      ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
      ;; Cascadia Mono is more condensed horizontally than Cascadia Code
-     '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight semi-bold :height 102 :width normal))))
+     '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
      ;; '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
      ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
      ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
@@ -431,15 +431,12 @@ M-x compile.
 ;; add path to Unix programs : make, git
 (when (display-graphic-p)
   ;; add path to git and grep for jojo-pc and jojo-laptop
-  (when (string-equal system-name "JOJO-PC")
-    (setenv "PATH" (concat "C:/Devel/Tools/Msys2-64/usr/bin;" (getenv "PATH")))
+  (when (string-equal system-name "JOJO2-PC")
+    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin")
     )
-   ;; (setenv "PATH" (concat "c:/Devel/Tools/TDM-GCC-64/bin;" (getenv "PATH"))))
   ;; jojo-laptop/MinGW ->
   (when (string-equal system-name "JOJO-LAPTOP")
-    (setenv "PATH" (concat "c:/Devel/Tools/Msys2/usr/bin;" (getenv "PATH"))))
-  ;; jojo-laptop/Cygwin ->
-  ;; (setenv "PATH" (concat "c:/Devel/Tools/Cygwin/bin;" (getenv "PATH")))
+    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
 )
 
 ;; Reload config
