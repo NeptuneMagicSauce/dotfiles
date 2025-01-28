@@ -625,9 +625,11 @@ M-x compile.
     (call-interactively 'cmake-ide-compile)
     )
 
- (unless (is-workplace-23)
-   (bind-key* "C-b" 'cmake-ide-save-and-compile)
-   )
+
+ ;; (unless (is-workplace-23)
+ ;; this only works for cpp, not for other languages
+ ;;   (bind-key* "C-b" 'cmake-ide-save-and-compile)
+ ;;   )
 
   ;; (setq completion-ignore-case t) ;; does not work
   ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
