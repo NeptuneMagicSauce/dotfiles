@@ -55,13 +55,14 @@ add_prompt_conda()
 }
 add_prompt_git()
 {
-    if [ ! -z $INSIDE_WSL ] ; then
-        # very slow in windows filesystems: /c/...
-        dir=`realpath .`
-        if [ ${dir::3} == "/c/" ] || [ ${dir::7} == "/mnt/c/" ] ; then
-            return
-        fi
-    fi
+    # if [ ! -z $INSIDE_WSL ] ; then
+    #     # very slow in windows filesystems: /c/...
+    # it is now fast: WSL2 January 2025
+    #     dir=`realpath .`
+    #     if [ ${dir::3} == "/c/" ] || [ ${dir::7} == "/mnt/c/" ] ; then
+    #         return
+    #     fi
+    # fi
 
     GITVALUE=`echo $(__git_ps1)`
     if [ ! -z "$GITVALUE" ]; then
