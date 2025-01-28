@@ -117,6 +117,7 @@ Screenshots/
 setup.log*
 snap/
 .source-highlight/
+.sqlite_history
 .ssh
 .ssh/
 .ssp_systems.json
