@@ -350,6 +350,7 @@
 ;; Compilation output
 ;; (setq compilation-scroll-output t)
 (setq compilation-scroll-output 'first-error)
+(setq compilation-max-output-line-length nil) ; do not collapse long lines
 
 ;; Revert (=reload from disk) All Buffers
 ;; source https://emacs.stackexchange.com/a/24461
@@ -432,7 +433,8 @@ M-x compile.
 (when (display-graphic-p)
   ;; add path to git and grep for jojo-pc and jojo-laptop
   (when (string-equal system-name "JOJO2-PC")
-    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin")
+    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin") ; ripgrep
+    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin")     ; git
     )
   ;; jojo-laptop/MinGW ->
   (when (string-equal system-name "JOJO-LAPTOP")
@@ -473,7 +475,8 @@ M-x compile.
 
 ;; Auto open error location on compile
 ;; now working at workplace23 (unless (is-workplace-23)
-(setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
+;; but it jumps for ripgrep matches on windows
+;; (setq compilation-auto-jump-to-first-error nil) ; auto-jump to error location on compile
 (setq compilation-skip-threshold 2) ; do not auto-jump to warnings
 
 ;; Change Buffer
