@@ -1,0 +1,8 @@
+# belongs in /etc/wsl.conf
+[boot]
+systemd=true
+
+[automount]
+root = /
+options = "metadata"
+mountFsTab = false
