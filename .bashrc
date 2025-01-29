@@ -343,7 +343,12 @@ export LANG=en_US.UTF-8
 export WATCH_INTERVAL=1
 
 # add BATCAT alias
-command -v batcat >/dev/null && alias bat=batcat
+command -v batcat >/dev/null
+if [ $? == 0 ]
+then
+    alias bat=batcat
+    alias batjson='bat -l json --theme "Monokai Extended"'
+fi
 
 # do not remember the dangerous command(s)
 export HISTIGNORE='rm *:*password*'
