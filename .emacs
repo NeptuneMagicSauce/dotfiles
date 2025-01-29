@@ -652,11 +652,22 @@ M-x compile.
             nil
             ;; Buffer local hook.
             t))
-
-;; TO DOCUMENT
-
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+
+;; python-format:
+;; ;; 1. delete duplicate blank lines
+;; ;; fails to work reliably
+;; (defun python-format-save-hook-for-this-buffer ()
+;;   (add-hook 'before-save-hook
+;;             (lambda ()
+;;                 (delete-blank-lines)
+;;               ;; Continue to save.
+;;               nil)
+;;             nil
+;;             ;; Buffer local hook.
+;;             t))
+;; (add-hook 'python-mode-hook (lambda() (python-format-save-hook-for-this-buffer)))
 
 ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
 ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
