@@ -349,6 +349,9 @@ command -v batcat >/dev/null && alias bat=batcat
 export HISTIGNORE='rm *:*password*'
 export HISTCONTROL=erasedups
 
+# hide python cache
+export PYTHONPYCACHEPREFIX=.pycache
+
 # add current dir . at start
 if [ ${PATH::2} != ".:" ] ; then
     PATH=".:""$PATH"
@@ -361,4 +364,30 @@ fi
 
 if [ -f ${HOME}/.bash_local ] ; then
     source ${HOME}/.bash_local
+fi
+
+if [ -n "$INSIDE_WSL" ]
+then
+    wsl_get_win_env_var()
+    {
+        cmd.exe /c echo %$1% 2>/dev/null | dos2unix
+    }
+    wsl_install_my_setup()
+    {
+        WSLCONFIGPATH=$(wsl_get_win_env_var USERPROFILE | sed -e 's+\\+/+g' -e 's+C:+/c+')
+        WSLCONFIGPATH+="/.wslconfig"
+
+        echo ">>> now in $WSLCONFIGPATH >>>"
+        (cat ~/.wslconfig.custom; echo "") | tee $WSLCONFIGPATH | grep -v ^#
+
+        WSLCONFIGPATH=/etc/wsl.conf
+        echo ">>> now in $WSLCONFIGPATH >>>"
+        (cat ~/.wsl.conf.custom; echo "") | sudo tee $WSLCONFIGPATH | grep -v ^#
+
+        # PYTHONPYCACHEPREFIX is needed for emacs calling wsl python
+        echo ">>> setx PYTHONPYCACHEPREFIX WSLENV >>>"
+        setx.exe PYTHONPYCACHEPREFIX .pycache | dos2unix | grep -v '^$'
+        setx.exe WSLENV $(wsl_get_win_env_var WSLENV):PYTHONPYCACHEPREFIX | dos2unix | grep -v '^$'
+
+    }
 fi

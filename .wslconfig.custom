@@ -1,0 +1,3 @@
+# belongs in /c/Users/TheUser/.wslconfig
+[wsl2]
+vmIdleTimeout=60000000
