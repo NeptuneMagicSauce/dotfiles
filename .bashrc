@@ -348,6 +348,7 @@ if [ $? == 0 ]
 then
     alias bat=batcat
     alias batjson='bat -l json --theme "Monokai Extended"'
+    alias bathtml='bat -l html --theme "Monokai Extended"'
 fi
 
 # do not remember the dangerous command(s)
