@@ -396,4 +396,13 @@ then
         setx.exe WSLENV $(wsl_get_win_env_var WSLENV):PYTHONPYCACHEPREFIX | dos2unix | grep -v '^$'
 
     }
+    wslout()
+    {
+        # add .exe to the first argument and run
+        cmd="${1}.exe"
+        shift
+        # echo "cmd ${cmd}"
+        # echo "args ${@}"
+        "$cmd" "$@"
+    }
 fi
