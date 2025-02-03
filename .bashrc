@@ -405,4 +405,8 @@ then
         # echo "args ${@}"
         "$cmd" "$@"
     }
+    wsloutpython()
+    {
+        wslout python "$@"
+    }
 fi
