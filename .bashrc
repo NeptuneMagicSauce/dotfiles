@@ -409,4 +409,12 @@ then
     {
         wslout python "$@"
     }
+else
+    # not inside WSL
+    pingme()
+    (
+        text="You've been pinged"
+        notify-send "$text"
+        zenity --info --text "$text"
+    )
 fi
