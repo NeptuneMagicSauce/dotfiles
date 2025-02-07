@@ -81,6 +81,7 @@ Downloads/
 .emacs.d/recentf
 .emacs.d/server/
 .emacs.d/session*
+.emacs.d/tramp
 .emacs.d/transient/
 .emacs.d/url/
 .fltk/
