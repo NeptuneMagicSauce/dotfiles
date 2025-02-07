@@ -409,6 +409,10 @@ then
     {
         wslout python "$@"
     }
+    pingme()
+    (
+        notify-wsl.sh
+    )
 else
     # not inside WSL
     pingme()
