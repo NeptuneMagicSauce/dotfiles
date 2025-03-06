@@ -79,7 +79,7 @@
  '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -665,10 +665,16 @@ M-x compile.
   ;; https://emacs.stackexchange.com/a/17510
   (define-key input-decode-map "\C-i" [C-i])
 
-  (bind-key* "C-o" 'lsp-find-references) ; Find References
+  (bind-key* "C-o" 'lsp-find-references)   ; Find References
   ;; this one needs <> between key-bind otherwise it gets assigned to TAB !
   (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
-  (bind-key* "C-p" 'helm-imenu)          ; Browse Symbols
+  ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols
+  (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
+
+
+  ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-delay 0)
 
   )
 
