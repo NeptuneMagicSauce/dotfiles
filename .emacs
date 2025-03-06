@@ -670,6 +670,8 @@ M-x compile.
   (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
   ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols
   (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
+  ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix
+  (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
 
 
   ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
