@@ -79,7 +79,7 @@
  '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(helm-xref projectile helm-lsp which-key clang-format company helm-rtags flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
