@@ -709,6 +709,10 @@ M-x compile.
 ;;     lsp-treemacs-errors-buffer-name
 ;;     `(["Cycle Severity" lsp-treemacs-cycle-severity])))
 
+;; line-breaks unix, even on windows
+;; https://stackoverflow.com/a/21837875
+(prefer-coding-system 'utf-8-unix)
+
 (when (display-graphic-p)
   (bind-key* "C-²" 'company-complete) ; azerty
   (bind-key* "C-`" 'company-complete) ; qwerty
