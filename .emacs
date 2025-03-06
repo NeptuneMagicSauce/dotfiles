@@ -79,7 +79,7 @@
  '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(helm-xref projectile helm-lsp yasnippet lsp-treemacs which-key lsp-mode clang-format company-rtags company rtags-xref helm-rtags cmake-ide flycheck rtags rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(helm-xref projectile helm-lsp which-key clang-format company helm-rtags flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
 
 ;; show line numbers only for 'files', not dynamic buffers
 ;; (global-linum-mode t)
@@ -588,59 +588,9 @@ M-x compile.
 (setq visible-bell t)
 (setq ring-bell-function 'ignore)
 
-;; C++ IDE
-;; https://github.com/atilaneves/cmake-ide
-;; needs this ubuntu package -> rtags and elpa-company
-;; company from emacs package-manager fails to show tooltip
-;; company from ubuntu package-manager works as intended
-(when (and (display-graphic-p) (not (is-workplace-23)))
-  ;; ubuntu packages does not provide "rc" but "rtags-rc"
-  ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
-  ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
-  ;; xor
-  ;; (cd /usr/bin; sudo ln -s rtags-rc rc)
-  ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
-  (require 'rtags)
-  (cmake-ide-setup)
-  (global-company-mode 1)
-  ;; (global-company-fuzzy-mode 1) ;; NO not compatible with rtags !
-  ;; TODO make company-fuzzy compatible with rtags https://github.com/jcs-elpa/company-fuzzy
-  (bind-key* "C-²" 'company-complete)
-  ;; (global-flycheck-mode 1) ;; does not work
-  (setq company-idle-delay 0)
-  (setq cmake-ide-build-dir "build")
-  (setq rtags-display-result-backend 'helm)
-  (rtags-enable-standard-keybindings)
-  ;; default rtags binds:
-  ;; C-c r / rtags-find-all-references-at-point
-  ;; C-c r . rtags-find-symbol-at-point
-  ;; C-c r [ rtags-location-stack-back
-  ;; C-c r ] rtags-location-stack-forward
-  ;; C-c r , rtags-find-references-at-point
-  ;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
-  (bind-key* "C-o" 'rtags-find-symbol-at-point)
-  (bind-key* "M-o" 'rtags-find-all-references-at-point)
-  (bind-key* "C-<left>" 'rtags-location-stack-back)
-  (bind-key* "C-<right>" 'rtags-location-stack-forward)
-  (defun cmake-ide-save-and-compile (nothing)
-    (interactive "p")
-    (save-some-buffers 1)
-    (call-interactively 'cmake-ide-compile)
-    )
-
-
- ;; (unless (is-workplace-23)
- ;; this only works for cpp, not for other languages
- ;;   (bind-key* "C-b" 'cmake-ide-save-and-compile)
- ;;   )
-
-  ;; (setq completion-ignore-case t) ;; does not work
-  ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
-  ;; (setq rtags-find-file-case-insensitive t) ;; does not work
-  ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
-  ;; (setq company-dabbrev-ignore-case t) ;; does not work
-  ;; C-o does not work on "= new T{}" (also M-o)
-  )
+;; line-breaks unix, even on windows
+;; https://stackoverflow.com/a/21837875
+(prefer-coding-system 'utf-8-unix)
 
 ;; clang-format
 (defun clang-format-save-hook-for-this-buffer ()
@@ -655,19 +605,72 @@ M-x compile.
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 
-;; python-format:
-;; ;; 1. delete duplicate blank lines
-;; ;; fails to work reliably
-;; (defun python-format-save-hook-for-this-buffer ()
-;;   (add-hook 'before-save-hook
-;;             (lambda ()
-;;                 (delete-blank-lines)
-;;               ;; Continue to save.
-;;               nil)
-;;             nil
-;;             ;; Buffer local hook.
-;;             t))
-;; (add-hook 'python-mode-hook (lambda() (python-format-save-hook-for-this-buffer)))
+;; C++ IDE
+(when (not (is-workplace-23))
+;; (when (and (display-graphic-p) (not (is-workplace-23)))
+;; obsolete: cmake-ide
+;; https://github.com/atilaneves/cmake-ide
+;; needs this ubuntu package -> rtags and elpa-company
+;; company from emacs package-manager fails to show tooltip
+;; company from ubuntu package-manager works as intended
+  ;; ubuntu packages does not provide "rc" but "rtags-rc"
+  ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
+  ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
+  ;; xor
+  ;; (cd /usr/bin; sudo ln -s rtags-rc rc)
+  ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
+  ;; (require 'rtags)
+  ;; (cmake-ide-setup) ;; is this needed ?
+  ;; (global-company-mode 1)
+  ;; (global-company-fuzzy-mode 1) ;; NO not compatible with rtags !
+  ;; TODO make company-fuzzy compatible with rtags https://github.com/jcs-elpa/company-fuzzy
+  ;; (bind-key* "C-²" 'company-complete)
+  ;; ;; (global-flycheck-mode 1) ;; does not work
+  ;; (setq company-idle-delay 0)
+  ;; (setq cmake-ide-build-dir "build")
+  ;; (setq rtags-display-result-backend 'helm)
+  ;; (rtags-enable-standard-keybindings)
+  ;; ;; default rtags binds:
+  ;; ;; C-c r / rtags-find-all-references-at-point
+  ;; ;; C-c r . rtags-find-symbol-at-point
+  ;; ;; C-c r [ rtags-location-stack-back
+  ;; ;; C-c r ] rtags-location-stack-forward
+  ;; ;; C-c r , rtags-find-references-at-point
+  ;; ;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
+  ;; (bind-key* "C-o" 'rtags-find-symbol-at-point)
+  ;; (bind-key* "M-o" 'rtags-find-all-references-at-point)
+  ;; (bind-key* "C-<left>" 'rtags-location-stack-back)
+  ;; (bind-key* "C-<right>" 'rtags-location-stack-forward)
+  ;; (defun cmake-ide-save-and-compile (nothing)
+  ;;   (interactive "p")
+  ;;   (save-some-buffers 1)
+  ;;   (call-interactively 'cmake-ide-compile)
+  ;;   )
+ ;; (unless (is-workplace-23)
+ ;; this only works for cpp, not for other languages
+ ;;   (bind-key* "C-b" 'cmake-ide-save-and-compile)
+ ;;   )
+
+  ;; (setq completion-ignore-case t) ;; does not work
+  ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
+  ;; (setq rtags-find-file-case-insensitive t) ;; does not work
+  ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
+  ;; (setq company-dabbrev-ignore-case t) ;; does not work
+  ;; C-o does not work on "= new T{}" (also M-o)
+
+
+  ;; new as of March 2025: LSP and CLANGD
+
+  ;; Fix C-i interpreted as TAB ->
+  ;; https://emacs.stackexchange.com/a/17510
+  (define-key input-decode-map "\C-i" [C-i])
+
+  (bind-key* "C-o" 'lsp-find-references) ; Find References
+  ;; this one needs <> between key-bind otherwise it gets assigned to TAB !
+  (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
+  (bind-key* "C-p" 'helm-imenu)          ; Browse Symbols
+
+  )
 
 ;; from https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/
 ;; sample `helm' configuration use https://github.com/emacs-helm/helm/ for details
@@ -681,18 +684,11 @@ M-x compile.
       read-process-output-max (* 1024 1024)
       treemacs-space-between-root-nodes nil
       company-idle-delay 0.0
-      company-minimum-prefix-length 1
-      lsp-idle-delay 0.1)  ;; clangd is fast
+      company-minimum-prefix-length 1)
+      ;; lsp-idle-delay 0.1)  ;; clangd is fast
 
-
-; Fix C-i interpreted as TAB ->
-; https://emacs.stackexchange.com/a/17510
-(when (display-graphic-p)
-  (define-key input-decode-map "\C-i" [C-i])  ; this breaks may tab-bound functions in terminal mode
-  (bind-key* "<C-i>" 'xref-find-definitions)  ; Go To Definition
-  )
-(bind-key* "C-o" 'xref-find-references)     ; Find All References
-(bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
+;; (bind-key* "C-o" 'xref-find-references)     ; Find All References
+;; (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
 ;; (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
 ;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
 
@@ -709,18 +705,14 @@ M-x compile.
 ;;     lsp-treemacs-errors-buffer-name
 ;;     `(["Cycle Severity" lsp-treemacs-cycle-severity])))
 
-;; line-breaks unix, even on windows
-;; https://stackoverflow.com/a/21837875
-(prefer-coding-system 'utf-8-unix)
-
-(when (display-graphic-p)
-  (bind-key* "C-²" 'company-complete) ; azerty
-  (bind-key* "C-`" 'company-complete) ; qwerty
-  ;; in terminal mode this keypress generates C-@
-  ;; which is the same as C-space
-  ;; -> broken in terminal
-  ;; -> disabled in terminal
-  )
+;; (when (display-graphic-p)
+;;   (bind-key* "C-²" 'company-complete) ; azerty
+;;   (bind-key* "C-`" 'company-complete) ; qwerty
+;;   ;; in terminal mode this keypress generates C-@
+;;   ;; which is the same as C-space
+;;   ;; -> broken in terminal
+;;   ;; -> disabled in terminal
+;;   )
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
@@ -735,7 +727,9 @@ M-x compile.
 
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
-  (yas-global-mode)
+
+  ;; YAS = YASnippet = unused, see https://github.com/joaotavora/yasnippet
+  ;; (yas-global-mode)
 
   (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
