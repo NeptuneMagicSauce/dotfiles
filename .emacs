@@ -73,7 +73,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" default))
+   '("df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" "0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "06049b1d7ae0802e589fb36f730755869fc89fafaa82d6bf011d2ca9f0dcedc1" "" "" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
@@ -333,7 +333,8 @@
       ;; (load-theme 'doom-one-light)
 
     ;; LIGHT
-    (load-theme 'romulus-light) ;; mine
+    ;; old from 2023.09.06
+    ;; (load-theme 'romulus-light) ;; mine
     ;; (load-theme 'doom-flatwhite)
     ;; (load-theme 'doom-acario-light) ;; company-mode good
     ;; (load-theme 'doom-dracula)
@@ -344,6 +345,21 @@
     ;; (load-theme 'doom-plain)
     ;; (load-theme 'doom-solarized-light) ;; company-mode best
     ;; (load-theme 'doom-tomorrow-day) ;; good but company bad
+
+    ;; new in 2025.02.25
+    (load-theme 'romulus-bluloco-light)
+    ;; (load-theme 'doom-bluloco-light) ; good
+    ;; (load-theme 'doom-oksolar-light) ; good
+    ;; (load-theme 'doom-acario-light) ; good
+    ;; (load-theme 'doom-one-light) ; good
+    ;; (load-theme 'doom-solarized-light) ; good
+    ;; (load-theme 'doom-ayu-light) ; bad
+    ;; (load-theme 'doom-feather-light) ; bad
+    ;; (load-theme 'doom-gruvbox-light) ; bad
+    ;; (load-theme 'doom-nord-light) ; bad
+    ;; (load-theme 'doom-opera-light) ; bad
+    ;; (load-theme 'doom-winter-is-coming-light) ; bad
+
 
     )
   (finish-load-theme)
