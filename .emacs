@@ -185,58 +185,70 @@
 
 ;; Mode line setup
 (setq-default mode-line-format '(
+   ;; %b buffer name
+   ;; %m mode name
+   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/_0025_002dConstructs.html
+
    (:propertize "    %b" face mode-line-filename-face)
    "  "
    (:eval
     (cond
+     ;; read-only: custom indicator RO
      (buffer-read-only
       (propertize "RO" 'face 'mode-line-read-only-face))
+     ;; modified / unsaved-changes: custom indicator '*'
      ((buffer-modified-p)
-      ;; (propertize " ** " 'face 'mode-line-modified-face))
       (cond
        ((buffer-file-name)
         (propertize " * " 'face 'mode-line-modified-face))))
-     )) ;; (t " -- ")))
-   (vc-mode vc-mode)
-   " ("
+     ))
+   (vc-mode vc-mode) ;; version-control: branch
+   "  " ;; " ("
    (:propertize mode-name face mode-line-mode-face )
-   ") "
+   ;; (:propertize " %m " face mode-line-mode-face)
+   "  " ;; ") "
    (:propertize mode-line-process)
-   ;; "                    "
+   ;; line and column numbers: in custom face
    (:propertize " [ %l : %c ] " face mode-line-position-face)
+   ;; (:propertize
    ))
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
-(make-face 'mode-line-folder-face)
 (make-face 'mode-line-filename-face)
 (make-face 'mode-line-position-face)
-(make-face 'mode-line-mode-face)
-(make-face 'mode-line-minor-mode-face)
-(make-face 'mode-line-process-face)
+;; filename is bold
 (set-face-attribute 'mode-line-filename-face nil
             :inherit 'mode-line-face
             :weight 'bold)
+;; line and column numbers: inherit from filename face, and bold
 (set-face-attribute 'mode-line-position-face nil
             :inherit 'mode-line-face
-            ;; :weight 'bold ;; broken, chars are cut-off / mangled
+            :weight 'bold ;; used to be broken: chars were cut-off/mangled
             )
+;; read-only has outline (box) and color
 (set-face-attribute 'mode-line-read-only-face nil
             :inherit 'mode-line-face
             :foreground "#4271ae"
             :box '(:line-width 2 :color "#4271ae"))
+;; modified / unsaved-changes: black-over-red
 (set-face-attribute 'mode-line-modified-face nil
             :inherit 'mode-line-face
             :foreground "Black"
             :background "Red")
-(set-face-attribute 'mode-line-folder-face nil
-            :inherit 'mode-line-face)
-(set-face-attribute 'mode-line-mode-face nil
-            :inherit 'mode-line-face)
-(set-face-attribute 'mode-line-minor-mode-face nil
-            :inherit 'mode-line-mode-face)
-(set-face-attribute 'mode-line-inactive nil ;; broken! unused
-            :foreground "gray60"
-            :background "gray20")
+;; ;; what do these 4 do?
+;; (make-face 'mode-line-folder-face)
+;; (make-face 'mode-line-mode-face)
+;; (make-face 'mode-line-minor-mode-face)
+;; (make-face 'mode-line-process-face)
+;; (set-face-attribute 'mode-line-folder-face nil
+;;             :inherit 'mode-line-face)
+;; (set-face-attribute 'mode-line-mode-face nil
+;;             :inherit 'mode-line-face)
+;; (set-face-attribute 'mode-line-minor-mode-face nil
+;;             :inherit 'mode-line-mode-face)
+;; (set-face-attribute 'mode-line-inactive nil ;; broken! unused
+;;             :foreground "gray60"
+;;             :background "gray20")
 
 ;; Load-Theme functions
 (defun finish-load-theme ()
