@@ -672,11 +672,20 @@ M-x compile.
   (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix
   (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
+  (bind-key* "M-p" 'lsp-treemacs-errors-list)
 
 
   ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-delay 0)
+
+  ;; fix for LSP Treemacs broken on windows:
+  ;; https://github.com/emacs-lsp/lsp-treemacs/issues/109#issuecomment-1114766364
+  (defun lsp-f-ancestor-of-patch (path-args)
+    (mapcar (lambda (path) (downcase path)) path-args))
+  (when (eq system-type 'windows-nt)
+    (advice-add 'lsp-f-ancestor-of? :filter-args #'lsp-f-ancestor-of-patch)
+    (advice-add 'lsp-f-same? :filter-args #'lsp-f-ancestor-of-patch))
 
   )
 
