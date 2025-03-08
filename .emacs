@@ -74,23 +74,18 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" "d71c2e2d582b7091debf76a72c5d4e53b8321bc71c661593402145e2a435041a" "" default))
+   '("389246f952c3e8986236a133464c217be423d9df41a986e4455666e652bafd88" "7cf2758828d3326bdc5e8377ee0b5bbc48e0c3a70381c257773084d2117ae786" "761ea7a86b89e7fe827ec84df8b513eb896b68ef00ee54511782e733586b3188" "" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode hlinum emojify-logos doom-themes bind-key all-the-icons)))
+   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode emojify-logos doom-themes bind-key all-the-icons)))
 
-;; show line numbers only for 'files', not dynamic buffers
-;; (global-linum-mode t)
-(add-hook 'find-file-hook 'linum-mode)
-(if (display-graphic-p)
-    (setq linum-format "%3d ")
-  (setq linum-format "%3d ") ; │
-  )
-; character search https://unicode-search.net/unicode-namesearch.pl?term=VERTICAL
-(hlinum-activate) ;; for custom color of current line number
+;; Show Line Numbers: only for files, not dynamic buffers
+;; linum-mode is obsolete, see https://emacs.stackexchange.com/a/280
+;; hlinum is not needed with modern line-number-current-line in theme
+(add-hook 'find-file-hook 'display-line-numbers-mode)
 
 ;; custom script directory
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -253,13 +248,6 @@
 
 ;; Load-Theme functions
 (defun finish-load-theme ()
-
-  ;; linum-highlight-face is the color of the current/active line
-  (set-face-attribute 'linum-highlight-face nil
-                      ;; :inverse-video t
-                      :foreground "#fff"
-                      :background "#666"
-                      )
   (set-face-attribute 'region nil :inverse-video t) ; selection : invert colors
   (when (display-graphic-p)
     (set-face-attribute 'mode-line nil
@@ -546,7 +534,7 @@ M-x compile.
   (bind-key* "C-=" 'zoom-text-increase) ; azerty
   (bind-key* "C-+" 'zoom-text-increase) ; qwerty
   (bind-key* "C--" 'zoom-text-decrease)
-  (bind-key* "C-à" 'zoom-text-reset)    ; azerty
+  ;; (bind-key* "C-à" 'zoom-text-reset)    ; azerty, but this character fails to parse/compile
   (bind-key* "C-0" 'zoom-text-reset)    ; qwerty
 
   ;; (bind-key* "<mouse-3>" 'mouse-buffer-menu) ; dont bind right-click to buffer-list, it breaks the LSP mouse menu

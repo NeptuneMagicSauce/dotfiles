@@ -128,14 +128,14 @@ Can be an integer to determine the exact padding."
   (((font-lock-comment-face &override)
     :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
 
-   ; my customisations, there are broken in terminal mode
-   ;; ((line-number &override) :background "#222" :foreground "#999999")
-   (line-number :background "#222" :foreground "#999999")
+   ; my customisations for line-number and line-number-current-line
+   (line-number :background "#222" :foreground "#999")
+   (line-number-current-line :inverse-video t :bold bold)
+   ;; (line-number-current-line :background "#999" :foreground "#222" :bold bold)
+
    (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
    (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
-   (hl-line :background "#375467" :foreground "#DFDFDF")
 
-   ((line-number-current-line &override) :foreground blue :bold bold)
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
