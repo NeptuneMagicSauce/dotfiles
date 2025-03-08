@@ -705,7 +705,7 @@ M-x compile.
 
   ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
   (setq lsp-ui-sideline-show-code-actions t)
-  (setq lsp-ui-sideline-delay 0)
+  (setq lsp-ui-sideline-delay 0.0)
 
   ;; fix for LSP Treemacs broken on windows:
   ;; https://github.com/emacs-lsp/lsp-treemacs/issues/109#issuecomment-1114766364
@@ -728,9 +728,7 @@ M-x compile.
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
       treemacs-space-between-root-nodes nil
-      company-idle-delay 0.0
       company-minimum-prefix-length 1)
-      ;; lsp-idle-delay 0.1)  ;; clangd is fast
 
 ;; (bind-key* "C-o" 'xref-find-references)     ; Find All References
 ;; (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
@@ -765,6 +763,7 @@ M-x compile.
 (global-company-mode 1)
 (setq company-idle-delay 0.0)
 (setq lsp-idle-delay 0.0)
+(setq flycheck-idle-change-delay 3.0) ;; that's the delay before inline errors and fixits are shown
 
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
@@ -781,7 +780,6 @@ M-x compile.
   (when (is-workplace-23)
     (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
     (setq company-dabbrev-downcase 0)
-    ;; (setq company-idle-delay 0.1)
     ;; (setq lsp-idle-delay 0.1)
     (setq lsp-enable-file-watchers nil)
     (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
