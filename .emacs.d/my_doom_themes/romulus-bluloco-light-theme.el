@@ -83,13 +83,10 @@
    (vc-deleted     red)
    )
    (
-    ((line-number &override)
-     ;; :background "#eee"
-     ;; :foreground "#000")
-     :background "#eee"
-     :foreground "#000")
-    (hl-line :background "#C0C0C0" :foreground "#000000")
-    )
+    (line-number :background "#ddd" :foreground "#000")
+   (line-number-current-line :inverse-video t :bold bold)
+    ;; (line-number-current-line :background "#444" :foreground "#fff" :bold bold)
+   )
 )
 
 ;;; doom-bluloco-light-theme.el ends here
