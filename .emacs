@@ -8,6 +8,7 @@
 (setq custom-accent-color-graphics "#54AFFF") ;; blue
 (setq custom-accent-color-terminal "#54AFFF") ;; blue
       ;; "#ff9f00") ;; DarkOrange
+;; (setq custom-theme-color "light") ;; dark or light
 (setq custom-theme-color "dark") ;; dark or light
 
 ;; customisations per machine
@@ -73,7 +74,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" "0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "06049b1d7ae0802e589fb36f730755869fc89fafaa82d6bf011d2ca9f0dcedc1" "" "" default))
+   '("0d7a4d8d4e7c7c4835617690b61ad0c5bcd3c821ab00ad0702cc4120a4f3fb12" "df05034af01d930c19c1a027228ca33617627b4feb7e6b4862fdc1aff1e0f3f1" "d71c2e2d582b7091debf76a72c5d4e53b8321bc71c661593402145e2a435041a" "" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
