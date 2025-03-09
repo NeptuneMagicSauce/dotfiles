@@ -43,8 +43,8 @@ Can be an integer to determine the exact padding."
   "A dark theme based off of doom-one with more vibrant colors."
 
   ;; name        gui       256           16
-  ( ;;(bg         '("#242730" "black"       "black" ))
-   (bg         '("#2D2D2D" nil       nil            ))
+  (
+   (bg         '("#2D2D2D" "black" "black"            ))
    (fg         '("#bbc2cf" "#bfbfbf"     "brightwhite" ))
    ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
    ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
@@ -82,12 +82,16 @@ Can be an integer to determine the exact padding."
    ;; These are the "universal syntax classes" that doom-themes establishes.
    ;; These *must* be included in every doom themes, or your theme will throw an
    ;; error, as they are used in the base theme defined in doom-themes-base.
-   (highlight      blue)
-   (vertical-bar   base0)
+   ; highlight is "search match background, but the value set here is then brightened"
+   (highlight      red);"#777");"#888")
+   ;; region is "selected text foreground"
+   (region         "#000");"#444");"#3d4451")
    (selection      dark-blue)
+   (vertical-bar   base0)
 
    (builtin        magenta)
-   (comments       (if doom-vibrant-brighter-comments dark-cyan base5))
+   ;; (comments       (if doom-vibrant-brighter-comments dark-cyan base5))
+   (comments       "#666");"#666")
    (doc-comments   (if doom-vibrant-brighter-comments (doom-lighten dark-cyan 0.15) (doom-lighten base4 0.3)))
    (constants      violet)
    (functions      cyan)
@@ -98,7 +102,6 @@ Can be an integer to determine the exact padding."
    (strings        green)
    (variables      (doom-lighten magenta 0.4))
    (numbers        orange)
-   (region         "#3d4451")
    (error          red)
    (warning        yellow)
    (success        green)
@@ -106,73 +109,76 @@ Can be an integer to determine the exact padding."
    (vc-added       green)
    (vc-deleted     red)
 
-   ;; These are extra color variables used only in this theme; i.e. they aren't
-   ;; mandatory for derived themes.
-   (modeline-fg             fg)
-   (modeline-fg-inactive    (doom-blend blue grey (if doom-vibrant-brighter-modeline 0.9 0.2)))
-   (modeline-bg             (if doom-vibrant-brighter-modeline
-                                `("#383f58" ,@(cdr base1))
-                              `(,(doom-darken (car bg) 0.15) ,@(cdr base1))))
-   (modeline-bg-alt         (if doom-vibrant-brighter-modeline
-                                modeline-bg
-                              `(,(car bg-alt) ,@(cdr base0))))
-   (modeline-bg-inactive     `(,(doom-darken (car bg-alt) 0.2) ,@(cdr base0)))
-   (modeline-bg-alt-inactive (doom-darken bg 0.25))
-   ;((lazy-highlight &override) :background "#0000d7" :foreground "#dfdfdf")
-   (-modeline-pad
-    (when doom-vibrant-padded-modeline
-      (if (integerp doom-vibrant-padded-modeline) doom-vibrant-padded-modeline 4))))
+   ;; ;; These are extra color variables used only in this theme; i.e. they aren't
+   ;; ;; mandatory for derived themes.
+   ;; (modeline-fg             fg)
+   ;; (modeline-fg-inactive    (doom-blend blue grey (if doom-vibrant-brighter-modeline 0.9 0.2)))
+   ;; (modeline-bg             (if doom-vibrant-brighter-modeline
+   ;;                              `("#383f58" ,@(cdr base1))
+   ;;                            `(,(doom-darken (car bg) 0.15) ,@(cdr base1))))
+   ;; (modeline-bg-alt         (if doom-vibrant-brighter-modeline
+   ;;                              modeline-bg
+   ;;                            `(,(car bg-alt) ,@(cdr base0))))
+   ;; (modeline-bg-inactive     `(,(doom-darken (car bg-alt) 0.2) ,@(cdr base0)))
+   ;; (modeline-bg-alt-inactive (doom-darken bg 0.25))
+   ;; ;((lazy-highlight &override) :background "#0000d7" :foreground "#dfdfdf")
+   ;; (-modeline-pad
+   ;;  (when doom-vibrant-padded-modeline
+   ;;    (if (integerp doom-vibrant-padded-modeline) doom-vibrant-padded-modeline 4)))
+   )
 
 
   ;;;; Base theme face overrides
-  (((font-lock-comment-face &override)
-    :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
+  (
+   ;; ((font-lock-comment-face &override)
+   ;;  :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
 
    ; my customisations for line-number and line-number-current-line
    (line-number :background "#222" :foreground "#999")
    (line-number-current-line :inverse-video t :bold bold)
-   ;; (line-number-current-line :background "#999" :foreground "#222" :bold bold)
+   ;; ;; (line-number-current-line :background "#999" :foreground "#222" :bold bold)
 
-   (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
-   (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
+   ;; (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
+   ;; (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
 
-   (mode-line
-    :background modeline-bg :foreground modeline-fg
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
-   (mode-line-inactive
-    :background modeline-bg-inactive :foreground modeline-fg-inactive
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
-   (mode-line-emphasis :foreground (if doom-vibrant-brighter-modeline base8 highlight))
-   (org-block :background (doom-darken base3 0.1))
+   ;; (mode-line
+   ;;  :background modeline-bg :foreground modeline-fg
+   ;;  :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
+   ;; (mode-line-inactive
+   ;;  :background modeline-bg-inactive :foreground modeline-fg-inactive
+   ;;  :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive)))
+   ;; (mode-line-emphasis :foreground (if doom-vibrant-brighter-modeline base8 highlight))
+   ;; (org-block :background (doom-darken base3 0.1))
 
-   ;;;; all-the-icons
-   ((all-the-icons-dblue &override) :foreground dark-cyan)
-   ;;;; centaur-tabs
-   (centaur-tabs-unselected :background bg-alt :foreground base6)
-   ;;;; css-mode <built-in> / scss-mode
-   (css-proprietary-property :foreground orange)
-   (css-property             :foreground green)
-   (css-selector             :foreground blue)
-   ;;;; doom-modeline
-   (doom-modeline-bar
-    :background (if doom-vibrant-brighter-modeline modeline-bg highlight))
-   (doom-modeline-buffer-path
-    :foreground (if doom-vibrant-brighter-modeline base8 blue) :bold bold)
-   ;;;; elscreen
-   (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
-   ;;;; markdown-mode
-   (markdown-header-face :inherit 'bold :foreground red)
-   ;;;; solaire-mode
-   (solaire-mode-line-face
-    :inherit 'mode-line
-    :background modeline-bg-alt
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-alt)))
-   (solaire-mode-line-inactive-face
-    :inherit 'mode-line-inactive
-    :background modeline-bg-alt-inactive
-    :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-alt-inactive)))
-   ;;;; whitespace <built-in>
-   (whitespace-empty :background base2))
+   ;; ;;;; all-the-icons
+   ;; ((all-the-icons-dblue &override) :foreground dark-cyan)
+   ;; ;;;; centaur-tabs
+   ;; (centaur-tabs-unselected :background bg-alt :foreground base6)
+   ;; ;;;; css-mode <built-in> / scss-mode
+   ;; (css-proprietary-property :foreground orange)
+   ;; (css-property             :foreground green)
+   ;; (css-selector             :foreground blue)
+   ;; ;;;; doom-modeline
+   ;; (doom-modeline-bar
+   ;;  :background (if doom-vibrant-brighter-modeline modeline-bg highlight))
+   ;; (doom-modeline-buffer-path
+   ;;  :foreground (if doom-vibrant-brighter-modeline base8 blue) :bold bold)
+   ;; ;;;; elscreen
+   ;; (elscreen-tab-other-screen-face :background "#353a42" :foreground "#1e2022")
+   ;; ;;;; markdown-mode
+   ;; (markdown-header-face :inherit 'bold :foreground red)
+   ;; ;;;; solaire-mode
+   ;; (solaire-mode-line-face
+   ;;  :inherit 'mode-line
+   ;;  :background modeline-bg-alt
+   ;;  :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-alt)))
+   ;; (solaire-mode-line-inactive-face
+   ;;  :inherit 'mode-line-inactive
+   ;;  :background modeline-bg-alt-inactive
+   ;;  :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-alt-inactive)))
+   ;; ;;;; whitespace <built-in>
+   ;; (whitespace-empty :background base2)
+   )
 
   ;;;; Base theme variable overrides
   ;; ()

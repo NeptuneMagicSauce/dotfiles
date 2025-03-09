@@ -74,7 +74,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("389246f952c3e8986236a133464c217be423d9df41a986e4455666e652bafd88" "7cf2758828d3326bdc5e8377ee0b5bbc48e0c3a70381c257773084d2117ae786" "761ea7a86b89e7fe827ec84df8b513eb896b68ef00ee54511782e733586b3188" "" default))
+   '("2510955fff553ffcdc94ee220827e606c64831be6a41d9f13f351c3dd7af9826" "8d469cba0ac52d127790b8d12edbda1c5b14f67d26da0a83fce3bbe4df00682d" "" "" "" default))
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
@@ -243,54 +243,44 @@
 ;;             :inherit 'mode-line-face)
 ;; (set-face-attribute 'mode-line-minor-mode-face nil
 ;;             :inherit 'mode-line-mode-face)
-;; (set-face-attribute 'mode-line-inactive nil ;; broken! unused
-;;             :foreground "gray60"
-;;             :background "gray20")
 
-;; Load-Theme functions
 (defun finish-load-theme ()
-  (set-face-attribute 'region nil :inverse-video t) ; selection : invert colors
-  (when (display-graphic-p)
-    (set-face-attribute 'mode-line nil
-                        :foreground "black"
-                        :background custom-accent-color-graphics)
-    (if (is-theme-dark)
-        (set-face-attribute 'mode-line-inactive nil :foreground "#AAA")
-      (set-face-attribute 'mode-line-inactive nil :foreground "#444")
-      )
-    (apply-zoom-text)
-  )
-  (unless (display-graphic-p)
-    (set-face-attribute 'mode-line nil
-                        :foreground "#111"
-                        :background custom-accent-color-terminal)
-    (set-face-attribute 'mode-line-inactive nil
-                        :foreground "#FFF"
-                        :background "#444")
-    )
+  ;; these need to be called after change theme:
 
-  ;; Company-Mode tooltip colors
-  (when (display-graphic-p)
-    (require 'color)
-    (let ((bg (face-attribute 'default :background)))
-      (if (is-theme-dark)
-          (custom-set-faces
-           `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
-           `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
-           `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-           `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-           `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
-        (custom-set-faces
-         `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
-         `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
-         `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
-         '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
-         ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
-         )
-        )
-      )
-    )
-)
+  ;; Modeline active-buffe color = accent color
+  (set-face-attribute 'mode-line nil :foreground "#111" :background custom-accent-color-graphics)
+
+  ;; Modline inactive-buffer color = grey
+  (set-face-attribute 'mode-line-inactive nil :foreground "#FFF" :background "#666")
+
+  ;; Selected-text color = inverted
+  (set-face-attribute 'region nil :inverse-video t)
+
+  ;; Apply zoom
+  (when (display-graphic-p) (apply-zoom-text))
+
+;;   ;; Company-Mode tooltip colors: no longer needed
+;;   (when (display-graphic-p)
+;;     (require 'color)
+;;     (let ((bg (face-attribute 'default :background)))
+;;       (if (is-theme-dark)
+;;           (custom-set-faces
+;;            `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
+;;            `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
+;;            `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+;;            `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+;;            `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
+;;         (custom-set-faces
+;;          `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
+;;          `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
+;;          `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
+;;          '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
+;;          ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
+;;          )
+;;         )
+;;       )
+;;     )
+  )
 
 (defun load-chosen-theme()
   (if (is-theme-dark)

@@ -7,7 +7,7 @@
 
   ;; name        default   256       16
   (
-   (bg           '("#f0f0f0" "white"   "white"        ))
+   (bg           '("#f0f0f0" "#f0f0f0"   "white"        ))
    (fg           '("#383a42" "#424242" "black"        ))
 
    (bg-alt       '("#e7e7e7" "white"   "white"        ))
@@ -40,7 +40,9 @@
    (dark-cyan    '("#217b84" "#008080" "brightcyan"   ))
 
 
-   (highlight      blue)
+   (highlight      red);"#000");"#010101");blue)
+   (region         "#FFF")
+    ;; `(,(doom-darken (car bg-alt) 0.075) ,@(doom-darken (cdr base0) 0.075)))
    (vertical-bar   (doom-darken base1 0.1))
    (selection      dark-blue)
    (builtin        green)
@@ -74,7 +76,6 @@
    ;; (variables      cyan) ; bad
    ;; (variables      dark-cyan) ; bad
    (numbers        magenta)
-   (region         `(,(doom-darken (car bg-alt) 0.075) ,@(doom-darken (cdr base0) 0.075)))
    (error          red)
    (warning        orange)
    (success        green)
@@ -84,7 +85,7 @@
    )
    (
     (line-number :background "#ddd" :foreground "#000")
-   (line-number-current-line :inverse-video t :bold bold)
+    (line-number-current-line :inverse-video t :bold bold)
     ;; (line-number-current-line :background "#444" :foreground "#fff" :bold bold)
    )
 )
