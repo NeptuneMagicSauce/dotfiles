@@ -86,6 +86,7 @@
 ;; linum-mode is obsolete, see https://emacs.stackexchange.com/a/280
 ;; hlinum is not needed with modern line-number-current-line in theme
 (add-hook 'find-file-hook 'display-line-numbers-mode)
+(setq-default display-line-numbers-width 3)
 
 ;; custom script directory
 (add-to-list 'load-path "~/.emacs.d/lisp/")
