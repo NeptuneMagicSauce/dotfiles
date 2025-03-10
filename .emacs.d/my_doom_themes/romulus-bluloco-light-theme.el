@@ -25,7 +25,9 @@
    (base8        '("#1b2229" "black"   "black"        ))
 
    (grey         '("#a0a1a7" "#a0a1a7" "brightblack"  ))
-   (red          '("#d52753" "#d7005f" "red"          ))
+   ;; (red          '("#F00" "#F00" "#F00"))
+   ;; (red          '("#d52753"  "#d7005f" "red"          ))
+   (red          '("#ff665c" "#ff6655" "red"          ))
    (orange       '("#df631c" "#d75f00" "brightred"    ))
    (brown        '("#a05a48" "#af5f5f" "brown"        ))
    (green        '("#23974a" "#00875f" "green"        ))

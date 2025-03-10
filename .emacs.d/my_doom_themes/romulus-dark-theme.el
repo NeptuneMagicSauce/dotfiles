@@ -11,32 +11,9 @@
 (require 'doom-themes)
 
 
-;;
-;;; Variables
-
 (defgroup doom-vibrant-theme nil
   "Options for the `doom-vibrant' theme."
   :group 'doom-themes)
-
-(defcustom doom-vibrant-brighter-modeline nil
-  "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-vibrant-theme
-  :type 'boolean)
-
-(defcustom doom-vibrant-brighter-comments nil
-  "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-vibrant-theme
-  :type 'boolean)
-
-(defcustom doom-vibrant-padded-modeline doom-themes-padded-modeline
-  "If non-nil, adds a 4px padding to the mode-line.
-Can be an integer to determine the exact padding."
-  :group 'doom-vibrant-theme
-  :type '(choice integer boolean))
-
-
-;;
-;;; Theme definition
 
 (def-doom-theme romulus-dark
 
@@ -90,9 +67,8 @@ Can be an integer to determine the exact padding."
    (vertical-bar   base0)
 
    (builtin        magenta)
-   ;; (comments       (if doom-vibrant-brighter-comments dark-cyan base5))
-   (comments       "#666");"#666")
-   (doc-comments   (if doom-vibrant-brighter-comments (doom-lighten dark-cyan 0.15) (doom-lighten base4 0.3)))
+   (comments       blue);"#666")
+   (doc-comments   comments)
    (constants      violet)
    (functions      cyan)
    (keywords       blue)
