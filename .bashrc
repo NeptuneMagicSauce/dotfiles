@@ -328,6 +328,7 @@ export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
 export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # TERM needed for emacs-nox to work with colored themes
 if [ "$TERM" != "cygwin" ]

@@ -513,6 +513,9 @@ M-x compile.
 (bind-key* "C-," 'rg-dwim)                  ;; search at point in project
 (bind-key* "C-M-," 'rg-dwim-current-file)   ;; search at point in current file
 (bind-key* "M-," 'rg-project)               ;; search after asking for input
+; load the local config which does "include hidden"
+(setq-default rg-ignore-ripgreprc nil)
+(setenv "RIPGREP_CONFIG_PATH" (expand-file-name ".ripgreprc" (getenv "HOME")))
 
 ;; Find File In Project
 (bind-key* "C-f" 'project-find-file)
