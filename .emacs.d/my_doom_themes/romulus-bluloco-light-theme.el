@@ -31,6 +31,7 @@
    (orange       '("#df631c" "#d75f00" "brightred"    ))
    (brown        '("#a05a48" "#af5f5f" "brown"        ))
    (green        '("#23974a" "#00875f" "green"        ))
+   (dark-green   '("#4e855d" "#2e8746" "#2e8746"))
    (teal         '("#40B8C5" "#5fafd7" "brightgreen"  ))
    (yellow       '("#c5a332" "#d7af5f" "yellow"       ))
    (blue         '("#0098dd" "#0087d7" "brightblue"   ))
@@ -51,7 +52,7 @@
    ;; (comments       grey)
    ;; (comments       green)
    (comments       dark-blue)
-   (doc-comments   yellow)
+   (doc-comments   dark-violet);violet);magenta)
    (constants      violet)
    ;; (functions      green)
    (functions      dark-blue)
@@ -60,7 +61,7 @@
    (methods        green)
    (operators      dark-violet)
    ;; (type           (doom-darken green 0.1));red)
-   (type magenta)
+   (type dark-green);dark-violet); magenta)
    ;; (strings        yellow)
    (strings        green)
    ;; (strings0         "#0094FF")
@@ -72,8 +73,8 @@
    ;; (variables      yellow) ; bad
    ;; (variables      blue) ; ok but already used
    ;; (variables      dark-blue) ; good
-   ;; (variables      magenta) ; good
-   (variables      violet) ; best
+   (variables      magenta) ; good
+   ;; (variables      violet) ; best
    ;; (variables      dark-violet) ; ok
    ;; (variables      cyan) ; bad
    ;; (variables      dark-cyan) ; bad
