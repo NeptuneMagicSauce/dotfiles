@@ -65,12 +65,18 @@
 (package-initialize)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(helm-completion-style 'helm)
+ '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
+ '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key
-            clang-format company flycheck rg cmake-mode emojify-logos
-            doom-themes bind-key all-the-icons)))
+   '(all-the-icons bind-key clang-format cmake-mode company doom-themes
+                   emojify-logos flycheck helm-lsp helm-xref
+                   lsp-treemacs lsp-ui projectile rg which-key)))
 
 ;; Show Line Numbers: only for files, not dynamic buffers
 ;; linum-mode is obsolete, see https://emacs.stackexchange.com/a/280
@@ -199,6 +205,7 @@
    (:propertize " [ %l : %c ] " face mode-line-position-face)
    ;; (:propertize
    ))
+(make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
 (make-face 'mode-line-filename-face)
