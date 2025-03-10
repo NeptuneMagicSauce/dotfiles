@@ -188,7 +188,9 @@ if [ -z $CPUCOUNT ] ; then
     export MAKEFLAGS="-j$CPUCOUNT"
 fi
 
+EDITOR='emacs -nw -q -l $HOME/.emacs.d/git.editor.settings.el '
 export GIT_EDITOR=$EDITOR
+
 # git prompt
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
