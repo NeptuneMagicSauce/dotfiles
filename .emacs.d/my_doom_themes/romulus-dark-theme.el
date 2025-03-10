@@ -22,7 +22,7 @@
   ;; name        gui       256           16
   (
    (bg         '("#2D2D2D" "black" "black"            ))
-   (fg         '("#bbc2cf" "#bfbfbf"     "brightwhite" ))
+   (fg         '("#bbc2cf" "#bfbfbf"     "#FFF" ))
    ;; These are off-color variants of bg/fg, used primarily for `solaire-mode',
    ;; but can also be useful as a basis for subtle highlights (e.g. for hl-line
    ;; or region), especially when paired with the `doom-darken', `doom-lighten',
@@ -34,26 +34,26 @@
    ;; bg and base8 is a starker fg. For example, if bg is light grey and fg is
    ;; dark grey, base0 should be white and base8 should be black.
    (base0      '("#1c1f24" "#101010"     "black"       ))
-   (base1      '("#1c1f24" "#1e1e1e"     "brightblack" ))
-   (base2      '("#21272d" "#21212d"     "brightblack" ))
-   (base3      '("#23272e" "#262626"     "brightblack" ))
-   (base4      '("#484854" "#5e5e5e"     "brightblack" ))
-   (base5      '("#62686E" "#666666"     "brightblack" ))
-   (base6      '("#757B80" "#7b7b7b"     "brightblack" ))
-   (base7      '("#9ca0a4" "#979797"     "brightblack" ))
+   (base1      '("#1c1f24" "#1e1e1e"     "#000" ))
+   (base2      '("#21272d" "#21212d"     "#000" ))
+   (base3      '("#23272e" "#262626"     "#000" ))
+   (base4      '("#484854" "#5e5e5e"     "#000" ))
+   (base5      '("#62686E" "#666666"     "#000" ))
+   (base6      '("#757B80" "#7b7b7b"     "#000" ))
+   (base7      '("#9ca0a4" "#979797"     "#000" ))
    (base8      '("#DFDFDF" "#dfdfdf"     "white"       ))
 
    (grey       base4)
    (red        '("#ff665c" "#ff6655" "red"             ))
-   (orange     '("#e69055" "#dd8844" "brightred"       ))
+   (orange     '("#e69055" "#dd8844" "#dd8844"       ))
    (green      '("#7bc275" "#99bb66" "green"           ))
-   (teal       '("#4db5bd" "#44b9b1" "brightgreen"     ))
+   (teal       '("#4db5bd" "#44b9b1" "#44b9b1"     ))
    (yellow     '("#FCCE7B" "#ECBE7B" "yellow"          ))
-   (blue       '("#51afef" "#51afef" "brightblue"      ))
+   (blue       '("#51afef" "#51afef" "#51afef"      ))
    (dark-blue  '("#1f5582" "#2257A0" "blue"            ))
-   (magenta    '("#C57BDB" "#c678dd" "brightmagenta"   ))
+   (magenta    '("#C57BDB" "#c678dd" "#c678dd"   ))
    (violet     '("#a991f1" "#a9a1e1" "magenta"         )) ;a9a1e1
-   (cyan       '("#5cEfFF" "#46D9FF" "brightcyan"      ))
+   (cyan       '("#5cEfFF" "#46D9FF" "#46D9FF"      ))
    (dark-cyan  '("#6A8FBF" "#5699AF" "cyan"            ))
 
    ;; These are the "universal syntax classes" that doom-themes establishes.
