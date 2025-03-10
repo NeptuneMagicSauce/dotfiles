@@ -4,7 +4,7 @@
     # l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
     amend = commit --amend --date=now --no-edit
 [user]
-    email = not.an.email@email.email
+    email = 37757244+NeptuneMagicSauce@users.noreply.github.com
     name = Neptune Magic Sauce
 [includeIf "gitdir:~/workspace/"]
     path = .gitconfig-workspace
