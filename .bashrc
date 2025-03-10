@@ -312,6 +312,8 @@ findsamename()
 ffmpeg1080p()
 {
     ffmpeg -i "$1" -filter:v scale=-1:1080 "$2" $3 $4 $5 $6 $7 $8 $9
+    # for smaller file size, 30 seconds is 10 megabytes like this:
+    # -filter:v scale=-1:720 -b:v 2300k
 }
 
 # When changing directory small typos can be ignored by bash
