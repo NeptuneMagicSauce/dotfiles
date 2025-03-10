@@ -62,25 +62,15 @@
 
 (setq font-size-reset custom-font-size)
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("2510955fff553ffcdc94ee220827e606c64831be6a41d9f13f351c3dd7af9826" "8d469cba0ac52d127790b8d12edbda1c5b14f67d26da0a83fce3bbe4df00682d" "" "" "" default))
  '(helm-completion-style 'helm)
- '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
- '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key clang-format company flycheck rg cmake-mode emojify-logos doom-themes bind-key all-the-icons)))
+   '(lsp-ui lsp-treemacs helm-xref projectile helm-lsp which-key
+            clang-format company flycheck rg cmake-mode emojify-logos
+            doom-themes bind-key all-the-icons)))
 
 ;; Show Line Numbers: only for files, not dynamic buffers
 ;; linum-mode is obsolete, see https://emacs.stackexchange.com/a/280
@@ -283,9 +273,12 @@
   )
 
 (defun load-chosen-theme()
+  ;; (load-theme name t)
+  ;; second-argument = t means "no confirm" = load the theme without prompting if safe
+
   (if (is-theme-dark)
       ;; 0
-      (load-theme 'romulus-dark) ;; mine
+      (load-theme 'romulus-dark t) ;; mine
       ;; (load-theme 'romulus-dark-old) ;; mine
       ;; (load-theme 'doom-vibrant) ;; nice but comments
       ;; 1
@@ -314,7 +307,7 @@
 
     ;; LIGHT
     ;; old from 2023.09.06
-    ;; (load-theme 'romulus-light) ;; mine
+    ;; (load-theme 'romulus-light t) ;; mine
     ;; (load-theme 'doom-flatwhite)
     ;; (load-theme 'doom-acario-light) ;; company-mode good
     ;; (load-theme 'doom-dracula)
@@ -327,7 +320,7 @@
     ;; (load-theme 'doom-tomorrow-day) ;; good but company bad
 
     ;; new in 2025.02.25
-    (load-theme 'romulus-bluloco-light)
+    (load-theme 'romulus-bluloco-light t)
     ;; (load-theme 'doom-bluloco-light) ; good
     ;; (load-theme 'doom-oksolar-light) ; good
     ;; (load-theme 'doom-acario-light) ; good
