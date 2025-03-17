@@ -673,13 +673,13 @@ M-x compile.
   ;; new as of March 2025: LSP and CLANGD
 
   ;; Fix C-i interpreted as TAB ->
+  ;; needed to use C-i as a key-bind
   ;; https://emacs.stackexchange.com/a/17510
+  ;; needs next 2 lines to enable bind-key C-i
   (define-key input-decode-map "\C-i" [C-i])
+  (bind-key* "<tab>" 'indent-region)
 
   (bind-key* "C-o" 'lsp-find-references)   ; Find References
-  ;; ?? this one needs <> between key-bind otherwise it gets assigned to TAB !
-  ;; (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
-  ;; do not use key <C-i> with <> because it fails on native linux
   (bind-key* "C-i" 'lsp-find-definition) ; Go To Definition
   ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols
   (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
@@ -715,6 +715,7 @@ M-x compile.
       treemacs-space-between-root-nodes nil
       company-minimum-prefix-length 1)
 
+;; next 4 bind-keys are obsolete, now done a few lines above in paragraph "C++ IDE"
 ;; (bind-key* "C-o" 'xref-find-references)     ; Find All References
 ;; (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
 ;; (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
