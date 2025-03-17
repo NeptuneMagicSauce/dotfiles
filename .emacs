@@ -256,27 +256,27 @@
   ;; Apply zoom
   (when (display-graphic-p) (apply-zoom-text))
 
-;;   ;; Company-Mode tooltip colors: no longer needed
-;;   (when (display-graphic-p)
-;;     (require 'color)
-;;     (let ((bg (face-attribute 'default :background)))
-;;       (if (is-theme-dark)
-;;           (custom-set-faces
-;;            `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
-;;            `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
-;;            `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-;;            `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-;;            `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
-;;         (custom-set-faces
-;;          `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
-;;          `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
-;;          `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
-;;          '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
-;;          ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
-;;          )
-;;         )
-;;       )
-;;     )
+  ;; Company-Mode tooltip colors:
+  (when (display-graphic-p)
+    (require 'color)
+    (let ((bg (face-attribute 'default :background)))
+      (if (is-theme-dark)
+          (custom-set-faces
+           `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 10)))))
+           `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 15)))))
+           `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+           `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+           `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))
+        (custom-set-faces
+         `(company-tooltip ((t (:inherit default :background ,(color-darken-name bg 20)))))
+         `(company-scrollbar-bg ((t (:background ,(color-darken-name bg 40)))))
+         `(company-scrollbar-fg ((t (:background ,(color-darken-name bg 60)))))
+         '(company-tooltip-selection ((t (:background "#EEE" :foreground "#333"))))
+         ;; '(company-tooltip-common ((t (:background "#00F" :foreground "#0FF"))))
+         )
+        )
+      )
+    )
   )
 
 (defun load-chosen-theme()
