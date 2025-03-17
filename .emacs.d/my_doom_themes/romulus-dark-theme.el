@@ -114,6 +114,10 @@
    (line-number-current-line :inverse-video t :bold bold)
    ;; ;; (line-number-current-line :background "#999" :foreground "#222" :bold bold)
 
+   ;; lsp-ui
+   ;; fix-it suggestions in sideline:
+   (lsp-ui-sideline-global :box nil :inverse-video t)
+
    ;; (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
    ;; (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")
 

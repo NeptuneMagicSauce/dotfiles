@@ -90,7 +90,12 @@
     (line-number :background "#ddd" :foreground "#000")
     (line-number-current-line :inverse-video t :bold bold)
     ;; (line-number-current-line :background "#444" :foreground "#fff" :bold bold)
-   )
+
+    ;; lsp-ui
+    ;; fix-it suggestions in sideline:
+    (lsp-ui-sideline-global :box nil :inverse-video t)
+
+    )
 )
 
 ;;; doom-bluloco-light-theme.el ends here
