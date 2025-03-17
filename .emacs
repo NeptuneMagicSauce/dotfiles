@@ -617,7 +617,7 @@ M-x compile.
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 
 ;; C++ IDE
-(when (not (is-workplace-23))
+(if () ;;(when (not (is-workplace-23))
 ;; (when (and (display-graphic-p) (not (is-workplace-23)))
 ;; obsolete: cmake-ide
 ;; https://github.com/atilaneves/cmake-ide
@@ -677,8 +677,10 @@ M-x compile.
   (define-key input-decode-map "\C-i" [C-i])
 
   (bind-key* "C-o" 'lsp-find-references)   ; Find References
-  ;; this one needs <> between key-bind otherwise it gets assigned to TAB !
-  (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
+  ;; ?? this one needs <> between key-bind otherwise it gets assigned to TAB !
+  ;; (bind-key* "<C-i>" 'lsp-find-definition) ; Go To Definition
+  ;; do not use key <C-i> with <> because it fails on native linux
+  (bind-key* "C-i" 'lsp-find-definition) ; Go To Definition
   ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols
   (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix
@@ -774,7 +776,7 @@ M-x compile.
                                     "--cross-file-rename"
                                     "--background-index"
                                     "--limit-results=100000"
-                                    "-j=4")) ;; Don't take up too much resources
+                                    "-j=14")) ;; Don't take up too much resources
     (setq lsp-disabled-clients '(ccls))
     )
   )

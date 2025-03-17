@@ -119,6 +119,7 @@ Incoming*
 .jupyter/
 .k5_ccache/
 .kde/
+.kube
 .landscape/
 .lessfilter
 .lesshst
