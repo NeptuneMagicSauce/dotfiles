@@ -312,9 +312,11 @@ findsamename()
 ffmpeg1080p()
 {
     ffmpeg -i "$1" -filter:v scale=-1:1080 "$2" $3 $4 $5 $6 $7 $8 $9
-    # for smaller file size, 30 seconds is 10 megabytes like this:
+    ### for cropping vertical video from 1080p:
+    # -vf "crop=700:1080:610:0"
+    ### for smaller file size, 30 seconds is 10 megabytes like this:
     # -filter:v scale=-1:720 -b:v 2300k
-    # to convert and HDR capture for sharing on apps that fail the color space, use this:
+    ### to convert and HDR capture for sharing on apps that fail the color space:
     # -filter_complex "[0:0]scale=1920:-8:flags=lanczos,setsar=1:1,zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p[v]" -map "[v]"
 }
 
