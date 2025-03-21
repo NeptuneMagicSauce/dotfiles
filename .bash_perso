@@ -115,6 +115,7 @@ if [ $MYPC == 1 ] ; then
         read n
         git commit . -m '_' && git push
     )
+    alias v='/c/Program\ Files/VideoLAN/VLC/vlc.exe'
 fi
 
 if [ $MYLAPTOP == 1 ] ; then
