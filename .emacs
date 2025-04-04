@@ -749,6 +749,7 @@ M-x compile.
 (global-company-mode 1)
 (setq company-idle-delay 0.0)
 (setq lsp-idle-delay 0.0)
+(setq lsp-ui-doc-delay 2.0) ;; that's the delay for the pop-ups "doc" = when hovering a function or variable
 (setq flycheck-idle-change-delay 3.0) ;; that's the delay before inline errors and fixits are shown
 
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
