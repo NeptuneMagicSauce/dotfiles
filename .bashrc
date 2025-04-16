@@ -309,9 +309,10 @@ findsamename()
     # https://unix.stackexchange.com/a/468461
     find -type f -print0 |     awk -F/ 'BEGIN { RS="\0" } { n=$NF } k[n]==1 { print p[n]; } k[n] { print $0 } { p[n]=$0; k[n]++ }'
 }
+FFMPEG1080="-filter:v scale=-1:1080 -b:v 10000k"
 ffmpeg1080p()
 {
-    ffmpeg -i "$1" -filter:v scale=-1:1080 "$2" $3 $4 $5 $6 $7 $8 $9
+    ffmpeg -i "$1" $FFMPEG1080 "$2" $3 $4 $5 $6 $7 $8 $9
     ### for cropping vertical video from 1080p:
     # -vf "crop=700:1080:610:0"
     ### for smaller file size, 30 seconds is 10 megabytes like this:
@@ -319,7 +320,6 @@ ffmpeg1080p()
     ### to convert and HDR capture for sharing on apps that fail the color space:
     # -filter_complex "[0:0]scale=1920:-8:flags=lanczos,setsar=1:1,zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p[v]" -map "[v]"
 }
-FFMPEG1080="-filter:v scale=-1:1080"
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
