@@ -778,7 +778,8 @@ M-x compile.
                                     "--cross-file-rename"
                                     "--background-index"
                                     "--limit-results=100000"
-                                    "-j=14")) ;; Don't take up too much resources
+                                    "-j=4")) ;; Don't take up too much resources
+    ;; clangd crashes often with -j=14
     (setq lsp-disabled-clients '(ccls))
     )
   )
