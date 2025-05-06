@@ -66,6 +66,7 @@ conda/
 .config/teams/
 .config/user-dirs*
 .config/vlc/
+.config/wslu/
 .config/Zeal/
 .config/zoom*
 cs2
