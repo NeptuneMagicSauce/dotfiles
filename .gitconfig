@@ -21,19 +21,28 @@
     submodule = log
 [status]
     submoduleSummary = true
+
+# git diff color palette from
+# https://www.color-hex.com/color-palette/1059421
+# https://www.color-hex.com/color-palette/75129
+
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+  oldNormal = "#f765b8" bold
+  oldHighlight = 16 bold "#f765b8"
+  newNormal = "#27fdf5" bold
+  newHighlight = 16 bold "#27fdf5"
 [color "diff"]
-    meta = 11
+    meta = "#a3d97c"
+    # meta = "#7affb4"
     frag = magenta bold
-    func = 146 bold
-    commit = yellow bold
-    old = red bold
-    new = green bold
+    func = "#1fa2ff" bold
+    # func = "#aa9eef" bold
+    commit = 220 bold
+    old = "#f765b8" bold
+    new = "#27fdf5" bold
     whitespace = red reverse
+
+
 [pager]
     log  = perl ~/.diff-highlight | less
     show = perl ~/.diff-highlight | less

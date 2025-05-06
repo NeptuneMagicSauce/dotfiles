@@ -243,3 +243,29 @@ gif_from_video()
     fi
     ffmpeg -i "$1" -vf "fps=20,scale=160:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
 }
+
+list_term_colors_256()
+{
+    # https://stackoverflow.com/a/28938235
+    for i in $(seq 0 255)
+    do
+        echo -n "[$i] "
+        echo -n -e "\033[48;5;${i}m          \033[m"
+        echo ""
+    done
+}
+# list_term_colors_24bit()
+# {
+#     for r in $(seq 0 255)
+#     do
+#         for g in $(seq 0 255)
+#         do
+#             for b in $(seq 0 255)
+#             do
+#                 echo "RGB $r $g $b"
+#                 echo -e "\033[48;2;${r};${g};${b};2m                                     \033[m"
+#                 echo ""
+#             done
+#         done
+#     done
+# }
