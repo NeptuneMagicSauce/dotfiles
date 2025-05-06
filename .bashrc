@@ -365,8 +365,9 @@ fi
 export HISTIGNORE='rm *:*password*'
 export HISTCONTROL=erasedups
 
-# hide python cache
-export PYTHONPYCACHEPREFIX=.pycache
+# # hide python cache
+# # to be removed, because this new name of the directory is not git-ignored by most projects
+# export PYTHONPYCACHEPREFIX=.pycache
 
 # add current dir . at start
 if [ ${PATH::2} != ".:" ] ; then
@@ -400,10 +401,10 @@ then
         echo ">>> now in $WSLCONFIGPATH >>>"
         (cat ~/.wsl.conf.custom; echo "") | sudo tee $WSLCONFIGPATH | grep -v ^#
 
-        # PYTHONPYCACHEPREFIX is needed for emacs calling wsl python
-        echo ">>> setx PYTHONPYCACHEPREFIX WSLENV >>>"
-        setx.exe PYTHONPYCACHEPREFIX .pycache | dos2unix | grep -v '^$'
-        setx.exe WSLENV $(wsl_get_win_env_var WSLENV):PYTHONPYCACHEPREFIX | dos2unix | grep -v '^$'
+        # # PYTHONPYCACHEPREFIX is needed for emacs calling wsl python
+        # echo ">>> setx PYTHONPYCACHEPREFIX WSLENV >>>"
+        # setx.exe PYTHONPYCACHEPREFIX .pycache | dos2unix | grep -v '^$'
+        # setx.exe WSLENV $(wsl_get_win_env_var WSLENV):PYTHONPYCACHEPREFIX | dos2unix | grep -v '^$'
 
     }
     wslout()
@@ -411,8 +412,6 @@ then
         # add .exe to the first argument and run
         cmd="${1}.exe"
         shift
-        # echo "cmd ${cmd}"
-        # echo "args ${@}"
         "$cmd" "$@"
     }
     wsloutpython()
