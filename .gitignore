@@ -2,6 +2,7 @@
 .anyconnect
 .anyconnectvpn*
 .apport-ignore.xml
+AppQt
 .bash_history
 .bash_local
 .bash_logout
@@ -12,6 +13,7 @@ bin/qemu*
 bin/youtube-dl*
 .bitbucketnetrc
 .cache/
+CatPi
 .cgdb/logs/
 .cgdb/readline_history*
 .chromium-bsu
