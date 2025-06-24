@@ -764,12 +764,15 @@ M-x compile.
 
   (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
+  (setq lsp-clients-clangd-args '("--header-insertion=never"))
+
   (when (is-workplace-23)
     (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
     (setq company-dabbrev-downcase 0)
     ;; (setq lsp-idle-delay 0.1)
     (setq lsp-enable-file-watchers nil)
-    (setq lsp-clients-clangd-args '("--compile-commands-dir=." ;; help clang find the CDB
+    (setq lsp-clients-clangd-args '("--header-insertion=never"
+                                    "--compile-commands-dir=." ;; help clang find the CDB
                                     "--header-insertion-decorators=0"
                                     "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
                                     "--log=verbose"
