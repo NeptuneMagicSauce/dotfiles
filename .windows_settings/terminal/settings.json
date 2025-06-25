@@ -1,0 +1,173 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions":
+    [
+        {
+            "command":
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "id": "User.copy.644BA8F2"
+        },
+        {
+            "command": "scrollUpPage",
+            "id": "User.scrollUpPage"
+        },
+        {
+            "command": "paste",
+            "id": "User.paste"
+        },
+        {
+            "command": "find",
+            "id": "User.find"
+        },
+        {
+            "command":
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "id": "User.splitPane.A6751878"
+        },
+        {
+            "command":
+            {
+                "action": "scrollDown"
+            },
+            "id": "User.scrollDown.0"
+        },
+        {
+            "command": "scrollDownPage",
+            "id": "User.scrollDownPage"
+        },
+        {
+            "command":
+            {
+                "action": "scrollUp"
+            },
+            "id": "User.scrollUp.0"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+    "keybindings":
+    [
+        {
+            "id": null,
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "User.find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+v"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+comma"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+pgup"
+        },
+        {
+            "id": null,
+            "keys": "shift+down"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+down"
+        },
+        {
+            "id": null,
+            "keys": "shift+up"
+        },
+        {
+            "id": "User.splitPane.A6751878",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.scrollDownPage",
+            "keys": "shift+pgdn"
+        },
+        {
+            "id": "User.scrollUpPage",
+            "keys": "shift+pgup"
+        }
+    ],
+    "newTabMenu":
+    [
+        {
+            "type": "remainingProfiles"
+        }
+    ],
+    "profiles":
+    {
+        "defaults": {
+            "colorScheme": {"dark": "Tango Dark", "light": "Tango Light"}
+        },
+        "list":
+        [
+            {
+                "closeOnExit": "always",
+                "commandline": "C:\\Devel\\Tools\\Msys2\\msys2_shell.cmd -defterm -here -no-start -mingw64",
+                "font":
+                {
+                    "size": 9
+                },
+                "guid": "{003f88f1-fb47-4c7a-87bc-9897639b3ead}",
+                "hidden": false,
+                "icon": "C:\\Devel\\Tools\\Msys2\\mingw64.ico",
+                "name": "MinGW",
+                "startingDirectory": "c:/Home"
+            },
+            {
+                "font":
+                {
+                    "size": 8
+                },
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "font":
+                {
+                    "size": 10
+                },
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "hidden": false,
+                "name": "Windows PowerShell"
+            },
+            {
+                "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "hidden": false,
+                "name": "Command Prompt"
+            }
+        ]
+    },
+    "schemes": [],
+    "theme": "system",
+    "themes": []
+}
