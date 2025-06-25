@@ -1,6 +1,13 @@
 [alias]
     st = status
-    l = log --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80)%s%C(auto)%d %Cgreen%an%Creset' --abbrev-commit --graph --decorate --topo-order --date=short
+    l = log \
+      --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80)%s%C(auto)%d %Cgreen%an%Creset' \
+      --abbrev-commit \
+      --graph \
+      --decorate \
+      --topo-order\
+      --date=format-local:'%Y-%m-%d %H:%M'
+      # --date=short
     # l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
     amend = commit --amend --date=now --no-edit
 [user]
