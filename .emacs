@@ -703,11 +703,7 @@ M-x compile.
       treemacs-space-between-root-nodes nil
       company-minimum-prefix-length 1)
 
-;; next 4 bind-keys are obsolete, now done a few lines above in paragraph "C++ IDE"
-;; (bind-key* "C-o" 'xref-find-references)     ; Find All References
-;; (bind-key* "C-p" 'helm-imenu)               ; Browse Symbols
-;; (bind-key* "C-j" 'lsp-treemacs-errors-list) ; Show Error List
-;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB
+;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB ;; old comment
 
 ;; Treemacs error list: auto expand is enabled like this:
 ;; https://github.com/emacs-lsp/lsp-treemacs/pull/148
@@ -749,11 +745,13 @@ M-x compile.
 
 (with-eval-after-load 'lsp-mode
 
-  ;; bind-key for LSP must be done here, not earlier otherwise it's broken: C-i == TAB
-  (bind-key* "C-i" 'lsp-find-definition)   ; Go To Definition
-  (bind-key* "C-o" 'lsp-find-references)   ; Find References
-  (bind-key* "M-p" 'lsp-treemacs-errors-list)
+  ;; bind-key for LSP must be done here, not earlier
+  ;; otherwise it's broken: C-o = 'insert-line' and C-i = 'TAB'
+  ;; also: if we bind C-i to lsp-find-def, then it breaks TAB -> next-compile-error
+  (bind-key* "C-o" 'lsp-find-definition)   ; Go To Definition
+  (bind-key* "M-o" 'lsp-find-references)   ; Find References
   (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
+  (bind-key* "M-p" 'lsp-treemacs-errors-list)
   ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols, better with treemacs
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
   (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
