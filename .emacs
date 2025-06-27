@@ -750,9 +750,9 @@ M-x compile.
   ;; also: if we bind C-i to lsp-find-def, then it breaks TAB -> next-compile-error
   (bind-key* "C-o" 'lsp-find-definition)   ; Go To Definition
   (bind-key* "M-o" 'lsp-find-references)   ; Find References
-  (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
+  (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols Helm
+  ;; (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols Treemacs
   (bind-key* "M-p" 'lsp-treemacs-errors-list)
-  ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols, better with treemacs
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
   (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
 
