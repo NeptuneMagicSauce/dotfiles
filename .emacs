@@ -411,7 +411,7 @@ M-x compile.
        (if (is-workplace-23)
            "~/workspace/compile.sh"
          (concat
-          "make -C " (file-name-directory (buffer-file-name)))))
+          "ninja -C " (file-name-directory (buffer-file-name)))))
  (if (and (eq pfx 1)
       compilation-last-buffer)
      (progn
