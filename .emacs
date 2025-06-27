@@ -676,17 +676,9 @@ M-x compile.
   ;; needed to use C-i as a key-bind
   ;; https://emacs.stackexchange.com/a/17510
   ;; needs next 2 lines to enable bind-key C-i
-  (define-key input-decode-map "\C-i" [C-i])
-  (bind-key* "<tab>" 'indent-region)
-
-  (bind-key* "C-o" 'lsp-find-references)   ; Find References
-  (bind-key* "C-i" 'lsp-find-definition) ; Go To Definition
-  ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols
-  (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
-  ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix
-  (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
-  (bind-key* "M-p" 'lsp-treemacs-errors-list)
-
+  ;; (define-key input-decode-map "\C-i" [C-i])
+  ;; (bind-key* "<tab>" 'indent-region)
+  ;; but it breaks "tab goes to next error in compile buffer" -> disable
 
   ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
   (setq lsp-ui-sideline-show-code-actions t)
@@ -755,6 +747,15 @@ M-x compile.
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
 (with-eval-after-load 'lsp-mode
+
+  ;; bind-key for LSP must be done here, not earlier otherwise it's broken: C-i == TAB
+  (bind-key* "C-i" 'lsp-find-definition)   ; Go To Definition
+  (bind-key* "C-o" 'lsp-find-references)   ; Find References
+  (bind-key* "M-p" 'lsp-treemacs-errors-list)
+  (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols
+  ;; (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols, better with treemacs
+  ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
+  (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
 
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
