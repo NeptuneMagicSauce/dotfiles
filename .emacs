@@ -731,6 +731,11 @@ M-x compile.
 ;;   ;; -> disabled in terminal
 ;;   )
 
+;; do not rely on default clangd, it is old, use the system one
+(custom-set-variables
+ '(lsp-clangd-binary-path "/usr/bin/clangd"))
+;; it this breaks on windows then: (when (eq system-type 'windows-nt)
+
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
 
