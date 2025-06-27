@@ -90,17 +90,13 @@
 (when (display-graphic-p)
   ;; My preferred FONT
   (custom-set-faces
-   (if (and (string-equal system-name "JOJO2-PC")
-            (string-equal system-configuration "x86_64-pc-linux-gnu"))
-       ;; that's WSL on big computer
-       '(default ((t (:family "Monospace Bold" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-     ;; '(default ((t (:family "DejaVu Sans Mono" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-     ;; '(default ((t (:family "Lucida Console" :foundry "B&H " :slant normal :weight normal :height 140 :width semi-condensed))))
-     ;; Cascadia Mono is more condensed horizontally than Cascadia Code
-     '(default ((t (:family "Cascadia Mono" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
-     ;; '(default ((t (:family "Cascadia Code" :foundry "SAJA" :slant normal :weight normal :height 102 :width normal))))
-     ;; '(default ((t (:family "Menlo" :foundry "outline" :slant normal :weight normal :height 90 :width normal))))
-     ;; '(scroll-bar ((t (:background "black" :foreground "black" :width condensed)))) ;; no effect on Windows
+   '(default ((t (:family "Cascadia Code" :slant normal :weight normal :height 90 :width normal)))
+   ;; '(default ((t (:family "Cascadia Code" :slant normal :weight semilight :height 90 :width normal)))
+   ;; '(default ((t (:family "DejaVu Sans Mono" :slant normal :weight normal :height 90 :width normal)))
+
+   ;; (if (and (string-equal system-name "JOJO2-PC")
+   ;;          (string-equal system-configuration "x86_64-pc-linux-gnu"))
+   ;;     ;; that's WSL on big computer
   ))
   ;; mouse-paste at emacs-cursor, not at mouse-cursor
   (setq mouse-yank-at-point t)
