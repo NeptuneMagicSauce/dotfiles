@@ -554,6 +554,8 @@ M-x compile.
 ;; (setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
 ; with Projectile: it can find the other file in any directory of the project
 (bind-key* "C-<tab>" 'projectile-find-other-file)
+;; also have a binding that works in Terminal which catches Ctrl-Tab :
+(bind-key* "M-`" 'projectile-find-other-file)
 
 ;; CMakeLists mode
 (setq load-path (cons (expand-file-name "~/.emacs.d/cmake/") load-path))
