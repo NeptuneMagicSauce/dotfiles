@@ -1,0 +1,18 @@
+#context-bookmarklink {
+  display: none;
+}
+#context-inspect {
+  display: none;
+}
+#context-inspect-a11y {
+  display: none;
+}
+#context-viewsource {
+  display: none;
+}
+#context-stripOnShareLink {
+  display: none;
+}
+#context-translate-selection {
+  display: none;
+}
