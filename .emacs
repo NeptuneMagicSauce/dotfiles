@@ -766,24 +766,34 @@ M-x compile.
 
   (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
-  (setq lsp-clients-clangd-args '("--header-insertion=never"))
+  (setq lsp-clients-clangd-args '("--log=error" ;; more concise than verbose
+                                  "--background-index"
+                                  "--background-index-priority=normal" ;; normal or low or background
+                                  "--header-insertion=never"
+                                  "--pch-storage=memory")
 
   (when (is-workplace-23)
     (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
     (setq company-dabbrev-downcase 0)
     ;; (setq lsp-idle-delay 0.1)
     (setq lsp-enable-file-watchers nil)
-    (setq lsp-clients-clangd-args '("--header-insertion=never"
-                                    "--compile-commands-dir=." ;; help clang find the CDB
-                                    "--header-insertion-decorators=0"
-                                    "--header-insertion=never" ;; Unfortunately our code sucks, the include order may be important and clangd does not know that
-                                    "--log=verbose"
-                                    "--query-driver=/usr/bin/g++" ;; help clangd find the right g++ driver to find libstdc++'s headers
-                                    "--pch-storage=memory" ;; If the pch are saved on disk they may fill up /tmp
-                                    "--cross-file-rename"
+    ;; clangd args
+    ;; merged from Confluence page 'Emacs' and project/.vscode/examples/settings.json.default:
+    (setq lsp-clients-clangd-args '("--log=error" ;; more concise than verbose
                                     "--background-index"
+                                    "--background-index-priority=normal" ;; normal or low or background
+                                    "--header-insertion=never"
+                                    "--pch-storage=memory"
+                                    "--enable-config"
+                                    "-j=6"
                                     "--limit-results=100000"
-                                    "-j=4")) ;; Don't take up too much resources
+                                    ;; "--cross-file-rename" ;; obsolete
+                                    ;; "--suggest-missing-includes" ;; obsolete
+                                    ;; "--clang-tidy" ;; not needed
+                                    ;; "--compile-commands-dir=${workspaceFolder}" ;; vscode specific
+                                    ;; "--header-insertion-decorators=0" ;; ??
+                                    ))
+
     ;; clangd crashes often with -j=14
     (setq lsp-disabled-clients '(ccls))
     )
