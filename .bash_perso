@@ -110,7 +110,9 @@ if [ $MYPC == 1 ] ; then
         (cd ~/cs2; cs2 -dedicated -usercon $*)
     }
 
-    add_path /ucrt64/bin begin # for convert imagemagick
+    if [ "$UNAMEOS" == "MinGW" ] ; then
+        add_path /ucrt64/bin begin # for convert imagemagick
+    fi
 
     commit_my_notes()
     (

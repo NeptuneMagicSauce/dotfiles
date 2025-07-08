@@ -38,11 +38,11 @@
   (setq custom-theme-color "light")
   )
 
-(defun my-machines ()
-  (or
-   (string-equal system-name "JOJO-PC")
-   (string-equal system-name "JOJO-LAPTOP")
-  ))
+;; (defun my-machines ()
+;;   (or
+;;    (string-equal system-name "JOJO-PC")
+;;    (string-equal system-name "JOJO-LAPTOP")
+;;   ))
 
 (defun is-theme-dark ()
   (string-equal custom-theme-color "dark")
@@ -435,14 +435,16 @@ M-x compile.
 
 ;; add path to Unix programs : make, git
 (when (display-graphic-p)
-  ;; add path to git and grep for jojo-pc and jojo-laptop
-  (when (string-equal system-name "JOJO2-PC")
-    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin") ; ripgrep
-    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin")     ; git
+  (when (eq system-type 'windows-nt)
+    ;; add path to git and grep for jojo-pc and jojo-laptop
+    (when (string-equal system-name "JOJO2-PC")
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin") ; ripgrep
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin")     ; git
+      )
+    ;; jojo-laptop/MinGW ->
+    (when (string-equal system-name "JOJO-LAPTOP")
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
     )
-  ;; jojo-laptop/MinGW ->
-  (when (string-equal system-name "JOJO-LAPTOP")
-    (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
 )
 
 ;; Reload config
@@ -562,8 +564,10 @@ M-x compile.
 (require 'cmake-mode)
 
 ;; Bash shell for Windows
-(setq explicit-shell-file-name "C:/Devel/Tools/Msys2-64/usr/bin/bash")
-(setq explicit-bash-args '("--noediting" "--login" "-i"))
+(when (eq system-type 'windows-nt)
+  (setq explicit-shell-file-name "C:/Devel/Tools/Msys2-64/usr/bin/bash")
+  (setq explicit-bash-args '("--noediting" "--login" "-i"))
+)
 (bind-key* "C-<f1>" 'shell)
 
 ;; No confirm kill process: for *shell* and *compilation*
