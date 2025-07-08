@@ -768,8 +768,7 @@ M-x compile.
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
 
-  ;; YAS = YASnippet = unused, see https://github.com/joaotavora/yasnippet
-  ;; (yas-global-mode)
+  (setq lsp-enable-snippet nil) ;; otherwise it prints a warning
 
   (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
