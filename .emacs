@@ -538,6 +538,24 @@ or the workspace script
 (setq-default rg-ignore-ripgreprc nil)
 (setenv "RIPGREP_CONFIG_PATH" (expand-file-name ".ripgreprc" (getenv "HOME")))
 
+;; Action At Point: search or select, word or line
+(bind-key* "C-q C-s" 'isearch-forward-symbol-at-point)
+;; https://irfu.cea.fr/Pisp/frederic.galliano/Computing/manual_elisp.html
+(defun select-current-word ()
+  (interactive)
+  (let (pt)
+    (skip-chars-backward "-_A-Za-z0-9./")
+    (setq pt (point))
+    (skip-chars-forward "-_A-Za-z0-9./")
+    (set-mark pt)))
+(defun select-current-line ()
+  (interactive)
+  (let ((pos (line-beginning-position)))
+    (end-of-line)
+    (set-mark pos)))
+(bind-key* "C-M-SPC" 'select-current-word)
+(bind-key* "C-M-<return>" 'select-current-line)
+
 ;; Find File In Project
 (bind-key* "C-f" 'project-find-file)
 
