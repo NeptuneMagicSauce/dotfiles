@@ -80,15 +80,24 @@ add_prompt_emoji()
 set_prompt_all() # slow with msys and cygwin
 {
     PS1=""
-    add_prompt_conda
+    # add_prompt_conda # useless
     add_prompt_git
     add_prompt_wdir
+    add_prompt_emoji
+}
+set_prompt_remote()
+{
+    export GITBRANCH="λ"
+    PS1=""
+    add_prompt_git
+    add_prompt_wdir
+    PS1+=" ${lightpurple}[\h]${reset}"
     add_prompt_emoji
 }
 set_prompt_nospecialchars()
 {
     PS1=""
-    GITBRANCH="" # lambda greek letter breaks conda on minw
+    GITBRANCH="" # lambda greek letter breaks conda on mingw
     add_prompt_conda
     add_prompt_git
     add_prompt_wdir
@@ -102,7 +111,11 @@ set_prompt_fast()
 }
 if [ $PROMPT_INCLUDE_GIT == 1 ] ; then
     if [ $UNAMEOS == "GNU/Linux" ] ; then
-        PROMPT_COMMAND=set_prompt_all
+        if [ "$MYPC" == "0" ] && [ "$DISPLAY" != ":0" ] ; then
+            PROMPT_COMMAND=set_prompt_remote
+        else
+            PROMPT_COMMAND=set_prompt_all
+        fi
     elif [ $UNAMEOS == "Msys" ] ; then
         PROMPT_COMMAND=set_prompt_nospecialchars
     elif [ $UNAMEOS == "MinGW" ] ; then
@@ -188,7 +201,14 @@ if [ -z $CPUCOUNT ] ; then
     export MAKEFLAGS="-j$CPUCOUNT"
 fi
 
-EDITOR='emacs -nw -q -l $HOME/.emacs.d/git.editor.settings.el '
+if [ -z "$EDITOR" ] ; then
+    if echo $UNAMEMACHINE | grep -q aarch && [ $CPUCOUNT -le 4 ] ; then
+        # slow machine, pi4
+        EDITOR='vim -c startinsert'
+    else
+        EDITOR='emacs -nw -q -l $HOME/.emacs.d/git.editor.settings.el '
+    fi
+fi
 export GIT_EDITOR=$EDITOR
 
 # git prompt
