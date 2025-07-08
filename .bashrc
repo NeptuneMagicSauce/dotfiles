@@ -89,7 +89,11 @@ set_prompt_remote()
 {
     export GITBRANCH="λ"
     PS1=""
-    add_prompt_git
+    # git prompt : hide if it's a remote connection and it's the home repository
+    # because we're not logged in to commit-push
+    if [ "$(__git rev-parse --show-toplevel)" != "$HOME" ] ; then
+        add_prompt_git
+    fi
     add_prompt_wdir
     PS1+=" ${lightpurple}[\h]${reset}"
     add_prompt_emoji
