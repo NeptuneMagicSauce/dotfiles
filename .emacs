@@ -770,7 +770,7 @@ M-x compile.
                                   "--background-index"
                                   "--background-index-priority=normal" ;; normal or low or background
                                   "--header-insertion=never"
-                                  "--pch-storage=memory")
+                                  "--pch-storage=memory"))
 
   (when (is-workplace-23)
     (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
