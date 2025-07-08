@@ -1,0 +1,1 @@
+../elpa/doom-themes-20250614.958/romulus-dark-theme.el
