@@ -398,13 +398,12 @@ will be killed."
 ;; (popwin-mode 1)
 
 ;; Compile and ReCompile : https://www.emacswiki.org/emacs/CompileCommand#toc4
-;; auto scroll compile buffer to follow output
-(setq compilation-scroll-output t)
-(setq compilation-last-buffer nil)
-(defun compile-again (pfx)
-  """Run the same compile as the last time.
-If there was no last time, or there is a prefix argument, this acts like
-M-x compile.
+(defun compile-dwim (pfx)
+"""
+Compile-Do-What-I-Mean
+runs the compilation without asking
+either ninja in dominating directory
+or the workspace script
 """
   (interactive "p")
   (save-some-buffers 1)
@@ -414,7 +413,7 @@ M-x compile.
         (if (is-workplace-23)
             "~/workspace/compile.sh"
           (concat
-           "ninja -C " (file-name-directory (buffer-file-name)))))
+           "ninja -C " (locate-dominating-file buffer-file-name "build.ninja"))))
   (if (and (eq pfx 1)
            compilation-last-buffer)
       (progn
@@ -422,6 +421,10 @@ M-x compile.
         (revert-buffer t t))
     (call-interactively 'compile))
   )
+(setq compilation-read-command nil) ;; do not prompt for compile command
+(setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
+(setq compilation-last-buffer nil)
+
 
 (setq nproc
       (substring
@@ -454,9 +457,15 @@ M-x compile.
 (defun reload-config ()
   (interactive)
   (load-file "~/.emacs"))
-(bind-key* "C-S-r" 'reload-config)
 
 ;; KEY BINDINGS
+
+;; Compile
+(bind-key* "C-b" 'compile-dwim)
+(bind-key* "C-S-b" 'compile)
+
+;; Reload Config
+(bind-key* "C-S-r" 'reload-config)
 
 ;; Undo
 (bind-key* "C-u" 'undo)
@@ -464,11 +473,6 @@ M-x compile.
 ;; Scrolling : Ctrl-up/down scroll 1 line
 (bind-key* "C-<down>" 'scroll-up-line)
 (bind-key* "C-<up>" 'scroll-down-line)
-
-;; Compile
-(bind-key* "C-b" 'compile-again)
-(bind-key* "C-S-b" 'compile)
-
 ;; Binding GOTO-LINE
 (bind-key* "M-g" 'goto-line)
 
