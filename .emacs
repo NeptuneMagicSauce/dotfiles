@@ -463,7 +463,15 @@ or the workspace script
   (interactive "p")
   (setq compilation-read-command t)
   (call-interactively 'compile)
-)
+  )
+
+;; Visit RipGrep buffer when it
+;; https://github.com/Jousimies/.emacs.d/blob/master/lisp/init-search.el#L36
+(with-eval-after-load 'rg
+  (add-to-list 'rg-finish-functions
+               (lambda (buffer _)
+                 (pop-to-buffer buffer)
+                 )))
 
 ;; KEY BINDINGS
 
