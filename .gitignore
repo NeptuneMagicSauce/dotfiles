@@ -84,6 +84,7 @@ Documents/
 .dotnet/
 Downloads/
 .elinks/
+.emacs.d/**/*elc
 .emacs.d/auto-save-list/.saves*
 .emacs.d/bookmarks
 .emacs.d/eln-cache/

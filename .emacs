@@ -78,6 +78,9 @@
                    emojify-logos flycheck helm-lsp helm-xref
                    lsp-treemacs lsp-ui projectile rg which-key)))
 
+;; byte-compile all the packages
+(byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0)
+
 ;; Show Line Numbers: only for files, not dynamic buffers
 ;; linum-mode is obsolete, see https://emacs.stackexchange.com/a/280
 ;; hlinum is not needed with modern line-number-current-line in theme
