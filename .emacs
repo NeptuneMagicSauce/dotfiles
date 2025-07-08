@@ -457,7 +457,14 @@ or the workspace script
 (setq compilation-read-command nil) ;; do not prompt for compile command
 (setq compilation-scroll-output 'first-error) ;; auto scroll compile buffer to first error
 ;; (setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
-(setq compilation-last-buffer nil)
+
+;; (setq compilation-last-buffer nil) ;; why !?
+
+;; Auto open error location on compile:
+;; problem: it jumps to ripgrep first result!
+;; (setq compilation-auto-jump-to-first-error t) ; auto-jump to error location on compile
+;; (setq compilation-auto-jump-to-first-error nil) ; (default value) do not auto-jump to error
+(setq compilation-skip-threshold 2) ; do not scroll and auto-jump to warnings
 
 (defun compile-again (pfx)
   (interactive "p")
@@ -465,7 +472,7 @@ or the workspace script
   (call-interactively 'compile)
   )
 
-;; Visit RipGrep buffer when it
+;; Visit RipGrep buffer when it finishes
 ;; https://github.com/Jousimies/.emacs.d/blob/master/lisp/init-search.el#L36
 (with-eval-after-load 'rg
   (add-to-list 'rg-finish-functions
@@ -499,13 +506,7 @@ or the workspace script
 ;; (bind-key* "C-²" 'next-error) ; azerty ; NO, use TAB and C-TAB for cycling through errors
 ;; (bind-key* "C-`" 'next-error) ; qwerty
 ;; (bind-key* "M-²" 'previous-error)
-;; (bind-key* "M-`" 'previous-error)
-
-;; Auto open error location on compile
-;; now working at workplace23 (unless (is-workplace-23)
-;; but it jumps for ripgrep matches on windows
-;; (setq compilation-auto-jump-to-first-error nil) ; auto-jump to error location on compile
-(setq compilation-skip-threshold 2) ; do not auto-jump to warnings
+;; (bind-key* "M-`" 'previous-error))
 
 ;; Change Buffer
 (bind-key* "C-v" 'switch-to-buffer)
