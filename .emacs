@@ -7,7 +7,7 @@
 (setq custom-font-size 140)
 (setq custom-accent-color-graphics "#54AFFF") ;; blue
 (setq custom-accent-color-terminal "#54AFFF") ;; blue
-      ;; "#ff9f00") ;; DarkOrange
+;; "#ff9f00") ;; DarkOrange
 ;; (setq custom-theme-color "light") ;; dark or light
 (setq custom-theme-color "dark") ;; dark or light
 
@@ -52,9 +52,9 @@
   )
 (when (is-workplace-23) ;; work laptop 2023
   (setq custom-font-size 100)
- (setq custom-theme-color "light")
- ;; (setq custom-theme-color "dark")
- )
+  (setq custom-theme-color "light")
+  ;; (setq custom-theme-color "dark")
+  )
 (when (not (display-graphic-p))
   ;; in terminal, assume we're in dark mode
   (setq custom-theme-color "dark")
@@ -94,13 +94,13 @@
   ;; My preferred FONT
   (custom-set-faces
    '(default ((t (:family "Cascadia Code" :slant normal :weight normal :height 90 :width normal)))
-   ;; '(default ((t (:family "Cascadia Code" :slant normal :weight semilight :height 90 :width normal)))
-   ;; '(default ((t (:family "DejaVu Sans Mono" :slant normal :weight normal :height 90 :width normal)))
+             ;; '(default ((t (:family "Cascadia Code" :slant normal :weight semilight :height 90 :width normal)))
+             ;; '(default ((t (:family "DejaVu Sans Mono" :slant normal :weight normal :height 90 :width normal)))
 
-   ;; (if (and (string-equal system-name "JOJO2-PC")
-   ;;          (string-equal system-configuration "x86_64-pc-linux-gnu"))
-   ;;     ;; that's WSL on big computer
-  ))
+             ;; (if (and (string-equal system-name "JOJO2-PC")
+             ;;          (string-equal system-configuration "x86_64-pc-linux-gnu"))
+             ;;     ;; that's WSL on big computer
+             ))
   ;; mouse-paste at emacs-cursor, not at mouse-cursor
   (setq mouse-yank-at-point t)
 
@@ -177,33 +177,33 @@
 
 ;; Mode line setup
 (setq-default mode-line-format '(
-   ;; %b buffer name
-   ;; %m mode name
-   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/_0025_002dConstructs.html
+                                 ;; %b buffer name
+                                 ;; %m mode name
+                                 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/_0025_002dConstructs.html
 
-   (:propertize "    %b" face mode-line-filename-face)
-   "  "
-   (:eval
-    (cond
-     ;; read-only: custom indicator RO
-     (buffer-read-only
-      (propertize "RO" 'face 'mode-line-read-only-face))
-     ;; modified / unsaved-changes: custom indicator '*'
-     ((buffer-modified-p)
-      (cond
-       ((buffer-file-name)
-        (propertize " * " 'face 'mode-line-modified-face))))
-     ))
-   (vc-mode vc-mode) ;; version-control: branch
-   "  " ;; " ("
-   (:propertize mode-name face mode-line-mode-face )
-   ;; (:propertize " %m " face mode-line-mode-face)
-   "  " ;; ") "
-   (:propertize mode-line-process)
-   ;; line and column numbers: in custom face
-   (:propertize " [ %l : %c ] " face mode-line-position-face)
-   ;; (:propertize
-   ))
+                                 (:propertize "    %b" face mode-line-filename-face)
+                                 "  "
+                                 (:eval
+                                  (cond
+                                   ;; read-only: custom indicator RO
+                                   (buffer-read-only
+                                    (propertize "RO" 'face 'mode-line-read-only-face))
+                                   ;; modified / unsaved-changes: custom indicator '*'
+                                   ((buffer-modified-p)
+                                    (cond
+                                     ((buffer-file-name)
+                                      (propertize " * " 'face 'mode-line-modified-face))))
+                                   ))
+                                 (vc-mode vc-mode) ;; version-control: branch
+                                 "  " ;; " ("
+                                 (:propertize mode-name face mode-line-mode-face )
+                                 ;; (:propertize " %m " face mode-line-mode-face)
+                                 "  " ;; ") "
+                                 (:propertize mode-line-process)
+                                 ;; line and column numbers: in custom face
+                                 (:propertize " [ %l : %c ] " face mode-line-position-face)
+                                 ;; (:propertize
+                                 ))
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
@@ -211,23 +211,23 @@
 (make-face 'mode-line-position-face)
 ;; filename is bold
 (set-face-attribute 'mode-line-filename-face nil
-            :inherit 'mode-line-face
-            :weight 'bold)
+                    :inherit 'mode-line-face
+                    :weight 'bold)
 ;; line and column numbers: inherit from filename face, and bold
 (set-face-attribute 'mode-line-position-face nil
-            :inherit 'mode-line-face
-            :weight 'bold ;; used to be broken: chars were cut-off/mangled
-            )
+                    :inherit 'mode-line-face
+                    :weight 'bold ;; used to be broken: chars were cut-off/mangled
+                    )
 ;; read-only has outline (box) and color
 (set-face-attribute 'mode-line-read-only-face nil
-            :inherit 'mode-line-face
-            :foreground "#4271ae"
-            :box '(:line-width 2 :color "#4271ae"))
+                    :inherit 'mode-line-face
+                    :foreground "#4271ae"
+                    :box '(:line-width 2 :color "#4271ae"))
 ;; modified / unsaved-changes: black-over-red
 (set-face-attribute 'mode-line-modified-face nil
-            :inherit 'mode-line-face
-            :foreground "Black"
-            :background "Red")
+                    :inherit 'mode-line-face
+                    :foreground "Black"
+                    :background "Red")
 ;; ;; what do these 4 do?
 ;; (make-face 'mode-line-folder-face)
 ;; (make-face 'mode-line-mode-face)
@@ -285,31 +285,31 @@
   (if (is-theme-dark)
       ;; 0
       (load-theme 'romulus-dark t) ;; mine
-      ;; (load-theme 'romulus-dark-old) ;; mine
-      ;; (load-theme 'doom-vibrant) ;; nice but comments
-      ;; 1
-      ;; (load-theme 'doom-dracula) ;; nice but comments
-      ;; 2
-      ;; (load-theme 'doom-one) ;; nice but comments
-      ;; (load-theme 'doom-snazzy) ;; nice but comments
-      ;; 3
-      ;; (load-theme 'doom-palenight) ;; nice but comments
-      ;; (load-theme 'tango-dark) ;; nice but comments
-      ;; (load-theme 'doom-moonlight) ;; nice
-      ;; (load-theme 'doom-outrun-electric) ;; nice but background
-      ;; (load-theme 'doom-city-lights) ;; ok
-      ;; (load-theme 'doom-material) ;; ok
-      ;; (load-theme 'doom-molokai)
-      ;; (load-theme 'doom-monokai-spectrum)
-      ;; (load-theme 'doom-old-hope)
-      ;; (load-theme 'deeper-blue)
-      ;; (load-theme 'doom-acario-dark)
-      ;; (load-theme 'doom-gruvbox)
-      ;; (load-theme 'doom-horizon)
-      ;; (load-theme 'manoj-dark)
-      ;; (load-theme 'doom-monokai-pro)
-      ;; (load-theme 'doom-oceanic-next)
-      ;; (load-theme 'doom-one-light)
+    ;; (load-theme 'romulus-dark-old) ;; mine
+    ;; (load-theme 'doom-vibrant) ;; nice but comments
+    ;; 1
+    ;; (load-theme 'doom-dracula) ;; nice but comments
+    ;; 2
+    ;; (load-theme 'doom-one) ;; nice but comments
+    ;; (load-theme 'doom-snazzy) ;; nice but comments
+    ;; 3
+    ;; (load-theme 'doom-palenight) ;; nice but comments
+    ;; (load-theme 'tango-dark) ;; nice but comments
+    ;; (load-theme 'doom-moonlight) ;; nice
+    ;; (load-theme 'doom-outrun-electric) ;; nice but background
+    ;; (load-theme 'doom-city-lights) ;; ok
+    ;; (load-theme 'doom-material) ;; ok
+    ;; (load-theme 'doom-molokai)
+    ;; (load-theme 'doom-monokai-spectrum)
+    ;; (load-theme 'doom-old-hope)
+    ;; (load-theme 'deeper-blue)
+    ;; (load-theme 'doom-acario-dark)
+    ;; (load-theme 'doom-gruvbox)
+    ;; (load-theme 'doom-horizon)
+    ;; (load-theme 'manoj-dark)
+    ;; (load-theme 'doom-monokai-pro)
+    ;; (load-theme 'doom-oceanic-next)
+    ;; (load-theme 'doom-one-light)
 
     ;; LIGHT
     ;; old from 2023.09.06
@@ -383,7 +383,7 @@ will be killed."
             (kill-buffer buf)
             (message "Killed non-existing/unreadable file buffer: %s" filename))))))
   (message "Finished reverting buffers containing unmodified files.")
-)
+  )
 
 ;; MinGW / MSys are broken, need this for C-x C-c to quit ->
 ;; (global-set-key (kbd "C-x <pause>") 'kill-emacs)
@@ -406,22 +406,22 @@ will be killed."
 If there was no last time, or there is a prefix argument, this acts like
 M-x compile.
 """
- (interactive "p")
- (save-some-buffers 1)
- ;; default compile command : enable parallelism, default to dir of current buffer
- ;; set it on first invocation of compile command, not at startup because no buffer
- (setq compile-command
-       (if (is-workplace-23)
-           "~/workspace/compile.sh"
-         (concat
-          "ninja -C " (file-name-directory (buffer-file-name)))))
- (if (and (eq pfx 1)
-      compilation-last-buffer)
-     (progn
-       (set-buffer compilation-last-buffer)
-       (revert-buffer t t))
-   (call-interactively 'compile))
- )
+  (interactive "p")
+  (save-some-buffers 1)
+  ;; default compile command : enable parallelism, default to dir of current buffer
+  ;; set it on first invocation of compile command, not at startup because no buffer
+  (setq compile-command
+        (if (is-workplace-23)
+            "~/workspace/compile.sh"
+          (concat
+           "ninja -C " (file-name-directory (buffer-file-name)))))
+  (if (and (eq pfx 1)
+           compilation-last-buffer)
+      (progn
+        (set-buffer compilation-last-buffer)
+        (revert-buffer t t))
+    (call-interactively 'compile))
+  )
 
 (setq nproc
       (substring
@@ -448,7 +448,7 @@ M-x compile.
     (when (string-equal system-name "JOJO-LAPTOP")
       (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
     )
-)
+  )
 
 ;; Reload config
 (defun reload-config ()
@@ -514,7 +514,7 @@ M-x compile.
 (bind-key* "C-," 'rg-dwim)                  ;; search at point in project
 (bind-key* "C-M-," 'rg-dwim-current-file)   ;; search at point in current file
 (bind-key* "M-," 'rg-project)               ;; search after asking for input
-; load the local config which does "include hidden"
+                                        ; load the local config which does "include hidden"
 (setq-default rg-ignore-ripgreprc nil)
 (setenv "RIPGREP_CONFIG_PATH" (expand-file-name ".ripgreprc" (getenv "HOME")))
 
@@ -547,17 +547,17 @@ M-x compile.
 
 ;; interpret ansi color codes - necessary in compilation buffer
 ;; (unless (display-graphic-p)
-  (ignore-errors
-    (require 'ansi-color)
-    (defun my-colorize-compilation-buffer ()
-      (when (eq major-mode 'compilation-mode)
-        (ansi-color-apply-on-region compilation-filter-start (point-max))))
-    (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 ;; switch header - cpp
 ;; (bind-key* "C-<tab>" 'ff-find-other-file)
 ;; (setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
-; with Projectile: it can find the other file in any directory of the project
+                                        ; with Projectile: it can find the other file in any directory of the project
 (bind-key* "C-<tab>" 'projectile-find-other-file)
 ;; also have a binding that works in Terminal which catches Ctrl-Tab :
 (bind-key* "M-`" 'projectile-find-other-file)
@@ -570,7 +570,7 @@ M-x compile.
 (when (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Devel/Tools/Msys2-64/usr/bin/bash")
   (setq explicit-bash-args '("--noediting" "--login" "-i"))
-)
+  )
 (bind-key* "C-<f1>" 'shell)
 
 ;; No confirm kill process: for *shell* and *compilation*
@@ -612,7 +612,7 @@ M-x compile.
 (defun clang-format-save-hook-for-this-buffer ()
   (add-hook 'before-save-hook
             (lambda ()
-                (clang-format-buffer)
+              (clang-format-buffer)
               ;; Continue to save.
               nil)
             nil
@@ -623,70 +623,70 @@ M-x compile.
 
 ;; C++ IDE
 (if () ;;(when (not (is-workplace-23))
-;; (when (and (display-graphic-p) (not (is-workplace-23)))
-;; obsolete: cmake-ide
-;; https://github.com/atilaneves/cmake-ide
-;; needs this ubuntu package -> rtags and elpa-company
-;; company from emacs package-manager fails to show tooltip
-;; company from ubuntu package-manager works as intended
-  ;; ubuntu packages does not provide "rc" but "rtags-rc"
-  ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
-  ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
-  ;; xor
-  ;; (cd /usr/bin; sudo ln -s rtags-rc rc)
-  ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
-  ;; (require 'rtags)
-  ;; (cmake-ide-setup) ;; is this needed ?
-  ;; (global-company-mode 1)
-  ;; (global-company-fuzzy-mode 1) ;; NO not compatible with rtags !
-  ;; TODO make company-fuzzy compatible with rtags https://github.com/jcs-elpa/company-fuzzy
-  ;; (bind-key* "C-²" 'company-complete)
-  ;; ;; (global-flycheck-mode 1) ;; does not work
-  ;; (setq company-idle-delay 0)
-  ;; (setq cmake-ide-build-dir "build")
-  ;; (setq rtags-display-result-backend 'helm)
-  ;; (rtags-enable-standard-keybindings)
-  ;; ;; default rtags binds:
-  ;; ;; C-c r / rtags-find-all-references-at-point
-  ;; ;; C-c r . rtags-find-symbol-at-point
-  ;; ;; C-c r [ rtags-location-stack-back
-  ;; ;; C-c r ] rtags-location-stack-forward
-  ;; ;; C-c r , rtags-find-references-at-point
-  ;; ;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
-  ;; (bind-key* "C-o" 'rtags-find-symbol-at-point)
-  ;; (bind-key* "M-o" 'rtags-find-all-references-at-point)
-  ;; (bind-key* "C-<left>" 'rtags-location-stack-back)
-  ;; (bind-key* "C-<right>" 'rtags-location-stack-forward)
-  ;; (defun cmake-ide-save-and-compile (nothing)
-  ;;   (interactive "p")
-  ;;   (save-some-buffers 1)
-  ;;   (call-interactively 'cmake-ide-compile)
-  ;;   )
- ;; (unless (is-workplace-23)
- ;; this only works for cpp, not for other languages
- ;;   (bind-key* "C-b" 'cmake-ide-save-and-compile)
- ;;   )
+    ;; (when (and (display-graphic-p) (not (is-workplace-23)))
+    ;; obsolete: cmake-ide
+    ;; https://github.com/atilaneves/cmake-ide
+    ;; needs this ubuntu package -> rtags and elpa-company
+    ;; company from emacs package-manager fails to show tooltip
+    ;; company from ubuntu package-manager works as intended
+    ;; ubuntu packages does not provide "rc" but "rtags-rc"
+    ;; (setq rtags-rc-binary-name "/usr/bin/rtags-rc")   ;; does not work
+    ;; (setq rtags-rdm-binary-name "/usr/bin/rtags-rdm") ;; does not work
+    ;; xor
+    ;; (cd /usr/bin; sudo ln -s rtags-rc rc)
+    ;; (cd /usr/bin; sudo ln -s rtags-rdm rdm)
+    ;; (require 'rtags)
+    ;; (cmake-ide-setup) ;; is this needed ?
+    ;; (global-company-mode 1)
+    ;; (global-company-fuzzy-mode 1) ;; NO not compatible with rtags !
+    ;; TODO make company-fuzzy compatible with rtags https://github.com/jcs-elpa/company-fuzzy
+    ;; (bind-key* "C-²" 'company-complete)
+    ;; ;; (global-flycheck-mode 1) ;; does not work
+    ;; (setq company-idle-delay 0)
+    ;; (setq cmake-ide-build-dir "build")
+    ;; (setq rtags-display-result-backend 'helm)
+    ;; (rtags-enable-standard-keybindings)
+    ;; ;; default rtags binds:
+    ;; ;; C-c r / rtags-find-all-references-at-point
+    ;; ;; C-c r . rtags-find-symbol-at-point
+    ;; ;; C-c r [ rtags-location-stack-back
+    ;; ;; C-c r ] rtags-location-stack-forward
+    ;; ;; C-c r , rtags-find-references-at-point
+    ;; ;; C-c r G rtags-guess-function-at-point <Find symbol declaration at point>
+    ;; (bind-key* "C-o" 'rtags-find-symbol-at-point)
+    ;; (bind-key* "M-o" 'rtags-find-all-references-at-point)
+    ;; (bind-key* "C-<left>" 'rtags-location-stack-back)
+    ;; (bind-key* "C-<right>" 'rtags-location-stack-forward)
+    ;; (defun cmake-ide-save-and-compile (nothing)
+    ;;   (interactive "p")
+    ;;   (save-some-buffers 1)
+    ;;   (call-interactively 'cmake-ide-compile)
+    ;;   )
+    ;; (unless (is-workplace-23)
+    ;; this only works for cpp, not for other languages
+    ;;   (bind-key* "C-b" 'cmake-ide-save-and-compile)
+    ;;   )
 
-  ;; (setq completion-ignore-case t) ;; does not work
-  ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
-  ;; (setq rtags-find-file-case-insensitive t) ;; does not work
-  ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
-  ;; (setq company-dabbrev-ignore-case t) ;; does not work
-  ;; C-o does not work on "= new T{}" (also M-o)
+    ;; (setq completion-ignore-case t) ;; does not work
+    ;; (setq rtags-symbolnames-case-insensitive t) ;; does not work
+    ;; (setq rtags-find-file-case-insensitive t) ;; does not work
+    ;; (setq company-dabbrev-code-ignore-case t) ;; does not work
+    ;; (setq company-dabbrev-ignore-case t) ;; does not work
+    ;; C-o does not work on "= new T{}" (also M-o)
 
 
-  ;; new as of March 2025: LSP and CLANGD
+    ;; new as of March 2025: LSP and CLANGD
 
-  ;; Fix C-i interpreted as TAB ->
-  ;; needed to use C-i as a key-bind
-  ;; https://emacs.stackexchange.com/a/17510
-  ;; needs next 2 lines to enable bind-key C-i
-  ;; (define-key input-decode-map "\C-i" [C-i])
-  ;; (bind-key* "<tab>" 'indent-region)
-  ;; but it breaks "tab goes to next error in compile buffer" -> disable
+    ;; Fix C-i interpreted as TAB ->
+    ;; needed to use C-i as a key-bind
+    ;; https://emacs.stackexchange.com/a/17510
+    ;; needs next 2 lines to enable bind-key C-i
+    ;; (define-key input-decode-map "\C-i" [C-i])
+    ;; (bind-key* "<tab>" 'indent-region)
+    ;; but it breaks "tab goes to next error in compile buffer" -> disable
 
-  ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
-  (setq lsp-ui-sideline-show-code-actions t)
+    ;; LSP-UI https://github.com/emacs-lsp/lsp-ui
+    (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-delay 0.0)
 
   ;; fix for LSP Treemacs broken on windows:
@@ -778,6 +778,13 @@ M-x compile.
                                   "--background-index-priority=normal" ;; normal or low or background
                                   "--header-insertion=never"
                                   "--pch-storage=memory"))
+
+  ;; limit the number of threads on small machines
+  (if (<= (string-to-number nproc) 4)
+      (push "-j=2" lsp-clients-clangd-args))
+
+  (message "Process Count %s" nproc)
+  (message "Clangd Args %s" lsp-clients-clangd-args)
 
   (when (is-workplace-23)
     (setq lsp-log-io nil lsp-file-watch-threshold 3000) ;; limit the number of files to be watched
