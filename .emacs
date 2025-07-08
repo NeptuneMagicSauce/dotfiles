@@ -73,6 +73,7 @@
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
  '(mouse-buffer-menu-mode-mult 99)
+ '(warning-suppress-types '((comp)))
  '(package-selected-packages
    '(all-the-icons bind-key clang-format cmake-mode company doom-themes
                    emojify-logos flycheck helm-lsp helm-xref
