@@ -397,6 +397,39 @@ will be killed."
 ;; (require 'popwin)
 ;; (popwin-mode 1)
 
+;; ;; Zeal dev doc
+;; (let ((zeal-dir "c:/Program Files/Zeal"))
+;;   (when (file-directory-p zeal-dir)
+;;     (add-to-list 'exec-path zeal-dir)
+;;     (load-file "~/.emacs.d/zeal-at-point.el")
+;;     (bind-key* "C-z" 'zeal-at-point)))
+
+;; add path to Unix programs : make, git
+(when (display-graphic-p)
+  (when (eq system-type 'windows-nt)
+    ;; add path to git and grep for jojo-pc and jojo-laptop
+    (when (string-equal system-name "JOJO2-PC")
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin") ; ripgrep
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin")     ; git
+      )
+    ;; jojo-laptop/MinGW ->
+    (when (string-equal system-name "JOJO-LAPTOP")
+      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
+    )
+  )
+
+;; Reload config
+(defun reload-config ()
+  (interactive)
+  (load-file "~/.emacs"))
+
+;; Number of Processors
+(setq nproc
+      (substring
+       (shell-command-to-string "nproc")
+       0 -1))
+(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " nproc)))
+
 ;; Compile and ReCompile : https://www.emacswiki.org/emacs/CompileCommand#toc4
 (defun compile-dwim (pfx)
 """
@@ -424,39 +457,6 @@ or the workspace script
 (setq compilation-read-command nil) ;; do not prompt for compile command
 (setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
 (setq compilation-last-buffer nil)
-
-
-(setq nproc
-      (substring
-       (shell-command-to-string "nproc")
-       0 -1))
-(setenv "MAKEFLAGS" (concat (concat "--no-print-directory -j " nproc)))
-
-;; ;; Zeal dev doc
-;; (let ((zeal-dir "c:/Program Files/Zeal"))
-;;   (when (file-directory-p zeal-dir)
-;;     (add-to-list 'exec-path zeal-dir)
-;;     (load-file "~/.emacs.d/zeal-at-point.el")
-;;     (bind-key* "C-z" 'zeal-at-point)))
-
-;; add path to Unix programs : make, git
-(when (display-graphic-p)
-  (when (eq system-type 'windows-nt)
-    ;; add path to git and grep for jojo-pc and jojo-laptop
-    (when (string-equal system-name "JOJO2-PC")
-      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/mingw64/bin") ; ripgrep
-      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin")     ; git
-      )
-    ;; jojo-laptop/MinGW ->
-    (when (string-equal system-name "JOJO-LAPTOP")
-      (add-to-list 'exec-path "c:/Devel/Tools/Msys2/usr/bin"))
-    )
-  )
-
-;; Reload config
-(defun reload-config ()
-  (interactive)
-  (load-file "~/.emacs"))
 
 ;; KEY BINDINGS
 
