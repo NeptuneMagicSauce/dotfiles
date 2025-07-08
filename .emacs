@@ -455,7 +455,8 @@ or the workspace script
     (call-interactively 'compile))
   )
 (setq compilation-read-command nil) ;; do not prompt for compile command
-(setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
+(setq compilation-scroll-output 'first-error) ;; auto scroll compile buffer to first error
+;; (setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
 (setq compilation-last-buffer nil)
 
 (defun compile-again (pfx)
