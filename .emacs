@@ -432,7 +432,7 @@ will be killed."
 
 ;; Compile and ReCompile : https://www.emacswiki.org/emacs/CompileCommand#toc4
 (defun compile-dwim (pfx)
-"""
+  """
 Compile-Do-What-I-Mean
 runs the compilation without asking
 either ninja in dominating directory
@@ -450,7 +450,7 @@ or the workspace script
   (if (and (eq pfx 1)
            compilation-last-buffer)
       (progn
-        (set-buffer compilation-last-buffer)
+        (set-buffer "*compilation*")
         (revert-buffer t t))
     (call-interactively 'compile))
   )
