@@ -458,11 +458,17 @@ or the workspace script
 (setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
 (setq compilation-last-buffer nil)
 
+(defun compile-again (pfx)
+  (interactive "p")
+  (setq compilation-read-command t)
+  (call-interactively 'compile)
+)
+
 ;; KEY BINDINGS
 
 ;; Compile
 (bind-key* "C-b" 'compile-dwim)
-(bind-key* "C-S-b" 'compile)
+(bind-key* "C-S-b" 'compile-again)
 
 ;; Reload Config
 (bind-key* "C-S-r" 'reload-config)
