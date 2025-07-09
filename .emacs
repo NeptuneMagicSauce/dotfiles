@@ -539,6 +539,9 @@ or the workspace script
 (setq-default rg-ignore-ripgreprc nil)
 (setenv "RIPGREP_CONFIG_PATH" (expand-file-name ".ripgreprc" (getenv "HOME")))
 
+;; FlyCheck
+(bind-key* "C-q C-q" 'flycheck-next-error) ;; go to next compile error in buffer
+
 ;; Action At Point: search or select, word or line
 (bind-key* "C-q C-s" 'isearch-forward-symbol-at-point)
 ;; https://irfu.cea.fr/Pisp/frederic.galliano/Computing/manual_elisp.html
@@ -787,7 +790,9 @@ or the workspace script
 (setq company-idle-delay 0.0)
 (setq lsp-idle-delay 0.0)
 (setq lsp-ui-doc-delay 2.0) ;; that's the delay for the pop-ups "doc" = when hovering a function or variable
+;; flycheck provides inline error, error highlight, and go to next error
 (setq flycheck-idle-change-delay 3.0) ;; that's the delay before inline errors and fixits are shown
+;; (add-hook 'after-init-hook #'global-flycheck-mode) ;; not needed !
 
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
@@ -802,7 +807,8 @@ or the workspace script
   ;; (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols Treemacs
   (bind-key* "M-p" 'lsp-treemacs-errors-list)
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
-  (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
+  ;; (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
+  (bind-key* "C-j" 'helm-lsp-code-actions) ; Apply Quick Fix
 
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   ;; (require 'dap-cpptools) ; we are not using dap (the debugger integration)
