@@ -805,10 +805,12 @@ or the workspace script
   ;; also: if we bind C-i to lsp-find-def, then it breaks TAB -> next-compile-error
   (bind-key* "C-o" 'lsp-find-definition)   ; Go To Definition
   (bind-key* "M-o" 'lsp-find-references)   ; Find References
-  (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols Helm
+  (bind-key* "M-p" 'helm-imenu)         ; Browse Symbols Helm
   ;; (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols Treemacs
+  (bind-key* "C-p" 'helm-lsp-diagnostics) ; Error list with helm: works the best
+  (bind-key* "C-M-p" 'lsp-ui-flycheck-list) ; Error list with flycheck: works great, go to error with M-<ENTER>
   ;; (bind-key* "M-p" 'lsp-treemacs-errors-list) ; Error list with treemacs: buggy, does not expand
-  (bind-key* "M-p" 'lsp-ui-flycheck-list) ; Error list with flycheck: works great, go to error with M-<ENTER>
+
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
   ;; (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
   (bind-key* "C-j" 'helm-lsp-code-actions) ; Apply Quick Fix
