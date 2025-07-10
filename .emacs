@@ -541,6 +541,7 @@ or the workspace script
 
 ;; FlyCheck
 (bind-key* "C-q C-q" 'flycheck-next-error) ;; go to next compile error in buffer
+(bind-key* "C-q C-r" 'flycheck-previous-error) ;; go to previous compile error in buffer
 
 ;; Action At Point: search or select, word or line
 (bind-key* "C-q C-s" 'isearch-forward-symbol-at-point)
