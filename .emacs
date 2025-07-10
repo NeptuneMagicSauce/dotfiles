@@ -758,6 +758,7 @@ or the workspace script
 ;; (bind-key* "<tab>" 'indent-region) ; not needed with fix C-i as TAB ;; old comment
 
 ;; Treemacs error list: auto expand is enabled like this:
+(setq lsp-treemacs-error-list-expand-depth t) ;; this works to expand depth 1, fails to further expand below
 ;; https://github.com/emacs-lsp/lsp-treemacs/pull/148
 ;; remove .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.elc
 ;; patch .emacs.d/elpa/lsp-treemacs-20230811.611/lsp-treemacs.el
@@ -806,7 +807,8 @@ or the workspace script
   (bind-key* "M-o" 'lsp-find-references)   ; Find References
   (bind-key* "C-p" 'helm-imenu)         ; Browse Symbols Helm
   ;; (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols Treemacs
-  (bind-key* "M-p" 'lsp-treemacs-errors-list)
+  ;; (bind-key* "M-p" 'lsp-treemacs-errors-list) ; Error list with treemacs: buggy, does not expand
+  (bind-key* "M-p" 'lsp-ui-flycheck-list) ; Error list with flycheck: works great, go to error with M-<ENTER>
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
   ;; (bind-key* "C-j" 'lsp-ui-sideline-apply-code-actions) ; Apply Quick Fix
   (bind-key* "C-j" 'helm-lsp-code-actions) ; Apply Quick Fix
