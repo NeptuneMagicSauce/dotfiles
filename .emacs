@@ -808,7 +808,7 @@ or the workspace script
   (bind-key* "M-p" 'helm-imenu)         ; Browse Symbols Helm
   ;; (bind-key* "C-p" 'lsp-treemacs-symbols)  ; Browse Symbols Treemacs
   (bind-key* "C-p" 'helm-lsp-diagnostics) ; Error list with helm: works the best
-  (bind-key* "C-M-p" 'lsp-ui-flycheck-list) ; Error list with flycheck: works great, go to error with M-<ENTER>
+  (bind-key* "C-q p" 'lsp-ui-flycheck-list) ; Error list with flycheck: works great, go to error with M-<ENTER>
   ;; (bind-key* "M-p" 'lsp-treemacs-errors-list) ; Error list with treemacs: buggy, does not expand
 
   ;; (bind-key* "C-j" 'lsp-execute-code-action) ; Apply Quick Fix ; better with next line
