@@ -271,3 +271,17 @@ list_term_colors_256()
 #         done
 #     done
 # }
+
+function color_bash_prompt_24_bit
+{
+    if [ $# != 3 ] ; then
+        echo "Usage: color_bash_prompt_24_bit red green blue"
+        echo "Example: color_bash_prompt_24_bit 255 0 0"
+        return
+    fi
+    reset='\033[0;0m'
+    code=$(echo -e "\033[38;2;${1};${2};${3};02m")
+    echo -n "${code} FOO bar "
+    echo -ne "${reset}"
+    echo "\033[38;2;${1};${2};${3};02m"
+}
