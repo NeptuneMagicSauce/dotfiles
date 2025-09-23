@@ -89,6 +89,7 @@ Documents/
 .dotnet/
 Downloads/
 .elinks/
+emacs_cloud
 .emacs.d/auto-save-list/.saves*
 .emacs.d/bookmarks
 .emacs.d/**/*elc

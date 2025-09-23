@@ -663,6 +663,8 @@ or the workspace script
             t))
 (add-hook 'c-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
+(add-hook 'c++-mode-hook (lambda () (setq require-final-newline t)))
+
 
 ;; C++ IDE
 (if () ;;(when (not (is-workplace-23))
