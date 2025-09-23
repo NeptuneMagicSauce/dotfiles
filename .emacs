@@ -780,10 +780,12 @@ or the workspace script
 ;;   ;; -> disabled in terminal
 ;;   )
 
-;; do not rely on default clangd, it is old, use the system one
-(custom-set-variables
- '(lsp-clangd-binary-path "/usr/bin/clangd"))
-;; it this breaks on windows then: (when (eq system-type 'windows-nt)
+;; choose the clangd version
+(when (is-workplace-23)
+  (custom-set-variables
+   '(lsp-clients-clangd-executable
+     "/home/rlacroix/workspace/buildserver/ssp_docker_run"
+     )))
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
@@ -842,19 +844,16 @@ or the workspace script
     (setq lsp-enable-file-watchers nil)
     ;; clangd args
     ;; merged from Confluence page 'Emacs' and project/.vscode/examples/settings.json.default:
-    (setq lsp-clients-clangd-args '("--log=error" ;; more concise than verbose
+    (setq lsp-clients-clangd-args '("/tools/llvm/current/bin/clangd"
+                                    "--log=verbose"
                                     "--background-index"
                                     "--background-index-priority=normal" ;; normal or low or background
                                     "--header-insertion=never"
                                     "--pch-storage=memory"
                                     "--enable-config"
+                                    ;; "-j=20"
                                     "-j=6"
                                     "--limit-results=100000"
-                                    ;; "--cross-file-rename" ;; obsolete
-                                    ;; "--suggest-missing-includes" ;; obsolete
-                                    ;; "--clang-tidy" ;; not needed
-                                    ;; "--compile-commands-dir=${workspaceFolder}" ;; vscode specific
-                                    ;; "--header-insertion-decorators=0" ;; ??
                                     ))
 
     ;; clangd crashes often with -j=14
