@@ -1,0 +1,2 @@
+#!/bin/sh
+batcat --theme 'Monokai Extended' -l py "$@"

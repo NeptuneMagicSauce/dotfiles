@@ -12,6 +12,7 @@ bin/*.exe
 bin/qemu*
 bin/youtube-dl*
 .bitbucketnetrc
+build_PRICING_component.log
 .cache/
 CatPi
 .cgdb/logs/
@@ -26,6 +27,7 @@ conda/
 .config/autostart/
 .config/bashtop/
 .config/btop/
+.config/chromium/
 .config/cni/
 .config/Code/
 .config/connections.db
@@ -49,6 +51,7 @@ conda/
 .config/gtk-3.0/
 .config/ibus/
 .config/icedtea-web/
+.config/k9s/
 .config/kcachegrindrc
 .config/libreoffice/
 .config/menus/
@@ -67,6 +70,7 @@ conda/
 .config/systemd/
 .config/teams/
 .config/user-dirs*
+.config/uv/
 .config/vlc/
 .config/wslu/
 .config/Zeal/
@@ -77,6 +81,7 @@ cs2
 .dbus-keyrings
 deliverables/
 Desktop/
+.devcontainer/
 Devel
 DLAM
 .docker/
@@ -84,9 +89,9 @@ Documents/
 .dotnet/
 Downloads/
 .elinks/
-.emacs.d/**/*elc
 .emacs.d/auto-save-list/.saves*
 .emacs.d/bookmarks
+.emacs.d/**/*elc
 .emacs.d/eln-cache/
 .emacs.d/emojis/apple/
 .emacs.d/emojis/emojione/
@@ -130,13 +135,17 @@ Incoming*
 .lesshst
 .local/
 local/
+.log_build.txt
 main.py
+misc/
 .motd_shown
 .mozilla/
 .netrc
 .nv/
 NvidiaRecordings
 .nvidia-settings-rc
+.oc.cloudcache
+.oc.connect.pipe
 packages-*
 Pictures/
 .pki/
@@ -165,10 +174,12 @@ TO*DELETE*
 TODO*
 .tts/
 .vboxclient-*
+.vim/
 .viminfo
 .vim/.netrwhist
 .vs/
 .vscode/
+.vscode-server/
 Wallpapers/
 .wget-hsts
 .wine/
@@ -176,5 +187,6 @@ workspace/
 Workspace
 .zcompdump
 .zoom/
+.zshenv
 .zsh_history
 .zshrc
