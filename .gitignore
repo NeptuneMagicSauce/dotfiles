@@ -36,6 +36,7 @@ conda/
 .config/eog/
 .config/evince/
 .config/evolution/
+.config/fish/
 .config/fontconfig/
 .config/font-manager/
 .config/freerdp/
@@ -147,11 +148,13 @@ NvidiaRecordings
 .nvidia-settings-rc
 .oc.cloudcache
 .oc.connect.pipe
+.oh-my-zsh/
 packages-*
 Pictures/
 .pki/
 .pycache/
 .python_history
+routerconnections.json
 Screencasts
 Screenshots/
 setup.log*
@@ -191,3 +194,4 @@ Workspace
 .zshenv
 .zsh_history
 .zshrc
+.zshrc.pre-oh-my-zsh
