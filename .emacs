@@ -195,15 +195,14 @@
                                      ((buffer-file-name)
                                       (propertize " * " 'face 'mode-line-modified-face))))
                                    ))
+                                 ;; line and column numbers: in custom face
+                                 (:propertize " %p L%l (%c) " face mode-line-position-face)
                                  (vc-mode vc-mode) ;; version-control: branch
                                  "  " ;; " ("
                                  (:propertize mode-name face mode-line-mode-face )
                                  ;; (:propertize " %m " face mode-line-mode-face)
                                  "  " ;; ") "
                                  (:propertize mode-line-process)
-                                 ;; line and column numbers: in custom face
-                                 (:propertize " [ %l : %c ] " face mode-line-position-face)
-                                 ;; (:propertize
                                  ))
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
