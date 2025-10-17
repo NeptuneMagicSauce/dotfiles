@@ -182,8 +182,10 @@
                                  ;; %m mode name
                                  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/_0025_002dConstructs.html
 
-                                 (:propertize "    %b" face mode-line-filename-face)
-                                 "  "
+                                 ;; file name
+                                 (:propertize "    %b " face mode-line-filename-face)
+
+                                 ;; buffer properties: Unsaved or Read-Only
                                  (:eval
                                   (cond
                                    ;; read-only: custom indicator RO
@@ -194,15 +196,25 @@
                                     (cond
                                      ((buffer-file-name)
                                       (propertize " * " 'face 'mode-line-modified-face))))
-                                   ))
-                                 ;; line and column numbers: in custom face
-                                 (:propertize " %p L%l (%c) " face mode-line-position-face)
-                                 (vc-mode vc-mode) ;; version-control: branch
-                                 "  " ;; " ("
-                                 (:propertize mode-name face mode-line-mode-face )
-                                 ;; (:propertize " %m " face mode-line-mode-face)
-                                 "  " ;; ") "
-                                 (:propertize mode-line-process)
+                                                                    ))
+
+                                 ;; position: line, column, %age in custom face
+                                 (:propertize " [%p L%l:%c] " face mode-line-position-face)
+
+                                 ;; LSP
+                                 ;; (:eval (when (bound-and-fn 'lsp-mode) lsp-modeline-workspace-status)) ;; not actually needed
+                                 " " mode-line-misc-info ;; this is needed for clangd indexing progress
+                                 ;; mode-line-modes ;; ??
+                                 ;; mode-line-end-spaces ;; ??
+
+                                 ;; version-control: branch
+                                 (vc-mode vc-mode)
+
+                                 ;; major mode
+                                 " " (:propertize mode-name face mode-line-mode-face)
+
+                                 ;; process
+                                 ;; (:propertize " " mode-line-process) ;; ??
                                  ))
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
