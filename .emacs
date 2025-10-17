@@ -665,6 +665,12 @@ or the workspace script
 (add-hook 'c++-mode-hook (lambda () (clang-format-save-hook-for-this-buffer)))
 (add-hook 'c++-mode-hook (lambda () (setq require-final-newline t)))
 
+;; hs-minor-mode enables code block folding
+(add-hook 'cmode-hook #'hs-minor-mode)
+(add-hook 'c++-mode-hook #'hs-minor-mode)
+(bind-key* "C-c -" 'hs-hide-block)
+(bind-key* "C-c +" 'hs-show-block)
+
 
 ;; C++ IDE
 (if () ;;(when (not (is-workplace-23))
