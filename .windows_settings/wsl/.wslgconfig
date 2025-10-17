@@ -1,0 +1,11 @@
+; doc:
+; https://github.com/microsoft/wslg/wiki/WSLg-Configuration-Options-for-Debugging
+
+[system-distro-env]
+
+;WESTON_RDP_DEBUG_LEVEL=5
+
+;; either of these work to disable scaling
+WESTON_RDP_HI_DPI_SCALING=false
+;100 to 500
+;WESTON_RDP_DEBUG_DESKTOP_SCALING_FACTOR=100
