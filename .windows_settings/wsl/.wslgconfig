@@ -1,6 +1,8 @@
 ; doc:
 ; https://github.com/microsoft/wslg/wiki/WSLg-Configuration-Options-for-Debugging
 
+; paths must have root /mnt/wslg even if auto mount root is customized in /etc/wsl.conf
+
 [system-distro-env]
 
 ;WESTON_RDP_DEBUG_LEVEL=5
@@ -9,3 +11,6 @@
 WESTON_RDP_HI_DPI_SCALING=false
 ;100 to 500
 ;WESTON_RDP_DEBUG_DESKTOP_SCALING_FACTOR=100
+
+
+WSL2_DEFAULT_APP_OVERLAY_ICON=/mnt/wslg/distro/wsl.png
