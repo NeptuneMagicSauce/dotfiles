@@ -806,6 +806,9 @@ or the workspace script
    '(lsp-clients-clangd-executable
      "/home/rlacroix/workspace/buildserver/ssp_docker_run"
      )))
+(unless (is-workplace-23)
+  (custom-set-variables
+   '(lsp-clangd-binary-path "/usr/bin/clangd")))
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
@@ -844,7 +847,7 @@ or the workspace script
 
   (setq lsp-headerline-breadcrumb-enable nil) ; disable breadcrumb / headerline
 
-  (setq lsp-clients-clangd-args '("--log=error" ;; more concise than verbose
+  (setq lsp-clients-clangd-args '("--log=verbose" ;; more concise than verbose
                                   "--background-index"
                                   "--background-index-priority=normal" ;; normal or low or background
                                   "--header-insertion=never"
