@@ -663,6 +663,12 @@ or the workspace script
 ;; https://stackoverflow.com/a/21837875
 (prefer-coding-system 'utf-8-unix)
 
+;; Don't display *Compile-Log* buffer
+(add-to-list 'display-buffer-alist
+             '("\\*Compile-Log\\*"
+               (display-buffer-no-window)
+               (allow-no-window . t)))
+
 ;; clang-format
 (defun clang-format-save-hook-for-this-buffer ()
   (add-hook 'before-save-hook
