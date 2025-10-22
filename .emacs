@@ -775,6 +775,9 @@ or the workspace script
 (define-key global-map [remap find-file] #'helm-find-files)
 (define-key global-map [remap execute-extended-command] #'helm-M-x)
 (define-key global-map [remap switch-to-buffer] #'helm-mini)
+;; Adjust the helm buffer width
+(setq helm-buffer-max-length 42)  ; Increase the number to make filename column wider
+
 (which-key-mode)
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
