@@ -455,3 +455,7 @@ else
         zenity --info --text "$text"
     )
 fi
+
+# FZF
+which fzf > /dev/null || sudo apt install fzf
+source /usr/share/doc/fzf/examples/key-bindings.bash
