@@ -1,7 +1,7 @@
 [alias]
     st = status
     l = log \
-      --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80)%s%C(auto)%d %Cgreen%an%Creset' \
+      --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80,trunc)%s%Cgreen%an%C(auto)%d%Creset' \
       --abbrev-commit \
       --decorate \
       --topo-order\
