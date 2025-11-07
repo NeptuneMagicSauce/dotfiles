@@ -86,7 +86,7 @@ if [ $MYPC == 1 ] ; then
     csconfig()
     {
         F1=/c/Games/Steam/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
-        F2=/c/Games/Steam/userdata/*/730/local/cfg/cs2_user_keys_0_slot0.vcfg
+        F2=/c/Games/Steam/userdata/12*22/730/local/cfg/cs2_user_keys_0_slot0.vcfg
         emacs -nw $F1 $F2
         cp -av $F1 $F2 ~/.counter_strike/
         for i in ~/.counter_strike/*
