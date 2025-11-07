@@ -468,3 +468,17 @@ bind -x '"\C-f": fzf-file-widget'
 export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --style=header,grid {} 2>/dev/null || ls --color=always {}'"
   # preview cd
 export FZF_ALT_C_OPTS="--preview 'ls --color=always {}'"
+  # quick access: any directory at max depth 2 from home
+__fzf_cd_quick_access() {
+    local dir
+    dir=$(fdfind . ~ --type d --max-depth 2 -I | fzf)
+    if [ -n "$dir" ]; then
+        cd "$dir"
+    fi
+    return 0
+}
+# uses a regular bind (not bind -x)
+# which simulates pressing Ctrl+U (clear line)
+# then typing the command, then pressing Enter.
+# This ensures the prompt updates naturally.
+bind '"\C-o": "\C-u __fzf_cd_quick_access\n"'
