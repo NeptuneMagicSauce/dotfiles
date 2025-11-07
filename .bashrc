@@ -462,5 +462,9 @@ source /usr/share/doc/fzf/examples/key-bindings.bash
   # Remove fzf's Ctrl-T binding and restore transpose
 bind -r '\C-t'
 bind '\C-t: transpose-chars'
-  # Bind the fzf file finder to Alt-F instead
-bind -x '"\ef": fzf-file-widget'
+  # Bind the fzf file finder to Ctrl-F instead
+bind -x '"\C-f": fzf-file-widget'
+  # preview file-widget
+export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --style=header,grid {} 2>/dev/null || ls --color=always {}'"
+  # preview cd
+export FZF_ALT_C_OPTS="--preview 'ls --color=always {}'"
