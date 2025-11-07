@@ -16,7 +16,7 @@
   (if (string-equal system-configuration "x86_64-pc-linux-gnu")
       ;; must be WSL
       ;; see ~/.windows_settings/wsl/.wslgconfig for dpi-scaling-bluriness
-      (setq custom-font-size 400)
+      (setq custom-font-size 270)
     (setq custom-font-size 85)))
 (when (string-equal system-name "JOJO-LAPTOP")
   (setq custom-font-size 100)
