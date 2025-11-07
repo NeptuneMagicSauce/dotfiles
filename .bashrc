@@ -459,3 +459,8 @@ fi
 # FZF
 which fzf > /dev/null || sudo apt install fzf
 source /usr/share/doc/fzf/examples/key-bindings.bash
+  # Remove fzf's Ctrl-T binding and restore transpose
+bind -r '\C-t'
+bind '\C-t: transpose-chars'
+  # Bind the fzf file finder to Alt-F instead
+bind -x '"\ef": fzf-file-widget'
