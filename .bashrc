@@ -468,10 +468,15 @@ bind -x '"\C-f": fzf-file-widget'
 export FZF_CTRL_T_OPTS="--preview 'batcat --color=always --style=header,grid {} 2>/dev/null || ls --color=always {}'"
   # preview cd
 export FZF_ALT_C_OPTS="--preview 'ls --color=always {}'"
-  # quick access: any directory at max depth 2 from home
+  # quick access:
+  # any directory at max depth 2 from home
+  # or sym-links at depth 1
 __fzf_cd_quick_access() {
     local dir
-    dir=$(fdfind . ~ --type d --max-depth 2 -I | fzf)
+    dir=$( { \
+             fdfind . ~ --type d --max-depth 2 -I ; \
+             fdfind . ~ --type d --max-depth 1 -L -I ; } \
+             | sort | uniq | fzf)
     if [ -n "$dir" ]; then
         cd "$dir"
     fi
