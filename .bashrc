@@ -131,6 +131,23 @@ else
     PROMPT_COMMAND=set_prompt_fast
 fi
 
+# terminal title
+set_title() {
+    echo -ne "\033]0;${1}\007"
+}
+deferred_setup_title() {
+    # terminal title when a command is running
+    trap 'set_title "⚙ $BASH_COMMAND …"' DEBUG
+    # terminal title after a command is finished running
+    # as a call added to PROMPT_COMMAND, run when the command is finished
+    PROMPT_COMMAND+=('set_title "${PWD/#$HOME/\~}"')
+}
+# schedule it to run after a delay (in background, non-blocking)
+# if not scheduled, it will print garbage while executing the rest of bashrc
+# if not scheduled, it does not work for the first command, only works on the second prompted line
+(sleep 1 && kill -USR1 $$) & disown
+trap 'deferred_setup_title' USR1
+
 # aliases
 alias ls='ls --color -B'
 alias l='ls -loh'
