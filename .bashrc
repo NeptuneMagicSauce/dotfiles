@@ -459,9 +459,20 @@ then
     {
         wslout python "$@"
     }
+    notify-wsl() {
+        powershell.exe -Command "
+  [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
+  [Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime] | Out-Null
+  \$xml = '<toast><visual><binding template=\"ToastText02\"><text id=\"1\">$@</text></binding></visual></toast>'
+  \$xmlDoc = New-Object Windows.Data.Xml.Dom.XmlDocument
+  \$xmlDoc.LoadXml(\$xml)
+  \$toast = [Windows.UI.Notifications.ToastNotification]::new(\$xmlDoc)
+  [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('WSL').Show(\$toast)"
+    }
+
     pingme()
     (
-        notify-wsl.sh
+        notify-wsl "You have been pinged"
     )
 else
     # not inside WSL
