@@ -367,10 +367,12 @@
 ;; Load chosen theme
 (load-chosen-theme)
 
-;; Compilation output
+;; Compilation output: auto scrolling
 ;; (setq compilation-scroll-output t)
-(setq compilation-scroll-output 'first-error)
-(setq compilation-max-output-line-length nil) ; do not collapse long lines
+(setq compilation-scroll-output 'first-error) ;; auto scroll compile buffer to first error
+(setq compilation-max-output-line-length nil) ;; do not collapse long lines
+
+
 
 ;; Revert (=reload from disk) All Buffers
 ;; source https://emacs.stackexchange.com/a/24461
@@ -468,8 +470,6 @@ or the workspace script
     (call-interactively 'compile))
   )
 (setq compilation-read-command nil) ;; do not prompt for compile command
-(setq compilation-scroll-output 'first-error) ;; auto scroll compile buffer to first error
-;; (setq compilation-scroll-output t) ;; auto scroll compile buffer to follow output
 
 ;; (setq compilation-last-buffer nil) ;; why !?
 
