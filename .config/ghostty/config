@@ -52,6 +52,11 @@
 font-family = "Cascadia Mono"
 font-size = 12
 gtk-titlebar-style = tabs
+# tabs or native
+
+# window-show-tab-bar = auto
+# hide tab bar when there is only one tab
+
 # gtk-wide-tabs = false
 
 ## bind shift-enter to enter
