@@ -1,4 +1,5 @@
 .adp_user
+.amp/
 .anyconnect
 .anyconnectvpn*
 .apport-ignore.xml
@@ -13,6 +14,7 @@ bin/qemu*
 bin/youtube-dl*
 .bitbucketnetrc
 build_PRICING_component.log
+.bun/
 .cache/
 CatPi
 .cgdb/logs/
@@ -30,7 +32,9 @@ conda/
 .config/chromium/
 .config/cni/
 .config/Code/
+.config/configstore/
 .config/connections.db
+.config/.copilot/
 .config/dconf/
 .config/enchant/
 .config/eog/
@@ -41,6 +45,8 @@ conda/
 .config/font-manager/
 .config/freerdp/
 .config/gedit/
+.config/gh/
+.config/gh-copilot/
 .config/GIMP/
 .config/git/gitk
 .config/gnome-control-center
@@ -52,6 +58,7 @@ conda/
 .config/gtk-3.0/
 .config/ibus/
 .config/icedtea-web/
+.config/inkscape/
 .config/k9s/
 .config/kcachegrindrc
 .config/libreoffice/
@@ -74,8 +81,10 @@ conda/
 .config/uv/
 .config/vlc/
 .config/wslu/
+.config/yelp/
 .config/Zeal/
 .config/zoom*
+.copilot/
 cs2
 .cups/
 .dbus/
@@ -84,6 +93,7 @@ deliverables/
 Desktop/
 .devcontainer/
 Devel
+.devpod/
 DLAM
 .docker/
 Documents/
@@ -143,6 +153,7 @@ misc/
 .motd_shown
 .mozilla/
 .netrc
+.npm/
 .nv/
 NvidiaRecordings
 .nvidia-settings-rc
