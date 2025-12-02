@@ -15,6 +15,7 @@ bin/youtube-dl*
 .bitbucketnetrc
 build_PRICING_component.log
 .bun/
+c
 .cache/
 CatPi
 .cgdb/logs/
@@ -85,6 +86,7 @@ conda/
 .config/Zeal/
 .config/zoom*
 .copilot/
+crashlog*
 cs2
 .cups/
 .dbus/
@@ -145,6 +147,7 @@ Incoming*
 .landscape/
 .lessfilter
 .lesshst
+libhx711/
 .local/
 local/
 .log_build.txt
@@ -165,6 +168,7 @@ Pictures/
 .pki/
 .pycache/
 .python_history
+raspberry-utils/
 routerconnections.json
 Screencasts
 Screenshots/
