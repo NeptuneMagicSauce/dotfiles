@@ -177,6 +177,33 @@
 ;; (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
+;; (defvar my-compilation-spinner-frames '("⡇" "⠏" "⠛" "⠹" "⢸" "⣰" "⣤" "⣆" )) ;; with 3 dots
+(defvar my-compilation-spinner-frames '("⠇" "⠋" "⠙" "⠸" "⢰" "⣠" "⣄" "⡆")) ;; with 4 dots
+(defvar my-compilation-spinner-index 0)
+(defvar my-compilation-spinner-timer nil)
+
+(defun my-compilation-spinner-advance ()
+  "Advance the spinner and update modeline."
+  (setq my-compilation-spinner-index
+        (mod (1+ my-compilation-spinner-index)
+             (length my-compilation-spinner-frames)))
+  (force-mode-line-update t))
+
+(defun my-compilation-spinner-start  (&rest _)
+  "Start the spinner timer."
+  (unless my-compilation-spinner-timer
+    (setq my-compilation-spinner-timer
+          (run-with-timer 0 0.10 #'my-compilation-spinner-advance))))
+
+(defun my-compilation-spinner-stop (&rest _)
+  "Stop the spinner timer."
+  (when my-compilation-spinner-timer
+    (cancel-timer my-compilation-spinner-timer)
+    (setq my-compilation-spinner-timer nil)))
+
+(add-hook 'compilation-start-hook #'my-compilation-spinner-start)
+(add-hook 'compilation-finish-functions #'my-compilation-spinner-stop)
+
 ;; Mode line setup
 (setq-default mode-line-format '(
                                  ;; %b buffer name
@@ -217,9 +244,47 @@
                                     (concat " " (propertize (format-mode-line mode-name) 'face 'mode-line-mode-face))))
 
 
-                                 ;; process
-                                 ;; (:propertize " " mode-line-process) ;; ??
+                                 ;; compilation status
+                                 (:eval
+                                  (when (derived-mode-p 'compilation-mode)
+                                    (let ((proc (get-buffer-process (current-buffer)))
+                                          (errors (if (boundp 'compilation-num-errors-found)
+                                                      compilation-num-errors-found 0))
+                                          (warnings (if (boundp 'compilation-num-warnings-found)
+                                                        compilation-num-warnings-found 0)))
+                                      (cl-flet ((pluralize (n singular)
+                                                  (format "%d %s" n (if (= n 1) singular (concat singular "s")))))
+                                        (cond
+                                         (proc
+                                          (propertize (format "[%s %s]"
+                                                              (if (= 0 (mod (/ my-compilation-spinner-index 5) 2)) "🔥" "💨")
+                                                              (nth my-compilation-spinner-index
+                                                                   my-compilation-spinner-frames))
+                                                      'face 'compilation-mode-line-run))
+                                         ((> errors 0)
+                                          (concat
+                                           (propertize (format " [✘ %s" (pluralize errors "Error"))
+                                                       'face 'compilation-mode-line-fail)
+                                           (if (> warnings 0)
+                                               (propertize (format ", %s] " (pluralize warnings "Warning"))
+                                                           'face 'compilation-mode-line-warning)
+                                             (propertize "] " 'face 'compilation-mode-line-fail))))
+                                         ((> warnings 0)
+                                          (propertize (format " [✨ OK, %s] " (pluralize warnings "Warning"))
+                                                      'face 'compilation-mode-line-warning))
+                                         ((local-variable-p 'compilation-directory)
+                                          (propertize " [✨ OK] " 'face 'compilation-mode-line-exit)))))))
+                                 ;; TODO
+                                 ;; OK if errors, print count
+                                 ;; OK if warnings, print count
+                                 ;; OK emojis
+                                 ;; OK with animation while compiling
+                                 ;; OK with contrasting colors
+                                 ;; have colors also contrast when buffer is active
+                                 ;; do not colorize the counts, only the labels Warning/Error
                                  ))
+
+(make-face 'compilation-mode-line-warning)
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
@@ -264,6 +329,15 @@
 
   ;; Modline inactive-buffer color = grey
   (set-face-attribute 'mode-line-inactive nil :foreground "#FFF" :background "#666")
+
+  ;; Compilation Running
+  (set-face-attribute 'compilation-mode-line-run nil :foreground "orange" :weight 'bold)
+  ;; Compilation Warning
+  (set-face-attribute 'compilation-mode-line-warning nil :foreground "#f5b949" :weight 'bold)
+  ;; Compilation Error
+  (set-face-attribute 'compilation-mode-line-fail nil :foreground "#f27f6f" :weight 'bold)
+  ;; Compilation OK
+  (set-face-attribute 'compilation-mode-line-exit nil :foreground "#8bf081" :weight 'bold)
 
   ;; Selected-text color = inverted
   (set-face-attribute 'region nil :inverse-video t)
