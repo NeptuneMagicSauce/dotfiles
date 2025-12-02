@@ -211,8 +211,11 @@
                                  ;; version-control: branch
                                  (vc-mode vc-mode)
 
-                                 ;; major mode
-                                 " " (:propertize mode-name face mode-line-mode-face)
+                                 ;; major mode, except for compilation buffer
+                                 (:eval
+                                  (unless (derived-mode-p 'compilation-mode)
+                                    (concat " " (propertize (format-mode-line mode-name) 'face 'mode-line-mode-face))))
+
 
                                  ;; process
                                  ;; (:propertize " " mode-line-process) ;; ??
