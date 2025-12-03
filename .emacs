@@ -5,9 +5,11 @@
 
 ;; customisations global
 (setq custom-font-size 140)
-(setq custom-accent-color-graphics "#54AFFF") ;; blue
-(setq custom-accent-color-terminal "#54AFFF") ;; blue
+(setq custom-accent-color "#54AFFF") ;; blue
+(setq inactive-modeline-color "#666")
+(setq custom-accent-color-darker "#007EEE") ;; (color-darken-name custom-accent-color 30)
 ;; "#ff9f00") ;; DarkOrange
+
 ;; (setq custom-theme-color "light") ;; dark or light
 (setq custom-theme-color "dark") ;; dark or light
 
@@ -260,31 +262,44 @@
                                                               (if (= 0 (mod (/ my-compilation-spinner-index 5) 2)) "🔥" "💨")
                                                               (nth my-compilation-spinner-index
                                                                    my-compilation-spinner-frames))
-                                                      'face 'compilation-mode-line-run))
+                                                      'face (if (mode-line-window-selected-p)
+                                                                'compilation-mode-line-run-active
+                                                              'compilation-mode-line-run-inactive)))
+
                                          ((> errors 0)
                                           (concat
-                                           (propertize (format " [✘ %s" (pluralize errors "Error"))
-                                                       'face 'compilation-mode-line-fail)
+                                           (propertize (format "[✘ %s" (pluralize errors "Error"))
+                                                       'face (if (mode-line-window-selected-p)
+                                                                 'compilation-mode-line-fail-active
+                                                               'compilation-mode-line-fail-inactive))
                                            (if (> warnings 0)
-                                               (propertize (format ", %s] " (pluralize warnings "Warning"))
-                                                           'face 'compilation-mode-line-warning)
-                                             (propertize "] " 'face 'compilation-mode-line-fail))))
+                                               (propertize (format ", %s]" (pluralize warnings "Warning"))
+                                                           'face (if (mode-line-window-selected-p)
+                                                                     'compilation-mode-line-warning-active
+                                                                   'compilation-mode-line-warning-inactive))
+                                             (propertize "]" 'face (if (mode-line-window-selected-p)
+                                                                        'compilation-mode-line-fail-active
+                                                                      'compilation-mode-line-fail-inactive)))))
                                          ((> warnings 0)
-                                          (propertize (format " [✨ OK, %s] " (pluralize warnings "Warning"))
-                                                      'face 'compilation-mode-line-warning))
+                                          (propertize (format "[✨ OK, %s]" (pluralize warnings "Warning"))
+                                                      'face (if (mode-line-window-selected-p)
+                                                                'compilation-mode-line-warning-active
+                                                              'compilation-mode-line-warning-inactive)))
                                          ((local-variable-p 'compilation-directory)
-                                          (propertize " [✨ OK] " 'face 'compilation-mode-line-exit)))))))
-                                 ;; TODO
-                                 ;; OK if errors, print count
-                                 ;; OK if warnings, print count
-                                 ;; OK emojis
-                                 ;; OK with animation while compiling
-                                 ;; OK with contrasting colors
-                                 ;; have colors also contrast when buffer is active
-                                 ;; do not colorize the counts, only the labels Warning/Error
+                                          (propertize "[✨ OK]" 'face (if (mode-line-window-selected-p)
+                                                                            'compilation-mode-line-exit-active
+                                                                      'compilation-mode-line-exit-inactive))))))))
                                  ))
 
-(make-face 'compilation-mode-line-warning)
+(make-face 'compilation-mode-line-warning-active)
+(make-face 'compilation-mode-line-warning-inactive)
+(make-face 'compilation-mode-line-fail-active)
+(make-face 'compilation-mode-line-fail-inactive)
+(make-face 'compilation-mode-line-exit-active)
+(make-face 'compilation-mode-line-exit-inactive)
+(make-face 'compilation-mode-line-run-active)
+(make-face 'compilation-mode-line-run-inactive)
+
 (make-face 'mode-line-mode-face)
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
@@ -325,19 +340,24 @@
   ;; these need to be called after change theme:
 
   ;; Modeline active-buffe color = accent color
-  (set-face-attribute 'mode-line nil :foreground "#111" :background custom-accent-color-graphics)
+  (set-face-attribute 'mode-line nil :foreground "#111" :background custom-accent-color)
 
   ;; Modline inactive-buffer color = grey
-  (set-face-attribute 'mode-line-inactive nil :foreground "#FFF" :background "#666")
+  (set-face-attribute 'mode-line-inactive nil :foreground "#FFF" :background inactive-modeline-color)
 
+  (setq compilation-activate-background "#444")
   ;; Compilation Running
-  (set-face-attribute 'compilation-mode-line-run nil :foreground "orange" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-run-active nil :foreground "orange" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-run-inactive nil :foreground "orange" :weight 'bold)
   ;; Compilation Warning
-  (set-face-attribute 'compilation-mode-line-warning nil :foreground "#f5b949" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-warning-active nil :foreground "#f5b949" :background compilation-activate-background :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-warning-inactive nil :foreground "#f5b949" :background compilation-activate-background :weight 'bold)
   ;; Compilation Error
-  (set-face-attribute 'compilation-mode-line-fail nil :foreground "#f27f6f" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-fail-active nil :foreground "#f27f6f" :background compilation-activate-background :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-fail-inactive nil :foreground "#f27f6f" :background compilation-activate-background :weight 'bold)
   ;; Compilation OK
-  (set-face-attribute 'compilation-mode-line-exit nil :foreground "#8bf081" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-exit-active nil :foreground "#8bf081" :weight 'bold)
+  (set-face-attribute 'compilation-mode-line-exit-inactive nil :foreground "#8bf081" :weight 'bold)
 
   ;; Selected-text color = inverted
   (set-face-attribute 'region nil :inverse-video t)
