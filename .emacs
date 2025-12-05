@@ -80,7 +80,8 @@
  '(package-selected-packages
    '(all-the-icons bind-key clang-format cmake-mode company doom-themes
                    emojify-logos flycheck helm-lsp helm-xref
-                   lsp-treemacs lsp-ui projectile rg which-key)))
+                   lsp-pyright lsp-treemacs lsp-ui projectile rg
+                   which-key)))
 
 ;; byte-compile all the packages
 (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0)
@@ -918,6 +919,7 @@ or the workspace script
 
 (add-hook 'c-mode-hook #'lsp-deferred)
 (add-hook 'c++-mode-hook #'lsp-deferred)
+(add-hook 'python-mode-hook #'lsp-deferred)
 
 (global-company-mode 1)
 (setq company-idle-delay 0.0)
