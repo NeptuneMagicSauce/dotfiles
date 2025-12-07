@@ -710,7 +710,7 @@ or the workspace script
 ;; switch header - cpp
 ;; (bind-key* "C-<tab>" 'ff-find-other-file)
 ;; (setq ff-search-directories '("." "../src" "../include" "../Include" "../C" "../../include"))
-                                        ; with Projectile: it can find the other file in any directory of the project
+; with Projectile: it can find the other file in any directory of the project
 (bind-key* "C-<tab>" 'projectile-find-other-file)
 ;; also have a binding that works in Terminal which catches Ctrl-Tab :
 (bind-key* "M-`" 'projectile-find-other-file)
