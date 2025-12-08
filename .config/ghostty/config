@@ -70,3 +70,16 @@ theme = Atom One Dark
 # gtk-scrollbars = true
 
 # TODO vertical scrollbar
+
+# selected text color
+selection-foreground = cell-background
+selection-background = cell-foreground
+# black on white
+# selection-foreground = #000000
+# selection-background = #ffffff
+# yellow on blue
+# selection-foreground = #ffff00
+# selection-background = #0000cc
+# green on dark purple
+# selection-foreground = #00ff00
+# selection-background = #2d0057
