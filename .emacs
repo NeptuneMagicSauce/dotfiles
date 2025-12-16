@@ -911,7 +911,7 @@ or the workspace script
 (when (is-workplace-23)
   (custom-set-variables
    '(lsp-clients-clangd-executable
-     "/home/rlacroix/workspace/buildserver/ssp_docker_run"
+     "~/workspace/buildserver/ssp_docker_run"
      )))
 (unless (is-workplace-23)
   (custom-set-variables
