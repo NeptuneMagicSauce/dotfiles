@@ -931,6 +931,25 @@ or the workspace script
 
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
+;; EDIFACT syntax highlighting
+(define-generic-mode
+    'edi-mode
+  '("'")
+  '("")
+  '(
+    ("\\\\."  . 'font-lock-function-name-face)
+    ("^[[:upper:]]\\{3\\}" . font-lock-type-face)
+    ("\+" . 'font-lock-builtin-face)
+    ("\*" . 'font-lock-preprocessor-face)
+    (":" . 'font-lock-keyword-face)
+
+    ("\\([0-9]*[A-Z?][0-9A-Z?]*\\)\\(\+\\|:\\|\*\\|'\\)"  (1 'font-lock-string-face))
+    ("\\([0-9]+\\)\\(\+\\|:\\|\*\\|'\\)"  (1 'font-lock-constant-face)))
+  '("\\.edi$" "edi" "interface")
+  nil
+  "Mode for edifact files"
+  )
+
 (with-eval-after-load 'lsp-mode
 
   ;; bind-key for LSP must be done here, not earlier
