@@ -486,7 +486,11 @@ fi
 
 # FZF
 which fzf > /dev/null || sudo apt install fzf
-source /usr/share/doc/fzf/examples/key-bindings.bash
+FZF_BINDINGS=/usr/share/doc/fzf/examples/key-bindings.bash
+if [ -f $FZF_BINDINGS ] ; then
+    source $FZF_BINDINGS
+fi
+
   # Remove fzf's Ctrl-T binding and restore transpose
 bind -r '\C-t'
 bind '\C-t: transpose-chars'
