@@ -520,5 +520,8 @@ __fzf_cd_quick_access() {
 # This ensures the prompt updates naturally.
 bind '"\C-o": "\C-u __fzf_cd_quick_access\n"'
 
-# do not sort fzf-history, so that most recents are matched first
-export FZF_CTRL_R_OPTS="--no-sort"
+# # do not sort fzf-history, so that most recents are matched first
+# export FZF_CTRL_R_OPTS="--no-sort"
+
+# use the history scheme for fzf because ?
+export FZF_CTRL_R_OPTS='--scheme=history'
