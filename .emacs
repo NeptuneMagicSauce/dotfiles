@@ -216,6 +216,9 @@
                                  ;; file name
                                  (:propertize "    %b " face mode-line-filename-face)
 
+                                 ;; revert notification
+                                 (:eval my/revert-notification)
+
                                  ;; buffer properties: Unsaved or Read-Only
                                  (:eval
                                   (cond
@@ -760,6 +763,110 @@ or the workspace script
 ;; line-breaks unix, even on windows
 ;; https://stackoverflow.com/a/21837875
 (prefer-coding-system 'utf-8-unix)
+
+;; Auto-Revert files that changed on disk
+(global-auto-revert-mode 1)
+;; Also auto-revert dired buffers
+(setq global-auto-revert-non-file-buffers t)
+
+;; Auto-Revert conflict resolution: when there are unsaved changes, prompt
+(defun my/check-modified-buffer-changed ()
+  "Prompt user when a modified buffer's file changes on disk."
+  (when (and buffer-file-name
+             (buffer-modified-p)
+             (not (verify-visited-file-modtime (current-buffer))))
+    (clear-visited-file-modtime)
+    (if (y-or-n-p ;; yes-or-no-p ;; must type the whole 'yes' with yes-or-no-p
+         (format "'%s' changed on disk.  Discard changes and reload? "
+                 (file-name-nondirectory buffer-file-name)))
+        (progn
+          (let ((inhibit-message t))
+            (revert-buffer t t))
+          (my/notify-buffer-reverted (file-name-nondirectory buffer-file-name)))
+          ;; (message "Reloaded from disk. "))
+      (clear-visited-file-modtime)
+      (message "Kept buffer version. Use M-x revert-buffer to reload later."))))
+(setq use-dialog-box nil) ;; prompt in the minibuffer, no GUI widget/box
+
+;; Auto-Revert: feedback message in the modeline
+(defvar-local my/revert-notification nil
+  "Current revert notification text for this buffer.")
+(defvar-local my/revert-notification-timer nil
+  "Timer for clearing revert notification.")
+(defun my/revert-animation-advance (buffer)
+  "Advance the revert animation in BUFFER."
+  (when (buffer-live-p buffer)
+    (with-current-buffer buffer
+      (setq my/revert-animation-index
+            (mod (1+ my/revert-animation-index)
+                 (length my/revert-animation-frames)))
+      (setq my/revert-notification
+            (propertize (nth my/revert-animation-index my/revert-animation-frames)
+                        'face 'my/revert-notify-face))
+      (force-mode-line-update))))
+(defun my/clear-revert-notification-in-buffer (buffer)
+  "Clear the revert notification from modeline in BUFFER."
+  (when (buffer-live-p buffer)
+    (with-current-buffer buffer
+      (when my/revert-notification-timer
+        (cancel-timer my/revert-notification-timer)
+        (setq my/revert-notification-timer nil))
+      (when my/revert-animation-timer
+        (cancel-timer my/revert-animation-timer)
+        (setq my/revert-animation-timer nil))
+      (setq my/revert-notification nil)
+      (force-mode-line-update))))
+(defvar-local my/revert-animation-timer nil
+  "Timer for animating revert notification.")
+(defvar-local my/revert-animation-index 0
+  "Current frame index for animation.")
+(defvar my/revert-animation-frames
+  '(
+    " 🔀 "
+    " 🔁 "
+    ;; " 🔄 🔃 "
+    ))
+(defface my/revert-notify-face
+  '((t : foreground "#ffffff"
+       :background "#4a90d9"
+       :weight bold))
+  "Face for buffer revert notifications.")
+
+;; Auto-Revert feedback message : modified buffers
+(defun my/notify-buffer-reverted (buffer-name)
+  "Show animated notification that BUFFER-NAME was reverted."
+  ;; (my/clear-revert-notification)
+  (let ((buffer (current-buffer)))
+    (my/clear-revert-notification-in-buffer buffer)
+    (setq my/revert-animation-index 0)
+    (setq my/revert-notification
+          (propertize (nth 0 my/revert-animation-frames)
+                      'face 'my/revert-notify-face))
+    (force-mode-line-update)
+    ;; Start animation timer
+    (setq my/revert-animation-timer
+          (run-at-time 0.1 0.3 #'my/revert-animation-advance buffer))
+    ;; Stop after duration
+    (setq my/revert-notification-timer
+          (run-at-time 4.0 nil #'my/clear-revert-notification-in-buffer buffer))))
+
+;; Auto-Revert feedback message : unmodified buffers
+(defun my/notify-auto-reverted ()
+  "Show notification when a buffer is auto-reverted."
+  (my/notify-buffer-reverted (file-name-nondirectory buffer-file-name)))
+(add-hook 'after-revert-hook #'my/notify-auto-reverted)
+(setq auto-revert-verbose nil)
+
+;; Auto-Revert: also check in all buffers when Emacs gains focus
+(defun my/check-all-buffers-for-changes ()
+  "Check all file buffers for external modifications."
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (my/check-modified-buffer-changed))))
+(add-hook 'focus-in-hook #'my/check-all-buffers-for-changes)
+
+;;; end Auto-Revert
+
 
 ;; Don't display *Compile-Log* buffer
 (add-to-list 'display-buffer-alist
