@@ -1,0 +1,4 @@
+#!/bin/env python3
+
+import sys, json, json5
+print(json.dumps(json5.load(sys.stdin)))
