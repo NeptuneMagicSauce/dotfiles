@@ -10,7 +10,7 @@
   :group 'doom-themes)
 
 (def-doom-theme romulus-dark
-  "A dark theme based off of doom-one with more vibrant colors."
+    "A dark theme based off of doom-one with more vibrant colors."
 
   ;; name        gui       256           16
   (
@@ -52,7 +52,7 @@
    ;; These are the "universal syntax classes" that doom-themes establishes.
    ;; These *must* be included in every doom themes, or your theme will throw an
    ;; error, as they are used in the base theme defined in doom-themes-base.
-   ; highlight is "search match background, but the value set here is then brightened"
+                                        ; highlight is "search match background, but the value set here is then brightened"
    (highlight      red);"#777");"#888")
    ;; region is "selected text foreground"
    (region         "#000");"#444");"#3d4451")
@@ -102,7 +102,7 @@
    ;; ((font-lock-comment-face &override)
    ;;  :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
 
-   ; my customisations for line-number and line-number-current-line
+                                        ; my customisations for line-number and line-number-current-line
    (line-number :background "#222" :foreground "#999")
    (line-number-current-line :inverse-video t :bold bold)
    ;; ;; (line-number-current-line :background "#999" :foreground "#222" :bold bold)
@@ -110,6 +110,15 @@
    ;; lsp-ui
    ;; fix-it suggestions in sideline:
    (lsp-ui-sideline-global :box nil :inverse-video t)
+
+   ;; MarkDown
+   (markdown-header-delimiter-face :foreground "#FF665C" :bold bold)  ;; # symbols
+   (markdown-header-face-1 :inherit 'markdown-header-delimiter-face)
+   (markdown-header-face-2 :foreground "#FF66AC" :bold bold)
+   (markdown-header-face-3 :foreground "#FF66F2" :bold bold)
+   (markdown-header-face-4 :foreground "#FF52F2" :bold bold)
+   (markdown-header-face-5 :foreground "#FF3EF2" :bold bold)
+   (markdown-header-face-6 :foreground "#FF2AF2" :bold bold)
 
    ;; (lazy-highlight :background "#54afff" :foreground "#000000" :bold bold)
    ;; (lsp-face-highlight-textual :background "#375467" :foreground "#DFDFDF")

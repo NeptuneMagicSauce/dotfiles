@@ -92,6 +92,10 @@
    (vc-modified    orange)
    (vc-added       green)
    (vc-deleted     red)
+
+
+
+
    )
    (
     (line-number :background "#ddd" :foreground "#000")
@@ -102,6 +106,14 @@
     ;; fix-it suggestions in sideline:
     (lsp-ui-sideline-global :box nil :inverse-video t)
 
+    ;; Markdown
+    (markdown-header-delimiter-face :foreground "#A30000" :bold bold)  ;; # symbols
+    (markdown-header-face-1 :inherit 'markdown-header-delimiter-face)
+    (markdown-header-face-2 :foreground "#A30028" :bold bold)
+    (markdown-header-face-3 :foreground "#A30050" :bold bold)
+    (markdown-header-face-4 :foreground "#A30078" :bold bold)
+    (markdown-header-face-5 :foreground "#A300A0" :bold bold)
+    (markdown-header-face-6 :foreground "#A300C8" :bold bold)
     )
 )
 

@@ -827,7 +827,7 @@ or the workspace script
     ;; " 🔄 🔃 "
     ))
 (defface my/revert-notify-face
-  '((t : foreground "#ffffff"
+  '((t :foreground "#ffffff"
        :background "#4a90d9"
        :weight bold))
   "Face for buffer revert notifications.")
