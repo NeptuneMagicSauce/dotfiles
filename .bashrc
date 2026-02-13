@@ -366,6 +366,9 @@ ffmpeg1080p()
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
 
+# Append to history
+shopt -s histappend
+
 # man pages colors https://unix.stackexchange.com/a/147
 # not supported by Windows Terminal
 export GROFF_NO_SGR=1
