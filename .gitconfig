@@ -17,6 +17,8 @@
         git stash drop -q stash@{$idx}; \
         git stash store -m \"$2\" $newsha; \
     }; f"
+[merge]
+    conflictstyle = diff3
 [user]
     email = 37757244+NeptuneMagicSauce@users.noreply.github.com
     name = Neptune Magic Sauce
