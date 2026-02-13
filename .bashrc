@@ -369,6 +369,9 @@ shopt -s cdspell
 # Append to history
 shopt -s histappend
 
+# Recursive globbing, i.e. ls **/*cpp
+shopt -s globstar
+
 # man pages colors https://unix.stackexchange.com/a/147
 # not supported by Windows Terminal
 export GROFF_NO_SGR=1
