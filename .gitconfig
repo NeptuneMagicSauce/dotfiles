@@ -1,3 +1,38 @@
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only # needed for git commit --patch
+[delta]
+    syntax-theme = Dracula
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+    hyperlinks = true
+    max-line-distance = 1.0 # so that modified lines are at the same height, paired
+    word-diff-regex = "[A-Z][a-z]+|[a-z]+|[A-Z]+|[0-9]+|." # more precise sub-word emphasise
+    diff-so-fancy = true # file name at hunk start have dedicated colors
+    diff-highlight = false # ??
+    blame-palette = "#101010 #1a1a1a #242424 #2e2e2e" # fewer contrast between the commit-blocks in annotate
+
+    # minus-style = syntax "#4f004f"
+    # plus-style = syntax "#00485c"
+
+    # minus-style      = syntax "#3d1a2e"
+    # minus-emph-style = syntax "#5c2044"
+    # plus-style       = syntax "#0e3532"
+    # plus-emph-style  = syntax "#145c56"
+
+
+    # minus-style      = syntax "#3b0e28"
+    # minus-emph-style = syntax "#6b1a4a"
+    # plus-style       = syntax "#0a2e30"
+    # plus-emph-style  = syntax "#0f5c5e"
+
+    minus-style      = syntax "#40102e"
+    minus-emph-style = syntax "#7a1a56"
+    plus-style       = syntax "#082a2e"
+    plus-emph-style  = syntax "#0a3a3a"
+
 [alias]
     st = status
     l = log \
@@ -7,8 +42,6 @@
       --topo-order\
       --graph \
       --date=format-local:'%Y-%m-%d %H:%M'
-      # --date=short
-    # l = log --decorate --graph --date=short --pretty=\"format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C()%s %C(black) [%an]%Creset\"
     amend = commit --amend --date=now --no-edit
     stash-reword = "!f() { \
         idx=${1:-0}; \
@@ -35,31 +68,40 @@
     rebase = false
 [diff]
     submodule = log
+    tool = vimdiff
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
+    keepBackup = false
 [status]
     submoduleSummary = true
+
+# these diff colors are not used when pager is delta
 
 # git diff color palette from
 # https://www.color-hex.com/color-palette/1059421
 # https://www.color-hex.com/color-palette/75129
 
-[color "diff-highlight"]
-  oldNormal = "#f765b8" bold
-  oldHighlight = 16 bold "#f765b8"
-  newNormal = "#27fdf5" bold
-  newHighlight = 16 bold "#27fdf5"
-[color "diff"]
-    meta = "#a3d97c"
-    # meta = "#7affb4"
-    frag = magenta bold
-    func = "#1fa2ff" bold
-    # func = "#aa9eef" bold
-    commit = 220 bold
-    old = "#f765b8" bold
-    new = "#27fdf5" bold
-    whitespace = red reverse
+# [color "diff-highlight"]
+#   oldNormal = "#f765b8" bold
+#   oldHighlight = 16 bold "#f765b8"
+#   newNormal = "#27fdf5" bold
+#   newHighlight = 16 bold "#27fdf5"
+# [color "diff"]
+#     meta = "#a3d97c"
+#     # meta = "#7affb4"
+#     frag = magenta bold
+#     func = "#1fa2ff" bold
+#     # func = "#aa9eef" bold
+#     commit = 220 bold
+#     old = "#f765b8" bold
+#     new = "#27fdf5" bold
+#     whitespace = red reverse
 
 
-[pager]
-    log  = perl ~/.diff-highlight | less
-    show = perl ~/.diff-highlight | less
-    diff = perl ~/.diff-highlight | less
+# [pager]
+#     log  = perl ~/.diff-highlight | less
+#     show = perl ~/.diff-highlight | less
+#     diff = perl ~/.diff-highlight | less
