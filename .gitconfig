@@ -59,8 +59,6 @@
     name = Neptune Magic Sauce
 [includeIf "gitdir:~/workspace/"]
     path = .gitconfig-workspace
-[color]
-    ui = true
 [core]
     whitespace = cr-at-eol,-blank-at-eol,-blank-at-eof
     symlinks = true
@@ -79,6 +77,9 @@
     keepBackup = false
 [status]
     submoduleSummary = true
+
+# [color]
+#     ui = true # not needed
 
 # these diff colors are not used when pager is delta
 
