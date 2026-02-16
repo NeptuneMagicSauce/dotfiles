@@ -36,13 +36,8 @@
 
 [alias]
     st = status
-    l = log \
-      --pretty=format:'%C(auto)%h %Cblue%ad%Creset %<(80,trunc)%s%Cgreen%an%C(auto)%d%Creset' \
-      --abbrev-commit \
-      --decorate \
-      --topo-order\
-      --graph \
-      --date=format-local:'%Y-%m-%d %H:%M'
+    l  = log --topo-order --graph
+    lp = log --topo-order -p
     amend = commit --amend --date=now --no-edit
     stash-reword = "!f() { \
         idx=${1:-0}; \
@@ -51,6 +46,12 @@
         git stash drop -q stash@{$idx}; \
         git stash store -m \"$2\" $newsha; \
     }; f"
+[format]
+  pretty = format:"%C(auto)%h %Cblue%ad%Creset %<(80,trunc)%s%Cgreen%an%C(auto)%d%Creset"
+[log]
+    abbrevCommit = true
+    decorate = true
+    date = format-local:"%Y-%m-%d %H:%M"
 [merge]
     conflictstyle = diff3
 [user]
