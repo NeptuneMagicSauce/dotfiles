@@ -13,6 +13,7 @@
     diff-so-fancy = true # file name at hunk start have dedicated colors
     diff-highlight = false # ??
     blame-palette = "#101010 #1a1a1a #242424 #2e2e2e" # fewer contrast between the commit-blocks in annotate
+    zero-style = syntax # syntax highlighting for context lines
 
     minus-style      = syntax "#401d00" #"#470101" #"#40102e"
     minus-emph-style = syntax "#692f00" #"#820000" #"#7a1a56"
