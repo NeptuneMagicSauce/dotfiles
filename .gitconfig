@@ -52,8 +52,6 @@
     abbrevCommit = true
     decorate = true
     date = format-local:"%Y-%m-%d %H:%M"
-[merge]
-    conflictstyle = diff3
 [user]
     email = 37757244+NeptuneMagicSauce@users.noreply.github.com
     name = Neptune Magic Sauce
