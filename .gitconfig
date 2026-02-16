@@ -14,8 +14,11 @@
     diff-highlight = false # ??
     blame-palette = "#101010 #1a1a1a #242424 #2e2e2e" # fewer contrast between the commit-blocks in annotate
 
-    # minus-style = syntax "#4f004f"
-    # plus-style = syntax "#00485c"
+    minus-style      = syntax "#401d00" #"#470101" #"#40102e"
+    minus-emph-style = syntax "#692f00" #"#820000" #"#7a1a56"
+
+    plus-style       = syntax "#000a1a" #"#082a2e"
+    plus-emph-style  = syntax "#001940" #"#0a3a3a"
 
     # minus-style      = syntax "#3d1a2e"
     # minus-emph-style = syntax "#5c2044"
@@ -28,10 +31,8 @@
     # plus-style       = syntax "#0a2e30"
     # plus-emph-style  = syntax "#0f5c5e"
 
-    minus-style      = syntax "#40102e"
-    minus-emph-style = syntax "#7a1a56"
-    plus-style       = syntax "#082a2e"
-    plus-emph-style  = syntax "#0a3a3a"
+    # minus-style = syntax "#4f004f"
+    # plus-style = syntax "#00485c"
 
 [alias]
     st = status
