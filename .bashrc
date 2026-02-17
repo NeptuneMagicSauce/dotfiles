@@ -176,19 +176,20 @@ alias emaconfig='ema ~/.emacs'
 alias gss='git status'
 alias gd='git diff -w'
 alias gdu='gd -U0'
-gdcat()
-{
-    git diff --color=always --ignore-space-change $*| cat
-}
-alias gc='git commit'
-alias ga='git add'
-alias gpush='git push'
-alias gpull='git pull'
-alias g='git'
-# git hide https://henrebotha.github.io/2017/08/30/hiding-local-file-changes-from-git.html
-alias ghide='git update-index --skip-worktree'
-alias gunhide='git update-index --no-skip-worktree'
-alias ghidden='git ls-files -v . | grep ^S'
+alias deltaw='delta --diff-args=-w'
+# gdcat()
+# {
+#     git diff --color=always --ignore-space-change $*| cat
+# }
+# alias gc='git commit'
+# alias ga='git add'
+# alias gpush='git push'
+# alias gpull='git pull'
+# alias g='git'
+# # git hide https://henrebotha.github.io/2017/08/30/hiding-local-file-changes-from-git.html
+# alias ghide='git update-index --skip-worktree'
+# alias gunhide='git update-index --no-skip-worktree'
+# alias ghidden='git ls-files -v . | grep ^S'
 alias explo='explorer .'
 alias vlcminview='vlc --qt-minimal-view'
 alias sema='sudo emacs -nw'
