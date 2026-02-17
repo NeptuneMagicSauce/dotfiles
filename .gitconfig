@@ -8,7 +8,8 @@
     side-by-side = true
     line-numbers = true
     hyperlinks = true
-    max-line-distance = 1.0 # so that modified lines are at the same height, paired
+    # max-line-distance = 1.0 # so that modified lines are at the same height, paired, even when very different
+    # keep max-line-distance at default, this way only slightly changed lines are vertically aligned
     word-diff-regex = "[A-Z][a-z]+|[a-z]+|[A-Z]+|[0-9]+|." # more precise sub-word emphasise
     diff-so-fancy = true # file name at hunk start have dedicated colors
     diff-highlight = false # ??
