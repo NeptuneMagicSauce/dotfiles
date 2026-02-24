@@ -98,13 +98,8 @@
 (when (display-graphic-p)
   ;; My preferred FONT
   (custom-set-faces
-   '(default ((t (:family "Cascadia Code" :slant normal :weight normal :height 90 :width normal)))
-             ;; '(default ((t (:family "Cascadia Code" :slant normal :weight semilight :height 90 :width normal)))
-             ;; '(default ((t (:family "DejaVu Sans Mono" :slant normal :weight normal :height 90 :width normal)))
-
-             ;; (if (and (string-equal system-name "JOJO2-PC")
-             ;;          (string-equal system-configuration "x86_64-pc-linux-gnu"))
-             ;;     ;; that's WSL on big computer
+   '(default ((t (:family "Cascadia Code" :slant normal :weight semilight :height 90 :width normal)))
+;; '(default ((t (:family "DejaVu Sans Mono" :slant normal :weight normal :height 90 :width normal)))
              ))
   ;; mouse-paste at emacs-cursor, not at mouse-cursor
   (setq mouse-yank-at-point t)
