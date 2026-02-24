@@ -83,3 +83,7 @@ selection-background = cell-foreground
 # green on dark purple
 # selection-foreground = #00ff00
 # selection-background = #2d0057
+
+# preserve historic colors
+# without this setting, bash-prompt-colors are different with ghostty >= 1.3.0
+# palette-generate = false
