@@ -1047,7 +1047,7 @@ or the workspace script
 
     ("\\([0-9]*[A-Z?][0-9A-Z?]*\\)\\(\+\\|:\\|\*\\|'\\)"  (1 'font-lock-string-face))
     ("\\([0-9]+\\)\\(\+\\|:\\|\*\\|'\\)"  (1 'font-lock-constant-face)))
-  '("\\.edi$" "edi" "interface")
+  '("\\.edi$")
   nil
   "Mode for edifact files"
   )
