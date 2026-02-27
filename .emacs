@@ -79,10 +79,10 @@
  '(mouse-buffer-menu-mode-mult 99)
  '(warning-suppress-types '((comp)))
  '(package-selected-packages
-   '(all-the-icons bind-key clang-format cmake-mode company doom-themes
-                   emojify-logos flycheck helm-lsp helm-xref
-                   lsp-pyright lsp-treemacs lsp-ui projectile rg
-                   which-key)))
+   '(all-the-icons bind-key clang-format cmake-mode company diff-hl
+                   doom-themes emojify-logos flycheck helm-lsp
+                   helm-xref lsp-pyright lsp-treemacs lsp-ui
+                   projectile rg which-key)))
 
 ;; byte-compile all the packages
 (byte-recompile-directory (expand-file-name "~/.emacs.d/elpa") 0)
@@ -890,6 +890,8 @@ or the workspace script
 (bind-key* "C-c -" 'hs-hide-block)
 (bind-key* "C-c +" 'hs-show-block)
 
+;; version-control/git changed lines in the fringe
+(global-diff-hl-mode t)
 
 ;; C++ IDE
 (if () ;;(when (not (is-workplace-23))
