@@ -54,7 +54,8 @@
   (string-equal system-name "ncelrnd2841")
   )
 (when (is-workplace-23) ;; work laptop 2023
-  (setq custom-font-size 150)
+  ;; (setq custom-font-size 200) ;; 4K screen
+  (setq custom-font-size 150) ;; 1440p screen
   (setq custom-theme-color "light")
   ;; (setq custom-theme-color "dark")
   )
