@@ -1,4 +1,4 @@
-;;; romulus-bluloco-light-theme.el --- a more vibrant variant of doom-one -*- lexical-binding: t; no-byte-compile: t; -*-
+;;; romulus-light-theme.el --- a more vibrant variant of doom-one -*- lexical-binding: t; no-byte-compile: t; -*-
 
 ;; option no-byte-compile t on first line is important
 ;; otherwise we fail the compile with Error: Bytecode overflow
@@ -9,7 +9,7 @@
   "Options for the `doom-vibrant' theme."
   :group 'doom-themes)
 
-(def-doom-theme romulus-bluloco-light
+(def-doom-theme romulus-light
   "My theme inspired by BluLoco light"
 
   ;; name        default   256       16

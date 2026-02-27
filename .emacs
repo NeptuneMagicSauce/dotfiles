@@ -436,7 +436,7 @@
     ;; (load-theme 'doom-tomorrow-day) ;; good but company bad
 
     ;; new in 2025.02.25
-    (load-theme 'romulus-bluloco-light t)
+    (load-theme 'romulus-light t)
     ;; (load-theme 'doom-bluloco-light) ; good
     ;; (load-theme 'doom-oksolar-light) ; good
     ;; (load-theme 'doom-acario-light) ; good
