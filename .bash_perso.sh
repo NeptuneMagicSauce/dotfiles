@@ -289,3 +289,52 @@ function color_bash_prompt_24_bit
     # when missing, the line length is wrong
     # and line wrapping is borken
 }
+
+# install git-delta and diffnav
+
+PATH=~/go/bin:$PATH
+if [[ -d ~/.cargo && -f ~/.cargo/env ]] ; then
+    source ~/.cargo/env
+fi
+
+command -v go > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install go:
+sudo apt install golang-go
+"
+fi
+
+command -v gh > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install gh:
+sudo apt install gh
+gh auth login # token works better
+"
+fi
+
+command -v diffnav > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install diffnav:
+tag=\$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)"
+    echo "git clone --depth 1 --branch \"\$tag\" https://github.com/dlvhdr/diffnav.git"
+    echo "cd diffnav"
+    echo "go install"
+    echo "cd -"
+    echo "rm -fr ./diffnav
+"
+fi
+
+command -v cargo > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install cargo:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+"
+# sudo apt install cargo # too old to compile git-delta
+fi
+
+command -v delta > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install git-delta:
+cargo install git-delta
+"
+fi

@@ -17,6 +17,7 @@ build_PRICING_component.log
 .bun/
 c
 .cache/
+.cargo/
 CatPi
 .cgdb/logs/
 .cgdb/readline_history*
@@ -134,6 +135,7 @@ Games/
 .globalprotectvpn/
 .gnome/
 .gnupg/
+go/
 GP_HTML
 .gtkrc-2.0
 .ICAClient/
@@ -170,6 +172,7 @@ Pictures/
 .python_history
 raspberry-utils/
 routerconnections.json
+.rustup/
 Screencasts
 Screenshots/
 setup.log*

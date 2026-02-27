@@ -7,12 +7,11 @@ if [ $? == 1 ] ; then
 fi
 
 # source other files
-source ~/.bash_prompt # colors $orange
-source ~/.bash_emoji  # get_random_emoji()
-source ~/.bash_git    # __git_ps1()
-source ~/.bash_svn    # svnDiff()
-source ~/.bash_perso  # for my machine
-source ~/.bash_work   # pro work specific
+source ~/.bash_prompt   # colors $orange
+source ~/.bash_emoji    # get_random_emoji()
+source ~/.bash_git      # __git_ps1()
+source ~/.bash_svn      # svnDiff()
+source ~/.bash_perso.sh # for my machine
 
 # completion : git, docker, ...
 if [ -f /usr/share/bash-completion/completions/git ] ; then
