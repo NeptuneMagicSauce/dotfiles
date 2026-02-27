@@ -81,7 +81,7 @@
  '(package-selected-packages
    '(all-the-icons bind-key clang-format cmake-mode company diff-hl
                    doom-themes emojify-logos flycheck helm-lsp
-                   helm-xref lsp-pyright lsp-treemacs lsp-ui
+                   helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info
                    projectile rg which-key)))
 
 ;; byte-compile all the packages
