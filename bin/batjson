@@ -1,2 +1,3 @@
 #!/bin/sh
-batcat --theme 'Monokai Extended' -l json "$@"
+batcat -l json "$@"
+# --theme 'Monokai Extended'

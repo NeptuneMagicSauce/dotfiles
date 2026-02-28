@@ -1,2 +1,3 @@
 #!/bin/sh
-batcat --theme 'Monokai Extended' -l html "$@"
+batcat -l html "$@"
+# --theme 'Monokai Extended'
