@@ -297,23 +297,22 @@ if [[ -d ~/.cargo && -f ~/.cargo/env ]] ; then
     source ~/.cargo/env
 fi
 
-command -v go > /dev/null
-if [ $? != 0 ] ; then
+if ! command -v go > /dev/null ; then
     echo "# run this to install go:
 sudo apt install golang-go
 "
 fi
 
-command -v gh > /dev/null
-if [ $? != 0 ] ; then
+
+if ! command -v gh > /dev/null ; then
     echo "# run this to install gh:
 sudo apt install gh
 gh auth login # token works better
 "
 fi
 
-command -v diffnav > /dev/null
-if [ $? != 0 ] ; then
+
+if ! command -v diffnav > /dev/null ; then
     echo "# run this to install diffnav:
 tag=\$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)"
     echo "git clone --depth 1 --branch \"\$tag\" https://github.com/dlvhdr/diffnav.git"
@@ -324,23 +323,20 @@ tag=\$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)"
 "
 fi
 
-command -v cargo > /dev/null
-if [ $? != 0 ] ; then
+if ! command -v cargo > /dev/null ; then
     echo "# run this to install cargo:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 "
 # sudo apt install cargo # too old to compile git-delta
 fi
 
-command -v delta > /dev/null
-if [ $? != 0 ] ; then
+if ! command -v delta > /dev/null ; then
     echo "# run this to install git-delta:
 cargo install git-delta
 "
 fi
 
-command -v glow > /dev/null
-if [ $? != 0 ] ; then
+if ! command -v glow > /dev/null ; then
     echo "# run this to install glow (markdown reader):
 go install github.com/charmbracelet/glow/v2@latest
 "
