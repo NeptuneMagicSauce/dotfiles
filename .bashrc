@@ -175,6 +175,7 @@ alias emaconfig='ema ~/.emacs'
 alias gss='git status'
 alias gd='git diff -w'
 alias gdu='gd -U0'
+alias git-ls-ignored='git ls-files --others --ignored --exclude-standard'
 alias deltaw='delta --diff-args=-w'
 # gdcat()
 # {
