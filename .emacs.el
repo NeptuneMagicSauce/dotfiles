@@ -168,7 +168,7 @@
 (setq show-paren-when-point-inside-paren 1)
 
 ;; custom themes directory
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ;; unused
+(setq custom-theme-directory "~/.emacs.d/custom_themes/")
 
 ;; auto install packages
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
