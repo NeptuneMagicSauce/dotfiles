@@ -338,3 +338,10 @@ if [ $? != 0 ] ; then
 cargo install git-delta
 "
 fi
+
+command -v glow > /dev/null
+if [ $? != 0 ] ; then
+    echo "# run this to install glow (markdown reader):
+go install github.com/charmbracelet/glow/v2@latest
+"
+fi
