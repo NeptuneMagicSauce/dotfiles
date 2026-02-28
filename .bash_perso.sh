@@ -290,54 +290,7 @@ function color_bash_prompt_24_bit
     # and line wrapping is borken
 }
 
-# install git-delta and diffnav
-
-PATH=~/go/bin:$PATH
-if [[ -d ~/.cargo && -f ~/.cargo/env ]] ; then
+add_path ~/go/bin begin
+if [ -f ~/.cargo/env ] ; then
     source ~/.cargo/env
-fi
-
-if ! command -v go > /dev/null ; then
-    echo "# run this to install go:
-sudo apt install golang-go
-"
-fi
-
-
-if ! command -v gh > /dev/null ; then
-    echo "# run this to install gh:
-sudo apt install gh
-gh auth login # token works better
-"
-fi
-
-
-if ! command -v diffnav > /dev/null ; then
-    echo "# run this to install diffnav:
-tag=\$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)"
-    echo "git clone --depth 1 --branch \"\$tag\" https://github.com/dlvhdr/diffnav.git"
-    echo "cd diffnav"
-    echo "go install"
-    echo "cd -"
-    echo "rm -fr ./diffnav
-"
-fi
-
-if ! command -v cargo > /dev/null ; then
-    echo "# run this to install cargo:
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-"
-# sudo apt install cargo # too old to compile git-delta
-fi
-
-if ! command -v delta > /dev/null ; then
-    echo "# run this to install git-delta:
-cargo install git-delta
-"
-fi
-
-if ! command -v glow > /dev/null ; then
-    echo "# run this to install glow (markdown reader):
-go install github.com/charmbracelet/glow/v2@latest
-"
 fi

@@ -405,15 +405,6 @@ export LANG=en_US.UTF-8
 # watch interval
 export WATCH_INTERVAL=1
 
-# add BATCAT alias
-command -v batcat >/dev/null
-if [ $? == 0 ]
-then
-    alias bat=batcat
-    alias batjson='bat -l json --theme "Monokai Extended"'
-    alias bathtml='bat -l html --theme "Monokai Extended"'
-fi
-
 # do not remember the dangerous command(s)
 export HISTIGNORE='rm *:*password*'
 export HISTCONTROL=erasedups
@@ -497,7 +488,6 @@ else
 fi
 
 # FZF
-which fzf > /dev/null || sudo apt install fzf
 FZF_BINDINGS=/usr/share/doc/fzf/examples/key-bindings.bash
 if [ -f $FZF_BINDINGS ] ; then
     source $FZF_BINDINGS

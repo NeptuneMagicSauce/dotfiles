@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# ripgrep https://github.com/BurntSushi/ripgrep
+# batcat https://github.com/sharkdp/bat
+# btop https://github.com/aristocratos/btop
+# fdfind https://github.com/sharkdp/fd
+# cgdb https://github.com/cgdb/cgdb
+# fzf https://github.com/junegunn/fzf
+# delta: https://github.com/dandavison/delta
+# diffnav: https://github.com/dlvhdr/diffnav
+# glow: https://github.com/charmbracelet/glow
+# gh: https://github.com/cli/cli
+
+exists() {
+    command -v "$@" > /dev/null
+}
+
+sudo apt install \
+     ripgrep \
+     bat \
+     btop \
+     fd-find \
+     cgdb \
+     fzf \
+     golang-go gopls \
+     gh
+
+echo ""
+
+if ! gh auth status > /dev/null ; then
+    echo "gh auth login ..."
+    gh auth login
+else
+    gh auth status
+    echo ""
+fi
+
+if ! exists cargo ; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    # sudo apt install cargo # too old to compile git-delta
+else
+    cargo --version
+fi
+
+if ! exists delta ; then
+    cargo install git-delta
+else
+    delta --version
+fi
+
+if ! exists glow ; then
+    go install github.com/charmbracelet/glow/v2@latest
+else
+    glow --version
+fi
+
+if ! exists diffnav ; then
+    cd ~/tmp/
+    if [ ! -d diffnav ] ; then
+        git clone https://github.com/dlvhdr/diffnav.git
+    fi
+    cd diffnav
+    tag=$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)
+    git switch -d $tag
+    go install
+else
+    diffnav --version
+fi
