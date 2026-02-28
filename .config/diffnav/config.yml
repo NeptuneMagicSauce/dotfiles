@@ -1,0 +1,4 @@
+ui:
+  hideHeader: true
+  hideFooter: false # broken, not respected in 0.10.0
+  icons: unicode # works on WSL without custom fonts
