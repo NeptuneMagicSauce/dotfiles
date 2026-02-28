@@ -64,6 +64,7 @@
 [includeIf "gitdir:~/workspace/"]
     path = .gitconfig-workspace
 [core]
+    filemode = true # sometimes needed for WSL file permissions
     whitespace = cr-at-eol,-blank-at-eol,-blank-at-eof
     symlinks = true
     autocrlf = false # needed for cygwin/wsl (not msys) so that git checkout gets unix eol (not dos eol)
