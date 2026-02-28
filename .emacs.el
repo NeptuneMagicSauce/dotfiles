@@ -533,7 +533,7 @@ will be killed."
 ;; Reload config
 (defun reload-config ()
   (interactive)
-  (load-file "~/.emacs"))
+  (load-file "~/.emacs.el"))
 
 ;; Number of Processors
 (setq nproc
