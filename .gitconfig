@@ -1,15 +1,17 @@
 [pager]
     diff = diffnav
     show = diffnav
-    log = delta # diffnav would combine multiple commits
-    stash = delta # diffnav fails with stash show
+    log = delta -s # diffnav would combine multiple commits
+    stash = delta -s # diffnav fails with stash show
     blame = delta
 [interactive]
     diffFilter = delta --color-only # needed for git commit --patch
 [delta]
     syntax-theme = Dracula
     navigate = true
-    side-by-side = true
+    # side-by-side = true
+    # with setting side-by-side present, we can not change it in diffnav
+    # and we can not change it in cmdline invocation
     line-numbers = true
     hyperlinks = true
     # max-line-distance = 1.0 # so that modified lines are at the same height, paired, even when very different
