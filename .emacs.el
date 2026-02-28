@@ -714,10 +714,6 @@ or the workspace script
 ;; also have a binding that works in Terminal which catches Ctrl-Tab :
 (bind-key* "M-`" 'projectile-find-other-file)
 
-;; CMakeLists mode
-(setq load-path (cons (expand-file-name "~/.emacs.d/cmake/") load-path))
-(require 'cmake-mode)
-
 ;; Bash shell for Windows
 (when (eq system-type 'windows-nt)
   (setq explicit-shell-file-name "C:/Devel/Tools/Msys2-64/usr/bin/bash")
