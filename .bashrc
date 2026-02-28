@@ -172,9 +172,12 @@ alias ema='emacs -nw'
 alias bahsconfig='bashconfig'
 alias emaconfig='ema ~/.emacs'
 # alias gs='~/.git-status.sh' # shadows command gs from package ghostscript
-alias gss='git status'
+alias gst='git status'
 alias gd='git diff -w'
+alias gdd='git -c core.pager=delta diff -w'
 alias gdu='gd -U0'
+alias gddu='gdd -U0'
+alias gdud='gddu'
 alias git-ls-ignored='git ls-files --others --ignored --exclude-standard'
 alias deltaw='delta --diff-args=-w'
 # gdcat()
