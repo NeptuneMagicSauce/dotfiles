@@ -1,5 +1,9 @@
-[core]
-    pager = diffnav
+[pager]
+    diff = diffnav
+    show = diffnav
+    log = delta # diffnav would combine multiple commits
+    stash = delta # diffnav fails with stash show
+    blame = delta
 [interactive]
     diffFilter = delta --color-only # needed for git commit --patch
 [delta]
@@ -54,11 +58,6 @@
     abbrevCommit = true
     decorate = true
     date = format-local:"%Y-%m-%d %H:%M"
-[pager]
-    log = delta      # diffnav fails to run for log
-    blame = delta    # diffnav fails to run for blame
-    annotate = delta # diffnav fails to run for annotate
-    tag = less       # diffnav fails to paginate for tag
 [user]
     email = 37757244+NeptuneMagicSauce@users.noreply.github.com
     name = Neptune Magic Sauce
