@@ -45,13 +45,6 @@
     l  = log --topo-order --graph
     lp = log --topo-order -p
     amend = commit --amend --date=now --no-edit
-    stash-reword = "!f() { \
-        idx=${1:-0}; \
-        sha=$(git rev-parse stash@{$idx}); \
-        newsha=$(git commit-tree -m \"$2\" -p ${sha}^1 -p ${sha}^2 ${sha}^{tree}); \
-        git stash drop -q stash@{$idx}; \
-        git stash store -m \"$2\" $newsha; \
-    }; f"
 [format]
   pretty = format:"%C(auto)%h %Cblue%ad%Creset %<(80,trunc)%s%Cgreen%an%C(auto)%d%Creset"
 [log]
