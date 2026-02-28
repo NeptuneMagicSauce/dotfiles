@@ -179,6 +179,7 @@ alias gddu='git -c pager.diff=delta diff -w'
 # alias gdu='gd -U0'
 # alias gddu='gdd -U0'
 # alias gdud='gddu'
+alias gitnopager='git --no-pager'
 alias git-ls-ignored='git ls-files --others --ignored --exclude-standard'
 alias deltaw='delta --diff-args=-w'
 # gdcat()
