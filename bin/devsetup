@@ -22,7 +22,6 @@ sudo apt install \
      fd-find \
      cgdb \
      fzf \
-     golang-go gopls \
      gh
 
 echo ""
@@ -48,6 +47,22 @@ else
     delta --version
 fi
 
+if ! exists go ; then
+    # ubuntu 24 provides go 1.22 which is too old for some packages
+    golatestversion=$(curl -s https://go.dev/VERSION?m=text | head -1)
+    echo "Fetching Go $golatestversion"
+    gofile=${golatestversion}.linux-amd64.tar.gz
+    cd /tmp/
+
+    wget -q https://go.dev/dl/${gofile}
+    sudo tar -C /usr/local -xzf ${gofile}
+    rm -v ${gofile}
+
+    export PATH=/usr/local/go/bin:$PATH
+else
+    go version
+fi
+
 if ! exists glow ; then
     go install github.com/charmbracelet/glow/v2@latest
 else
@@ -64,5 +79,12 @@ if ! exists diffnav ; then
     git switch -d $tag
     go install
 else
-    diffnav --version
+    echo "DiffNav: $(which diffnav)"
+fi
+
+if ! exists gopls ; then
+    # apt install gopls does not work !
+    go install golang.org/x/tools/gopls@latest
+else
+    echo "GoPls: $(which gopls)"
 fi

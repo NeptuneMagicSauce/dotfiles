@@ -52,6 +52,11 @@ fi
 if [ -d ~/.local/$UNAMEOS ]; then
     add_path "~/.local/$UNAMEOS/bin" "begin"
 fi
+# add /usr/local/go/bin to path
+if [ -d /usr/local/go/bin ] ; then
+    add_path /usr/local/go/bin
+fi
+
 
 if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     # env vars

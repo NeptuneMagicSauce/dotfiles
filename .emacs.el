@@ -1110,6 +1110,16 @@ or the workspace script
     )
   )
 
+;; Go
+;; add custom path to go
+(add-to-list 'exec-path "/usr/local/go/bin") ; needed for gofmt !
+(setenv "PATH" (concat "/usr/local/go/bin:" (getenv "PATH"))) ; needed for go !
+;; with package go-mode
+;; https://github.com/dominikh/go-mode.el
+;; auto format
+(add-hook 'before-save-hook #'gofmt-before-save)
+(add-hook 'go-mode-hook 'lsp-deferred)
+
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
 ;;;;;;;;;;;;;;;;
