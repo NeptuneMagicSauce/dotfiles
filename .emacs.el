@@ -1120,6 +1120,15 @@ or the workspace script
 (add-hook 'before-save-hook #'gofmt-before-save)
 (add-hook 'go-mode-hook 'lsp-deferred)
 
+;; Remove window manager decorations
+(set-frame-parameter nil 'undecorated t)
+;; Toggle window manager decorations
+(defun my/toggle-frame-undecorated ()
+  "Toggle the 'undecorated' frame parameter."
+  (interactive)
+  (set-frame-parameter nil 'undecorated
+                       (not (frame-parameter nil 'undecorated))))
+
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
 ;;;;;;;;;;;;;;;;
