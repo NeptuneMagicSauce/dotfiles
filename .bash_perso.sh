@@ -243,12 +243,13 @@ fi
 # https://superuser.com/a/556031
 gif_from_video()
 {
-    if [ $# != 2 ]
+    if [[ $# != 2 && $# != 3 ]]
     then
-        echo Usage: $0 input.mp4 output.gif
+        echo Usage: $0 input.video output.gif [new width]
         return
     fi
-    ffmpeg -i "$1" -vf "fps=20,scale=160:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
+    GIFWIDTH=${3:--1}
+    ffmpeg -i "$1" -vf "fps=20,scale=${GIFWIDTH}:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 "$2"
 }
 
 list_term_colors_256()
