@@ -74,12 +74,10 @@
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
+ '(lsp-clangd-binary-path "/usr/bin/clangd")
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(all-the-icons bind-key clang-format cmake-mode company diff-hl
-                   doom-themes emojify-logos flycheck helm-lsp
-                   helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info
-                   projectile protobuf-mode rg which-key))
+   '(flycheck-golangci-lint all-the-icons bind-key clang-format cmake-mode company diff-hl doom-themes emojify-logos flycheck helm-lsp helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info projectile protobuf-mode rg which-key))
  '(warning-suppress-types '((comp))))
 
 ;; byte-compile all the packages
@@ -1119,6 +1117,72 @@ or the workspace script
 ;; auto format
 (add-hook 'before-save-hook #'gofmt-before-save)
 (add-hook 'go-mode-hook 'lsp-deferred)
+
+;; golangci-lint
+(setenv "GO111MODULE" "on")
+(use-package flycheck-golangci-lint
+  :ensure t
+  :hook (go-mode . flycheck-golangci-lint-setup))
+;; (eval-after-load 'flycheck
+  ;; '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook ((go-mode . lsp-deferred)))
+
+;; (use-package lsp-ui
+;;   :ensure t)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :hook ((go-mode . lsp-deferred))
+;;   :config
+;;   (lsp-register-client
+;;    (make-lsp-client
+;;     :new-connection (lsp-stdio-connection "golangci-lint-langserver")
+;;     :server-id 'golangci-lint-langserver)))
+;; (lsp-register-custom-settings
+;;  '(("gopls.staticcheck" t t)
+;;    ("gopls.analyses" (("fieldalignment" . t)) t)))
+;; (setq lsp-gopls-settings
+;;       '((ui . ((diagnostic . ((staticcheck . t)))))
+;;         (lint . "golangci-lint")
+;;         (analyses . ((unusedparams . t)))))
+;; (with-eval-after-load 'lsp-mode
+;;   (setq lsp-gopls-settings
+;;         '((:lint . "golangci-lint")
+;;           (:ui.diagnostic.staticcheck . t)
+;;           (:analyses . ((unusedparams . t)
+;;                         (unusedwrite . t))))))
+;; (setq lsp-gopls-staticcheck t) ;; Optional: enables staticcheck
+;; (setq lsp-eldoc-render-all t)
+
+;; (lsp-register-custom-settings
+;;  '(("gopls.hints" ((symbolDetails . t) (variableTypes . t)))
+;;    ("gopls.diagnosticsDelay" "500ms")
+;;    ;; Enable golangci-lint
+;;    ("gopls.analyses" ((unusedparams . t) (unusedwrite . t)))
+;;    ("gopls.ui.diagnostic.staticcheck" t)))
+
+;; ;; Direct golangci-lint integration via gopls settings
+;; (setq lsp-gopls-settings
+;;       '((build.buildFlags . ["-tags=unit"])
+;;         (ui.diagnostic.annotations . ((nil . t)))
+;;         (lint . "golangci-lint")))
+
+
+;; (setq lsp-gopls-staticcheck t) ;; gopls has some built-in analysis
+;; ;; To enable golangci-lint specifically via lsp-mode:
+;; (setq lsp-go-analyses '((fieldalignment . t)
+;;                         (nilness . t)
+;;                         (unusedparams . t)
+;;                         (unusedwrite . t)
+;;                         (useany . t)))
+;; (with-eval-after-load 'lsp-mode
+;;   (lsp-register-client
+;;    (make-lsp-client :new-connection (lsp-stdio-connection '("golangci-lint-langserver"))
+;;                     :major-modes '(go-mode)
+;;                     :server-id 'golangci-lint-ls)))
+
+
 
 ;; Remove window manager decorations
 (set-frame-parameter nil 'undecorated t)

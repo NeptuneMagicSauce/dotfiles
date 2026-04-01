@@ -88,3 +88,12 @@ if ! exists gopls ; then
 else
     echo "GoPls: $(which gopls)"
 fi
+
+if ! exists golangci-lint ; then
+    # go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    # go install will get v1.x which is too old
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
+        sh -s -- -b $(go env GOPATH)/bin
+else
+    echo "golangci-lint: $(which golangci-lint)"
+fi
