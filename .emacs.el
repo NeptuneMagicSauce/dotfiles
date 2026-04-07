@@ -149,6 +149,9 @@
 ;; Frame Title https://www.emacswiki.org/emacs/FrameTitle
 (setq frame-title-format '("%b"))
 
+;; Enable goto-address-mode for clickable URLs
+(goto-address-mode t)
+
 ;; Indentation / Tabs / Spaces
 ;; https://www.emacswiki.org/emacs/NoTabs
 ;; https://www.emacswiki.org/emacs/IndentationBasics
