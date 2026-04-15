@@ -15,8 +15,10 @@
 
 font-family = "Cascadia Mono"
 
-# lighter weight for Cascadia* :
-font-style = Light
+# weight for Cascadia* :
+font-style = Regular
+#font-style = Light
+#font-style = Bold
 font-style-bold = Regular
 font-style-italic = Light Italic
 font-style-bold-italic = Italic

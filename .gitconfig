@@ -23,11 +23,24 @@
     # blame-palette = "#101010 #1a1a1a #242424 #2e2e2e"
     zero-style = syntax # syntax highlighting for context lines
 
-    minus-style      = syntax "#401d00" #"#470101" #"#40102e"
-    minus-emph-style = syntax "#692f00" #"#820000" #"#7a1a56"
+    # minus-style      = syntax "#401d00" #"#470101" #"#40102e"
+    # minus-style = syntax "#5c0000"
+    minus-style = syntax "#54133a"
+    # minus-emph-style = syntax "#692f00" #"#820000" #"#7a1a56"
+    # minus-emph-style = syntax "#820000"
+    # minus-emph-style = syntax "#7a1a56"
+    # minus-emph-style = syntax "#910d5c"
+    minus-emph-style = syntax "#a3186c"
 
-    plus-style       = syntax "#000a1a" #"#082a2e"
-    plus-emph-style  = syntax "#001940" #"#0a3a3a"
+    # plus-style       = syntax "#000a1a" #"#082a2e"
+    plus-style       = syntax "#0c326e"
+    # plus-style = syntax "#022763"
+    # plus-emph-style  = syntax "#001940" #"#0a3a3a"
+    # plus-emph-style  = syntax "#0a3a3a"
+    # plus-emph-style = syntax "#0b4eb8"
+    # plus-emph-style = syntax "#314d7a"
+    plus-emph-style = syntax "#2c5aa3"
+    # plus-emph-style = syntax "#555555"
 
     # minus-style      = syntax "#3d1a2e"
     # minus-emph-style = syntax "#5c2044"
