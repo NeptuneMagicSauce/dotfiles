@@ -527,3 +527,5 @@ bind '"\C-o": "\C-u __fzf_cd_quick_access\n"'
 
 # use the history scheme for fzf because ?
 export FZF_CTRL_R_OPTS='--scheme=history'
+
+alias docker_stop_all='docker stop $(docker ps -aq)'
