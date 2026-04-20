@@ -39,6 +39,11 @@ window-theme = ghostty
 theme = Atom One Dark
 # theme = 3024 Night
 
+# Require confirmation before pasting text that appears unsafe. This helps
+# prevent a "copy/paste attack" where a user may accidentally execute unsafe
+# commands by pasting text with newlines.
+clipboard-paste-protection = false
+
 # window-decoration = true
 # gtk-scrollbars = true
 
