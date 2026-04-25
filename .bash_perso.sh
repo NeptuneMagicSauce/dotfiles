@@ -147,12 +147,12 @@ if [ $UNAMEOS == Msys ] || [ $UNAMEOS == MinGW ] ; then
     export MSYS=winsymlinks:nativestrict
     export CMAKE_GENERATOR="Unix Makefiles"
     # if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
-        # export PATH=/mingw64/bin:$PATH
-        # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
-        # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
+    # export PATH=/mingw64/bin:$PATH
+    # export PATH=/c/Devel/Tools/TDM-GCC-64/bin:$PATH
+    # export PATH=/c/Devel/Tools/W64DevKit-1.17.0/bin:$PATH
 
-        # NO, we now prefer /mingw64/bin/g++ because it supports pre compiled headers
-        # add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
+    # NO, we now prefer /mingw64/bin/g++ because it supports pre compiled headers
+    # add_path "/c/Devel/Tools/W64DevKit-1.17.0/bin" "begin"
     # fi
 
     # GDB ...
@@ -244,6 +244,16 @@ WINFFMPEG=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
 if [ -f $WINFFMPEG ] ; then
     alias ffmpeg=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
 fi
+
+ffmpeg1080()
+{
+    in="$1"
+    shift
+    out="$(date +"%Y-%m-%d-%Hh%Mm%Ss".mp4)"
+    ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v h264_nvenc -b:v 10000k "$out"
+    echo
+    \du -h "$out"
+}
 
 # https://superuser.com/a/556031
 gif_from_video()
