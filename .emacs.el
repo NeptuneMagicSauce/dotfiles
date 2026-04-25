@@ -1119,68 +1119,71 @@ or the workspace script
 (add-hook 'go-mode-hook 'lsp-deferred)
 
 ;; golangci-lint
-(setenv "GO111MODULE" "on")
-(use-package flycheck-golangci-lint
-  :ensure t
-  :hook (go-mode . flycheck-golangci-lint-setup))
-;; (eval-after-load 'flycheck
-  ;; '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook ((go-mode . lsp-deferred)))
+(defvar my-flymake-golangci-lint-source-buffer nil)
+(defvar my-flymake-golangci-lint-output-buffer nil)
+(defvar my-flymake-golangci-lint-stderr-buffer nil)
+(defvar my-flymake-golangci-lint-report-fn nil)
 
-;; (use-package lsp-ui
-;;   :ensure t)
-;; (use-package lsp-mode
-;;   :ensure t
-;;   :hook ((go-mode . lsp-deferred))
-;;   :config
-;;   (lsp-register-client
-;;    (make-lsp-client
-;;     :new-connection (lsp-stdio-connection "golangci-lint-langserver")
-;;     :server-id 'golangci-lint-langserver)))
-;; (lsp-register-custom-settings
-;;  '(("gopls.staticcheck" t t)
-;;    ("gopls.analyses" (("fieldalignment" . t)) t)))
-;; (setq lsp-gopls-settings
-;;       '((ui . ((diagnostic . ((staticcheck . t)))))
-;;         (lint . "golangci-lint")
-;;         (analyses . ((unusedparams . t)))))
-;; (with-eval-after-load 'lsp-mode
-;;   (setq lsp-gopls-settings
-;;         '((:lint . "golangci-lint")
-;;           (:ui.diagnostic.staticcheck . t)
-;;           (:analyses . ((unusedparams . t)
-;;                         (unusedwrite . t))))))
-;; (setq lsp-gopls-staticcheck t) ;; Optional: enables staticcheck
-;; (setq lsp-eldoc-render-all t)
+(defun my-flymake-golangci-lint-sentinel (process event)
+  (when (or (string= event "finished\n")
+            (string-match "exited abnormally" event))
+    (if (buffer-live-p my-flymake-golangci-lint-stderr-buffer)
+        (progn
+          (with-current-buffer my-flymake-golangci-lint-stderr-buffer
+            (let ((diagnostics nil)
+                  (json-output (buffer-string))
+                  (source-buf my-flymake-golangci-lint-source-buffer))
 
-;; (lsp-register-custom-settings
-;;  '(("gopls.hints" ((symbolDetails . t) (variableTypes . t)))
-;;    ("gopls.diagnosticsDelay" "500ms")
-;;    ;; Enable golangci-lint
-;;    ("gopls.analyses" ((unusedparams . t) (unusedwrite . t)))
-;;    ("gopls.ui.diagnostic.staticcheck" t)))
+              (when (not (string-empty-p json-output))
+                (condition-case err
+                    (let* ((parsed (json-parse-string json-output))
+                           (issues (gethash "Issues" parsed)))
+                      (when issues
+                        (dotimes (i (length issues))
+                          (let* ((issue (aref issues i))
+                                 (pos-obj (gethash "Pos" issue))
+                                 (line (when pos-obj (gethash "Line" pos-obj)))
+                                 (col (when pos-obj (gethash "Column" pos-obj)))
+                                 (msg (gethash "Text" issue))
+                                 (region (when line (flymake-diag-region source-buf line col))))
+                            (when region
+                              (push (flymake-make-diagnostic
+                                     source-buf
+                                     (car region)
+                                     (cdr region)
+                                     :warning
+                                     msg)
+                                    diagnostics))))))
+                  (error nil)))
 
-;; ;; Direct golangci-lint integration via gopls settings
-;; (setq lsp-gopls-settings
-;;       '((build.buildFlags . ["-tags=unit"])
-;;         (ui.diagnostic.annotations . ((nil . t)))
-;;         (lint . "golangci-lint")))
+              (funcall my-flymake-golangci-lint-report-fn (nreverse diagnostics))))
+          (kill-buffer my-flymake-golangci-lint-stderr-buffer)
+          (kill-buffer my-flymake-golangci-lint-output-buffer)))))
 
+(defun my-flymake-golangci-lint (report-fn &rest _args)
+  (unless (executable-find "golangci-lint")
+    (error "golangci-lint is not installed"))
 
-;; (setq lsp-gopls-staticcheck t) ;; gopls has some built-in analysis
-;; ;; To enable golangci-lint specifically via lsp-mode:
-;; (setq lsp-go-analyses '((fieldalignment . t)
-;;                         (nilness . t)
-;;                         (unusedparams . t)
-;;                         (unusedwrite . t)
-;;                         (useany . t)))
-;; (with-eval-after-load 'lsp-mode
-;;   (lsp-register-client
-;;    (make-lsp-client :new-connection (lsp-stdio-connection '("golangci-lint-langserver"))
-;;                     :major-modes '(go-mode)
-;;                     :server-id 'golangci-lint-ls)))
+  (setq my-flymake-golangci-lint-source-buffer (current-buffer))
+  (setq my-flymake-golangci-lint-output-buffer (generate-new-buffer " *golangci-lint-stdout*"))
+  (setq my-flymake-golangci-lint-stderr-buffer (generate-new-buffer " *golangci-lint-stderr*"))
+  (setq my-flymake-golangci-lint-report-fn report-fn)
+
+  (make-process
+   :name "golangci-lint-flymake"
+   :buffer my-flymake-golangci-lint-output-buffer
+   :stderr my-flymake-golangci-lint-stderr-buffer
+   :command (list "golangci-lint" "run" "--output.json.path" "stderr" (buffer-file-name))
+   :noquery t
+   :sentinel 'my-flymake-golangci-lint-sentinel))
+
+(add-hook 'go-mode-hook
+  (lambda ()
+    (add-hook 'flymake-diagnostic-functions #'my-flymake-golangci-lint nil t)
+    ))
+(use-package flymake
+  :hook ((go-mode . flymake-mode)))
+
 
 
 
