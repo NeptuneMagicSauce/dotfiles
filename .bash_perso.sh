@@ -240,6 +240,11 @@ fi
 # how to TRANSCODE UPSCALE
 # alias ffmpeg1440p='ffmpeg -i $1 -vf scale=2560x1440:flags=lanczos -c:v libx264 -preset slow -crf 21'
 
+WINFFMPEG=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
+if [ -f $WINFFMPEG ] ; then
+    alias ffmpeg=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
+fi
+
 # https://superuser.com/a/556031
 gif_from_video()
 {
