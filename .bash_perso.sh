@@ -240,6 +240,16 @@ fi
 # how to TRANSCODE UPSCALE
 # alias ffmpeg1440p='ffmpeg -i $1 -vf scale=2560x1440:flags=lanczos -c:v libx264 -preset slow -crf 21'
 
+### for cropping vertical video from 1080p:
+# -vf "crop=700:1080:610:0"
+
+### for smaller file size, 30 seconds is 10 megabytes like this:
+# -filter:v scale=-1:720 -b:v 2300k
+
+### to convert and HDR capture for sharing on apps that fail the color space:
+# -filter_complex "[0:0]scale=1920:-8:flags=lanczos,setsar=1:1,zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p[v]" -map "[v]"
+
+FFMPEG1080="-filter:v scale=-1:1080 -b:v 10000k"
 WINFFMPEG=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
 if [ -f $WINFFMPEG ] ; then
     alias ffmpeg=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
