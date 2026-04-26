@@ -249,7 +249,13 @@ fi
 ### to convert and HDR capture for sharing on apps that fail the color space:
 # -filter_complex "[0:0]scale=1920:-8:flags=lanczos,setsar=1:1,zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p[v]" -map "[v]"
 
-FFMPEG1080="-filter:v scale=-1:1080 -b:v 10000k"
+### to extract a frame (number 300):
+# ffmpeg -i $file -vf "select=eq(n\,300)" -frames:v 1 out.png
+
+### to convert with h264 on the cpu (slow):
+# FFMPEG1080="-filter:v scale=-1:1080 -b:v 10000k"
+
+### use windows ffmpeg if available
 WINFFMPEG=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
 if [ -f $WINFFMPEG ] ; then
     alias ffmpeg=/c/Users/JOJO/AppData/Local/Microsoft/WinGet/Links/ffmpeg.exe
