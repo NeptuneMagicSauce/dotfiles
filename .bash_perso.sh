@@ -88,17 +88,39 @@ if [ $MYPC == 1 ] ; then
     # it does not have this in path:
     # add_path "/mingw64/bin"
 
-    csconfig()
+    csconfig_backup()
     {
-        F1=/c/Games/Steam/steamapps/common/Counter-Strike*/game/csgo/cfg/autoexec.cfg
-        F2=/c/Games/Steam/userdata/12*22/730/local/cfg/cs2_user_keys_0_slot0.vcfg
-        emacs -nw $F1 $F2
-        cp -av $F1 $F2 ~/.counter_strike/
+        gamefolder=/c/Games/Steam
+
+        cfgfolder=$gamefolder/userdata/12*22/730/local/cfg/
+        cd $cfgfolder
+        cp -av cs2_machine_convars.vcfg cs2_user_convars_0_slot0.vcfg cs2_user_keys_0_slot0.vcfg cs2_video.txt ~/.counter_strike/
+
+        autoexecfolder=$gamefolder/steamapps/common/Counter-Strike*/game/csgo/cfg
+        cd $autoexecfolder
+        cp -av autoexec.cfg ~/.counter_strike/
+
+        # obfuscate the name
+        cd ~/.counter_strike/
+        sed -E 's/^([[:space:]]*"name")([[:space:]]+)"[^"]+"/\1\2"foo"/' -i cs2_user_convars_0_slot0.vcfg
+
         for i in ~/.counter_strike/*
         do
-            dos2unix $i
+            unix2dos $i >& /dev/null
         done
     }
+    csconfig_restore()
+    {
+        cfgfolder=$gamefolder/userdata/12*22/730/local/cfg/
+        cd ~/.counter_strike/
+        cp -av cs2_machine_convars.vcfg cs2_user_convars_0_slot0.vcfg cs2_user_keys_0_slot0.vcfg cs2_video.txt $cfgfolder/
+
+        autoexecfolder=$gamefolder/steamapps/common/Counter-Strike*/game/csgo/cfg
+        cd ~/.counter_strike/
+        cp -av autoexec.cfg $autoexecfolder/
+    }
+
+
     cs2ded() {
         if [ $# -lt 1 ]
         then
