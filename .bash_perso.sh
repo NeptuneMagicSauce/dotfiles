@@ -268,6 +268,8 @@ ffmpeg1080()
     out="$(date +"%Y-%m-%d-%Hh%Mm%Ss".mp4)"
     # # h264 (bigger)
     # ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v h264_nvenc -b:v 10000k "$out"
+    # # AV1: not widely supported (i.e. iOS Telegram 2026-April)
+    # ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v av1_nvenc -b:v 5000k "$out"
     # h265 (smaller)
     ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v hevc_nvenc -b:v 5000k "$out"
     echo
