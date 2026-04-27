@@ -293,7 +293,7 @@ ffmpeg1080()
     # # AV1: not widely supported (i.e. iOS Telegram 2026-April)
     # ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v av1_nvenc -b:v 5000k "$out"
     # h265 (smaller)
-    ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v hevc_nvenc -b:v 5000k "$out"
+    ffmpeg -hwaccel cuda -hwaccel_output_format cuda -i "$in" "$@" -vf scale_cuda=-1:1080 -c:v hevc_nvenc -b:v 7000k "$out"
     echo
     \du -h "$out"
 }
