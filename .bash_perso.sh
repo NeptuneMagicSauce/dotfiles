@@ -89,7 +89,7 @@ if [ $MYPC == 1 ] ; then
     # add_path "/mingw64/bin"
 
     csconfig_backup()
-    {
+    (
         gamefolder=/c/Games/Steam
 
         cfgfolder=$gamefolder/userdata/12*22/730/local/cfg/
@@ -108,9 +108,10 @@ if [ $MYPC == 1 ] ; then
         do
             unix2dos $i >& /dev/null
         done
-    }
+    )
     csconfig_restore()
-    {
+    (
+        gamefolder=/c/Games/Steam
         cfgfolder=$gamefolder/userdata/12*22/730/local/cfg/
         cd ~/.counter_strike/
         cp -av cs2_machine_convars.vcfg cs2_user_convars_0_slot0.vcfg cs2_user_keys_0_slot0.vcfg cs2_video.txt $cfgfolder/
@@ -118,7 +119,7 @@ if [ $MYPC == 1 ] ; then
         autoexecfolder=$gamefolder/steamapps/common/Counter-Strike*/game/csgo/cfg
         cd ~/.counter_strike/
         cp -av autoexec.cfg $autoexecfolder/
-    }
+    )
 
 
     cs2ded() {
