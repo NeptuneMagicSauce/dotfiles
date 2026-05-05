@@ -100,14 +100,25 @@ if [ $MYPC == 1 ] ; then
         cd $autoexecfolder
         cp -av autoexec.cfg ~/.counter_strike/
 
-        # obfuscate the name
+        # obfuscate the name and remove transient values
         cd ~/.counter_strike/
-        sed -E 's/^([[:space:]]*"name")([[:space:]]+)"[^"]+"/\1\2"foo"/' -i cs2_user_convars_0_slot0.vcfg
+        sed -i *cfg -E \
+            -e 's/^([[:space:]]*"name")([[:space:]]+)"[^"]+"/\1\2"foo"/' \
+            -e '/player_teamplayedlast/d' \
+            -e '/cachedvalue_count_partybrowser/d' \
+            -e '/cachedvalue_count_teammates/d' \
+            -e '/cl_redemption_reset_timestamp/d' \
+            -e '/player_competitive_maplist_/d' \
+            -e '/ui_news_last_read_link/d' \
+            -e '/ui_playsettings_custom_preset/d' \
+            -e '/ui_playsettings_/d'
 
         for i in ~/.counter_strike/*
         do
             unix2dos $i >& /dev/null
         done
+
+        git status .
     )
     csconfig_restore()
     (
