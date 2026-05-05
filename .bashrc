@@ -15,13 +15,13 @@ source ~/.bash_perso.sh # for my machine
 
 # completion : git, docker, ...
 if [ -f /usr/share/bash-completion/completions/git ] ; then
-#     # ubuntu 22.4
+    #     # ubuntu 22.4
     source /usr/share/bash-completion/completions/git
-#     # to disable equal to upstream (develop=)
-#     # edit /usr/lib/git-core/git-sh-prompt
-#     # "0      0") # equal to upstream
-#     #        p="" ;;
-#     #        #p="=" ;;
+    #     # to disable equal to upstream (develop=)
+    #     # edit /usr/lib/git-core/git-sh-prompt
+    #     # "0      0") # equal to upstream
+    #     #        p="" ;;
+    #     #        #p="=" ;;
 else
     source ~/.git-completion.bash
 fi
@@ -40,9 +40,9 @@ add_prompt_wdir()
     PS1+="\[$reset\]"
     # last command return code
     # if [[ $? == 0 ]]; then
-        # PS1+="\[$PROMPTRETOK\] "
+    # PS1+="\[$PROMPTRETOK\] "
     # else
-        # PS1+="\[$PROMPTRETFAIL\] "
+    # PS1+="\[$PROMPTRETFAIL\] "
     # fi
 }
 add_prompt_conda()
@@ -151,7 +151,11 @@ trap 'deferred_setup_title' USR1
 alias ls='ls --color -B'
 alias l='ls -loh'
 alias la='l -a'
-alias llast='l -tr'
+llast()
+{
+    echo ⋯
+    l -tr "$@" | tail
+}
 alias p='cd ..'
 alias pp='cd ../..'
 alias ppp='cd ../../..'
