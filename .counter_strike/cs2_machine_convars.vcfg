@@ -151,7 +151,6 @@
 		"cl_weapon_selection_rarity_color"		"false"
 		"closecaption"		"false"
 		"commentary"		"false"
-		"csgo_map_preview_scale"		"3.966284"
 		"debugoverlay_text_scale"		"1.000000"
 		"demo_flush"		"false"
 		"demo_mouse_enable_binding"		"drop"

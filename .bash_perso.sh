@@ -109,6 +109,7 @@ if [ $MYPC == 1 ] ; then
             -e '/cachedvalue_count_teammates/d' \
             -e '/cl_redemption_reset_timestamp/d' \
             -e '/player_competitive_maplist_/d' \
+            -e '/csgo_map_preview_scale/d' \
             -e '/ui_news_last_read_link/d' \
             -e '/ui_playsettings_custom_preset/d' \
             -e '/ui_playsettings_/d'
