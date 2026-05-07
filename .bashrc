@@ -163,11 +163,7 @@ alias la='l -a'
 llast()
 {
     echo ⋯
-    if command -v eza > /dev/null; then
-        \ls -tr | tail | eza --stdin -d -l --sort=newest
-    else
-        l -tr "$@" | tail
-    fi
+    ltr "$@" --color=always | tail
 }
 if command -v grc > /dev/null; then
     alias ping='grc ping'
