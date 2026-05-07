@@ -22,7 +22,6 @@ sudo apt install \
      fd-find \
      cgdb \
      fzf \
-     eza \
      grc \
      gh
 
@@ -89,4 +88,9 @@ if ! exists gopls ; then
     go install golang.org/x/tools/gopls@latest
 else
     echo "GoPls: $(which gopls)"
+fi
+
+if ! exists eza ; then
+    # ubuntu-24 version is very old
+    cargo install eza
 fi
