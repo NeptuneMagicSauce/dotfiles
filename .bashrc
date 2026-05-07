@@ -151,8 +151,8 @@ trap 'deferred_setup_title' USR1
 if command -v eza > /dev/null; then
     alias ls=eza
     alias l='ls -l'
-    alias ltr='l --sort=newest'
-    alias lSr='l --sort=size'
+    alias ltr='l -snew'
+    alias lSr='l -ssize'
 else
     alias ls='ls --color -B'
     alias l='ls -loh'
@@ -163,7 +163,11 @@ alias la='l -a'
 llast()
 {
     echo ⋯
-    l -tr "$@" | tail
+    if command -v eza > /dev/null; then
+        \ls -tr | tail | eza --stdin -d -l --sort=newest
+    else
+        l -tr "$@" | tail
+    fi
 }
 if command -v grc > /dev/null; then
     alias ping='grc ping'
