@@ -148,21 +148,41 @@ deferred_setup_title() {
 trap 'deferred_setup_title' USR1
 
 # aliases
-alias ls='ls --color -B'
-alias l='ls -loh'
+if command -v eza > /dev/null; then
+    alias ls=eza
+    alias l='ls -l'
+    alias ltr='l --sort=newest'
+    alias lSr='l --sort=size'
+else
+    alias ls='ls --color -B'
+    alias l='ls -loh'
+    alias ltr='l -tr'
+    alias lSr='l -Sr'
+fi
 alias la='l -a'
 llast()
 {
     echo ⋯
     l -tr "$@" | tail
 }
+if command -v grc > /dev/null; then
+    alias ping='grc ping'
+    alias ps='grc ps'
+    alias free='grc free -h'
+    alias du='grc du -shc'
+    alias df='grc df -h'
+    alias netstat='grc netstat'
+    alias ip='grc ip'
+else
+    alias free='free -h'
+    alias du='du -shc'
+    alias df='df -h'
+fi
 alias p='cd ..'
 alias pp='cd ../..'
 alias ppp='cd ../../..'
 alias b='cd -'
 alias grep='grep --color=auto'
-alias du='du -shc'
-alias df='df -h'
 alias sort='sort -h'
 alias bashreload='source ~/.bashrc'
 alias bahsreload='bashreload'
