@@ -10,6 +10,7 @@ AppQt
 .bash_profile
 bin/build.stress.test.sh
 bin/*.exe
+bin/print_defuse_time_left
 bin/qemu*
 bin/youtube-dl*
 .bitbucketnetrc
@@ -171,6 +172,7 @@ Pictures/
 .pycache/
 .python_history
 raspberry-utils/
+ReplaysCounterStrike
 routerconnections.json
 .rustup/
 Screencasts
