@@ -93,4 +93,6 @@ fi
 if ! exists eza ; then
     # ubuntu-24 version is very old
     cargo install eza
+else
+    echo "eza: $(which eza)"
 fi
