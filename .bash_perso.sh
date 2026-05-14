@@ -44,6 +44,8 @@ add_path() # add only if missing
     fi
 }
 
+alias yt-dlp='yt-dlp --no-warnings'
+
 # add ~/local to path
 if [ -d ~/.local/bin ]; then
     add_path "~/.local/bin" "begin"
