@@ -52,6 +52,12 @@ add_prompt_conda()
         PS1+="$CONDA_PROMPT_MODIFIER"
     fi
 }
+add_prompt_venv()
+{
+    if [ -n "$VIRTUAL_ENV_PROMPT" ] ; then
+        PS1+="\[$PROMPT_COLOR_CONDA\][${VIRTUAL_ENV_PROMPT}] "
+    fi
+}
 add_prompt_git()
 {
     # if [ ! -z $INSIDE_WSL ] ; then
@@ -81,6 +87,7 @@ set_prompt_all() # slow with msys and cygwin
     PS1=""
     # add_prompt_conda # useless
     add_prompt_git
+    add_prompt_venv
     add_prompt_wdir
     add_prompt_emoji
 }
