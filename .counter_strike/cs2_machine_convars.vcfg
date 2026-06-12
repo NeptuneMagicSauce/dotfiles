@@ -207,6 +207,7 @@
 		"r_icon_image_cache_to_disk"		"true"
 		"r_player_visibility_mode"		"1"
 		"r_show_build_info"		"true"
+		"r_spectator_flashbang_opacity"		"0.400000"
 		"rate"		"786432"
 		"rr_thenany_score_slop"		"0.000000"
 		"safezonex"		"1.000000"
