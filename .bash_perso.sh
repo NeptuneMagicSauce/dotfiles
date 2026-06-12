@@ -125,13 +125,17 @@ if [ $MYPC == 1 ] ; then
     )
     csconfig_restore()
     (
+        cd ~/.counter_strike/
         gamefolder=/c/Games/Steam
-        cfgfolder=$gamefolder/userdata/12*22/730/local/cfg/
-        cd ~/.counter_strike/
-        cp -av cs2_machine_convars.vcfg cs2_user_convars_0_slot0.vcfg cs2_user_keys_0_slot0.vcfg cs2_video.txt $cfgfolder/
+        for userid in 12*22 44**65 ; do
+            base=$gamefolder/userdata/$userid
+            echo "> User $(basename $base)"
+            cfgfolder=$base/730/local/cfg/
+            cp -av cs2_machine_convars.vcfg cs2_user_convars_0_slot0.vcfg cs2_user_keys_0_slot0.vcfg cs2_video.txt $cfgfolder/
+        done
 
+        echo "> Config"
         autoexecfolder=$gamefolder/steamapps/common/Counter-Strike*/game/csgo/cfg
-        cd ~/.counter_strike/
         cp -av autoexec.cfg $autoexecfolder/
     )
 
