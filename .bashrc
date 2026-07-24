@@ -234,7 +234,7 @@ alias zz-youtube-audio='Youtube-audio --output="ZZ %(title)s.%(ext)s"'
 # youtube-audio alternative : -x --audio-format m4a INSTEAD OF -f 140'
 alias time='TIME="Time %E" time'
 alias vim='vim -c startinsert'
-alias bc='bc -l'
+alias bc='bc -lq'
 command -v killall > /dev/null
 if [ $? == 1 ]
 then
@@ -315,10 +315,10 @@ ccatn() # cat in color with line numbers
 }
 randpassword()
 {
-    # </dev/urandom tr -dc 'azertqsdfgwxcvAZERTQSDFGWXCV12345' | head -c 8 ; echo "   <--- left-hand only"
-    </dev/urandom tr -dc A-Z | head -c 4
-    </dev/urandom tr -dc a-z | head -c 4
-    </dev/urandom tr -dc 0-9 | head -c 4
+    # < /dev/urandom tr -dc 'azertqsdfgwxcvAZERTQSDFGWXCV12345' | head -c 8 ; echo " <--- left-hand only"
+    < /dev/urandom tr -dc A-Z | head -c 4
+    < /dev/urandom tr -dc a-z | head -c 4
+    < /dev/urandom tr -dc 0-9 | head -c 4
     < /dev/urandom tr -dc "!@#$%^\&*\(\)\-_=+[]{}" | head -c 4
     echo ""
 }
