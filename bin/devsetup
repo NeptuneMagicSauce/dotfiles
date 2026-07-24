@@ -74,8 +74,11 @@ if ! exists diffnav ; then
     cd ~/tmp/
     if [ ! -d diffnav ] ; then
         git clone https://github.com/dlvhdr/diffnav.git
+        cd diffnav
+    else
+        cd diffnav
+        git fetch
     fi
-    cd diffnav
     tag=$(gh release view --repo dlvhdr/diffnav --json tagName -q .tagName)
     git switch -d $tag
     go install
