@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/bashrc.pre.bash"
+
+
 # test sanity
 command -v ls > /dev/null
 if [ $? == 1 ] ; then
@@ -137,6 +141,8 @@ else
     PROMPT_COMMAND=set_prompt_fast
 fi
 
+if [ "$TERM_PROGRAM" != "kiro" ] ; then
+
 # terminal title
 set_title() {
     echo -ne "\033]0;${1}\007"
@@ -153,6 +159,8 @@ deferred_setup_title() {
 # if not scheduled, it does not work for the first command, only works on the second prompted line
 (sleep 1 && kill -USR1 $$) & disown
 trap 'deferred_setup_title' USR1
+
+fi
 
 # aliases
 if command -v eza > /dev/null; then
@@ -549,3 +557,10 @@ bind '"\C-o": "\C-u __fzf_cd_quick_access\n"'
 export FZF_CTRL_R_OPTS='--scheme=history'
 
 alias docker_stop_all='docker stop $(docker ps -aq)'
+if [ -f /root/.zshenv ]; then source /root/.zshenv; fi
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash"
