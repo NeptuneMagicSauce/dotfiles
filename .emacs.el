@@ -470,7 +470,9 @@
 (setq compilation-scroll-output 'first-error) ;; auto scroll compile buffer to first error
 (setq compilation-max-output-line-length nil) ;; do not collapse long lines
 
-
+;; Compilation output: do not hard-wrap long lines (file paths, diagnostics).
+;; by setting a big value for columns
+(setq compilation-environment '("COLUMNS=250" "LINES=1000"))
 
 ;; Revert (=reload from disk) All Buffers
 ;; source https://emacs.stackexchange.com/a/24461
