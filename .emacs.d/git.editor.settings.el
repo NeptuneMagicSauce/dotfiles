@@ -1,3 +1,5 @@
+;; git.editor.settings.el  -*- lexical-binding: t -*-
+
 (load-file "~/.emacs.d/min-settings.el")
 
 (defun save-buffer-and-quit ()

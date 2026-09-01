@@ -1,4 +1,4 @@
-;; .emacs
+;; .emacs  -*- lexical-binding: t -*-
 
 ;; load minimum settings
 (load-file "~/.emacs.d/min-settings.el")

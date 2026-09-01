@@ -1,3 +1,4 @@
+;; min-settings.el  -*- lexical-binding: t -*-
 ;; Undo
 (global-set-key (kbd "C-u") 'undo)
 
