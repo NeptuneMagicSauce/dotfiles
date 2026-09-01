@@ -1035,6 +1035,29 @@ or the workspace script
 
 (setq lsp-keymap-prefix "C-d") ; must be before load lsp: before eval-after-load lsp ...
 
+;; Workaround for an lsp-mode bug that Emacs 31 turned into a hard error.
+;; lsp-ts-query.el computes its default value with (cl-remove-if #'nil ...).
+;; #'nil is not a function: it reads as plain nil.
+;;   Emacs 30.2: cl-remove-if passed that nil through as :if, and
+;;               cl--check-test-nokey skipped the nil :if clause and fell back
+;;               to (eql item x) with item = nil -- accidentally exactly the
+;;               intended "drop the nil entries" behaviour, so nobody noticed.
+;;   Emacs 31.1: cl-remove-if became
+;;               (apply #'cl-remove pred seq :test #'funcall ...),
+;;               so the nil predicate is now funcalled -> (void-function nil).
+;; That error escapes lsp--require-packages (`require' with NOERROR only
+;; swallows missing files, not errors raised while loading), so plain M-x lsp
+;; aborts before any server is started. Net effect: clangd is never spawned and
+;; there is no *clangd::stderr* buffer, plus "Error running timer:
+;; (void-function nil)" from the deferred lsp hook.
+;; Giving the variable a value here means defcustom's custom-initialize-reset
+;; keeps this value and never evaluates the broken default expression.
+;; tree-sitter-langs is not installed, so the parser dir list is just the
+;; standard ~/.emacs.d/tree-sitter.
+;; Remove once lsp-ts-query.el uses #'null.
+(defvar lsp-ts-query-parser-install-directories
+  (vector (expand-file-name (locate-user-emacs-file "tree-sitter"))))
+
 ;; EDIFACT syntax highlighting
 (define-generic-mode
     'edi-mode
