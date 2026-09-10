@@ -1157,6 +1157,11 @@ or the workspace script
   (set-frame-parameter nil 'undecorated
                        (not (frame-parameter nil 'undecorated))))
 
+;; Rust
+(setq lsp-rust-analyzer-server-command
+      (list (string-trim
+             (shell-command-to-string "rustup which rust-analyzer"))))
+(use-package rust-mode :hook (rust-mode . lsp))
 ;;;;;;;;;;;;;;;;
 ;; end .emacs ;;
 ;;;;;;;;;;;;;;;;
