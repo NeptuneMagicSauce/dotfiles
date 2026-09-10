@@ -79,7 +79,7 @@
    '(all-the-icons bind-key clang-format cmake-mode company diff-hl
                    doom-themes emojify-logos flycheck helm-lsp
                    helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info
-                   projectile protobuf-mode rg which-key))
+                   projectile protobuf-mode rg rust-mode which-key))
  '(warning-suppress-types '((comp))))
 
 ;; byte-compile all the packages
@@ -111,7 +111,7 @@
   (setq mouse-wheel-follow-mouse t)
 
   ;; Emojis
-  (add-hook 'after-init-hook #'global-emojify-mode)
+;;  (add-hook 'after-init-hook #'global-emojify-mode) ;; broken with emacs 31.1?
 
   ;; Text Size
   (defun apply-zoom-text ()
