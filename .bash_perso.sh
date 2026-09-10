@@ -59,6 +59,11 @@ if [ -d /usr/local/go/bin ] ; then
     add_path /usr/local/go/bin
 fi
 
+# add rustup component to path
+RUSTUPPATH=~/.rustup/toolchains/stable-$(uname -m)-unknown-linux-gnu/bin
+if [ -d $RUSTUPPATH ] ; then
+    add_path $RUSTUPPATH
+fi
 
 if [ $MYPC == 1 ] || [ $MYLAPTOP == 1 ]; then
     # env vars

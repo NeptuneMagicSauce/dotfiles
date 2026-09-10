@@ -42,6 +42,18 @@ else
     cargo --version
 fi
 
+if ! exists rust-analyzer ; then
+    rustup component add rust-analyzer
+    if [ $? == 0 ] ; then
+        if ! exists rust-analyzer ; then
+            echo "### Restart shell for rustup component to be added to PATH"
+        fi
+    fi
+else
+    rust-analyzer --version
+fi
+exit
+
 if ! exists delta ; then
     cargo install git-delta
 else
