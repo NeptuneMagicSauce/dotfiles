@@ -42,7 +42,9 @@ else
     cargo --version
 fi
 
-if ! exists rust-analyzer ; then
+if ! rustup component list --installed | grep -q "^rust-analyzer" ; then
+    # rust-analyzer is always present, even before it's installed, as a shim, a symlink
+    # do not test its presence with which/command-v but with rustup
     rustup component add rust-analyzer
     if [ $? == 0 ] ; then
         if ! exists rust-analyzer ; then
