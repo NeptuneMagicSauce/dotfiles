@@ -560,8 +560,10 @@ or the workspace script
   (setq compile-command
         (if (is-workplace-23)
             "~/workspace/compile.sh"
-          (concat
-           "ninja -C " (locate-dominating-file buffer-file-name "build.ninja"))))
+          (if (derived-mode-p 'rust-mode 'rustic-mode)
+              "cargo build"
+            (concat
+             "ninja -C " (locate-dominating-file buffer-file-name "build.ninja")))))
   (if (and (eq pfx 1)
            compilation-last-buffer)
       (progn
