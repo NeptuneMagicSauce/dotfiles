@@ -47,8 +47,6 @@ clipboard-paste-protection = false
 # window-decoration = true
 # gtk-scrollbars = true
 
-# TODO vertical scrollbar
-
 # selected text color
 selection-foreground = cell-background
 selection-background = cell-foreground
