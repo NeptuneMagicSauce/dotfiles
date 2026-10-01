@@ -54,7 +54,6 @@ if ! rustup component list --installed | grep -q "^rust-analyzer" ; then
 else
     rust-analyzer --version
 fi
-exit
 
 if ! exists delta ; then
     cargo install git-delta
