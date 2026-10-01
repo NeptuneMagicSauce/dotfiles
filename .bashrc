@@ -165,7 +165,7 @@ fi
 # aliases
 if command -v eza > /dev/null; then
     alias ls=eza
-    alias l='ls -l'
+    alias l='ls -l --git'
     alias ltr='l -snew'
     alias lSr='l -ssize'
 else
