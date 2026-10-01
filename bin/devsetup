@@ -15,7 +15,8 @@ exists() {
     command -v "$@" > /dev/null
 }
 
-sudo apt install \
+sudo apt install -y \
+     gcc g++ \
      ripgrep \
      bat \
      btop \
@@ -109,6 +110,12 @@ fi
 if ! exists eza ; then
     # ubuntu-24 version is very old
     cargo install eza
+    # if it fails like this:
+    # could not find `lms` in the crate root
+    # see this issue
+    # https://github.com/eza-community/eza/issues/1912
+    # then
+    # cargo install eza --locked
 else
     echo "eza: $(which eza)"
 fi
