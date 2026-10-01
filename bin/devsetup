@@ -17,6 +17,7 @@ exists() {
 
 sudo apt install -y \
      gcc g++ \
+     emacs \
      ripgrep \
      bat \
      btop \
