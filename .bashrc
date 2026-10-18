@@ -558,10 +558,3 @@ bind '"\C-o": "\C-u __fzf_cd_quick_access\n"'
 export FZF_CTRL_R_OPTS='--scheme=history'
 
 alias docker_stop_all='docker stop $(docker ps -aq)'
-if [ -f /root/.zshenv ]; then source /root/.zshenv; fi
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path bash)"
-
-
-# Kiro CLI post block. Keep at the bottom of this file.
-[[ -f "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/.local/share/kiro-cli/shell/bashrc.post.bash"
