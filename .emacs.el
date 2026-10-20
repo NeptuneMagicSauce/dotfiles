@@ -74,12 +74,10 @@
  '(helm-completion-style 'helm)
  '(inhibit-startup-screen t)
  '(ispell-dictionary nil)
+ '(lsp-clangd-binary-path "/usr/bin/clangd")
  '(mouse-buffer-menu-mode-mult 99)
  '(package-selected-packages
-   '(all-the-icons bind-key clang-format cmake-mode company diff-hl
-                   doom-themes emojify-logos flycheck helm-lsp
-                   helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info
-                   projectile protobuf-mode rg rust-mode which-key))
+   '(dockerfile-mode all-the-icons bind-key clang-format cmake-mode company diff-hl doom-themes emojify-logos flycheck helm-lsp helm-xref lsp-pyright lsp-treemacs lsp-ui pkg-info projectile protobuf-mode rg rust-mode which-key))
  '(warning-suppress-types '((comp))))
 
 ;; byte-compile all the packages
