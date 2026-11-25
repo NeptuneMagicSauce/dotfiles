@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd /c/SteamRecordings/clips
+
+for i in $(fdfind -g session.mpd); do
+    cd $(dirname $i)
+    name=$(echo $i | cut -d/ -f1)
+    file=$(basename $i)
+    out=/c/Incoming/$name.mp4
+
+    \ffmpeg \
+        -fflags +genpts \
+        -i <(cat init-stream0.m4s $(/bin/ls -1v chunk-stream0-*.m4s)) \
+        -fflags +genpts \
+        -i <(cat init-stream1.m4s $(/bin/ls -1v chunk-stream1-*.m4s)) \
+        -c copy -movflags +faststart \
+        $out
+    cd -
+done
